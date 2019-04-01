@@ -14,7 +14,7 @@ public class TagsearchController {
 	TagsearchServiceImpl tagSer;
 	
 	@RequestMapping("/tags")
-	public String testTag() {
+	public String addTag() {
 		
 		TagsearchDTO tagDTO= new TagsearchDTO();
 		tagDTO.setNameTag("Java");
