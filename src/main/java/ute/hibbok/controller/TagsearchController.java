@@ -1,4 +1,4 @@
-package ute.hibook.controller;
+package ute.hibbok.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ public class TagsearchController {
 	TagsearchServiceImpl tagSer;
 	
 	@RequestMapping("/tags")
-	public String addTag() {
+	public String testTag() {
 		
 		TagsearchDTO tagDTO= new TagsearchDTO();
 		tagDTO.setNameTag("Java");

@@ -12,8 +12,9 @@ import javax.persistence.*;
 public class Detailbill implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private DetailbillPK id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idDetailBill;
 
 	private int price;
 
@@ -32,12 +33,12 @@ public class Detailbill implements Serializable {
 	public Detailbill() {
 	}
 
-	public DetailbillPK getId() {
-		return this.id;
+	public int getIdDetailBill() {
+		return this.idDetailBill;
 	}
 
-	public void setId(DetailbillPK id) {
-		this.id = id;
+	public void setIdDetailBill(int idDetailBill) {
+		this.idDetailBill = idDetailBill;
 	}
 
 	public int getPrice() {
