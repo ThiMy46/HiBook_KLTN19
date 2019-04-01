@@ -20,7 +20,7 @@ public class Role implements Serializable {
 	private String nameRole;
 
 	//bi-directional many-to-one association to User
-	@OneToMany(mappedBy="role")
+	@OneToMany(mappedBy="role", fetch = FetchType.EAGER)
 	private List<User> users;
 
 	public Role() {

@@ -32,11 +32,11 @@ public class User implements Serializable {
 	private byte sex;
 
 	//bi-directional many-to-one association to Bill
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Bill> bills;
 
 	//bi-directional many-to-one association to Cart
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Cart> carts;
 
 	//bi-directional many-to-one association to Role
@@ -45,7 +45,7 @@ public class User implements Serializable {
 	private Role role;
 
 	//bi-directional many-to-one association to Userreview
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
 	private List<Userreview> userreviews;
 
 	public User() {
