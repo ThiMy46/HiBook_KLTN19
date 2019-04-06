@@ -20,7 +20,7 @@ public class Author implements Serializable {
 	private String nameAuthor;
 
 	//bi-directional many-to-many association to Book
-	@ManyToMany(mappedBy="authors")
+	@ManyToMany(mappedBy="authors", fetch = FetchType.EAGER)
 	private List<Book> books;
 
 	public Author() {

@@ -6,8 +6,8 @@ import ute.hibook.dto.TagsearchDTO;
 
 public interface TagsearchService {
 
-	public void addTag(TagsearchDTO tag);
-	public void updateTag(TagsearchDTO tag);
+	public void addTag(TagsearchDTO tagDTO);
+	public void updateTag(TagsearchDTO tagDTO);
 	public void deleteTag(int idTag);
 	public TagsearchDTO getTagById(int idTag);
 	public List<TagsearchDTO> getAllTag();

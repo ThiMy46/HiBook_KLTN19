@@ -47,7 +47,7 @@ public class RoleServiceImpl implements RoleService{
 		RoleDTO roleDTO= new RoleDTO();
 		roleDTO.setIdRole(role.getIdRole());
 		roleDTO.setNameRole(role.getNameRole());
-		System.out.println(role.getUsers().get(0).getEmail());
+		//System.out.println(role.getUsers().get(0).getEmail());
 		
 		return roleDTO;
 	}

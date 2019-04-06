@@ -1,5 +1,6 @@
 package ute.hibook.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import ute.hibook.dao.imp.AuthorDaoImpl;
 import ute.hibook.dto.AuthorDTO;
+import ute.hibook.entity.Author;
 import ute.hibook.service.AuthorService;
 
 @Service
@@ -16,28 +18,54 @@ public class AuthorServiceImpl implements AuthorService{
 	AuthorDaoImpl authorDao;
 
 	public void addAuthor(AuthorDTO authorDTO) {
-		// TODO Auto-generated method stub
-		
+		Author author= new Author();
+		author.setNameAuthor(authorDTO.getNameAuthor());
+		authorDao.addAuthor(author);		
+		System.out.println("add Author successful!");
 	}
 
 	public void updateAuthor(AuthorDTO authorDTO) {
-		// TODO Auto-generated method stub
+		Author author= authorDao.getAuthorById(authorDTO.getIdAuthor());
+		if(author!=null) {
+			author.setNameAuthor(authorDTO.getNameAuthor());
+			authorDao.updateAuthor(author);
+			System.out.println("update Author successful!");
+		}
 		
 	}
 
 	public void deleteAuthor(int idAuthor) {
-		// TODO Auto-generated method stub
-		
+		Author author= authorDao.getAuthorById(idAuthor);
+		if(author!=null) {
+			authorDao.deleteAuthor(idAuthor);
+			System.out.println("delete Author successful!");
+		}
 	}
 
 	public AuthorDTO getAuthorById(int idAuthor) {
-		// TODO Auto-generated method stub
-		return null;
+		Author author= authorDao.getAuthorById(idAuthor);
+		
+		AuthorDTO authorDTO= new AuthorDTO();
+		authorDTO.setIdAuthor(author.getIdAuthor());
+		authorDTO.setNameAuthor(author.getNameAuthor());
+		System.out.println(author.getBooks().get(0).getNameBook());
+		
+		return authorDTO;
 	}
 
 	public List<AuthorDTO> getAllAuthor() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Author> lstAuthor= authorDao.getAllAuthor();
+		
+		List<AuthorDTO> lstAuthorDTO= new ArrayList<AuthorDTO>();
+		for (Author author : lstAuthor) {
+			
+			AuthorDTO authorDTO= new AuthorDTO();
+			authorDTO.setIdAuthor(author.getIdAuthor());
+			authorDTO.setNameAuthor(author.getNameAuthor());
+		
+			lstAuthorDTO.add(authorDTO);
+		}
+		return lstAuthorDTO;
 	}
 	
 	
