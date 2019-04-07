@@ -16,7 +16,7 @@ public class AuthorController {
 	@Autowired
 	AuthorServiceImpl authorSer;
 	
-	@GetMapping("/author")
+	@GetMapping("/authors")
 	public String getAllAuthor() {
 		
 		List<AuthorDTO> authors= authorSer.getAllAuthor();
@@ -26,7 +26,7 @@ public class AuthorController {
 		return "<h1>Hello!!!</h1>";
 	}
 	
-	@GetMapping("/author/{idAuthor}")
+	@GetMapping("/authors/{idAuthor}")
 	public String getAuthorById(@PathVariable int idAuthor) {
 		
 		AuthorDTO author= authorSer.getAuthorById(idAuthor);

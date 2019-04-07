@@ -16,7 +16,7 @@ public class PageController {
 	}
 
 	@GetMapping({"/book"})
-	public String bookPage() {
+	public String book() {
 		return "listbook";
 	}
 
@@ -45,66 +45,66 @@ public class PageController {
 		return "user/historybill";
 	}
 	@GetMapping({"/update-user"})
-	public String updateUser() {
+	public String updateUserPage() {
 		return "user/updateinfo";
 	}
 
 	/*====PAGE ADMIN===== */
 
 	@GetMapping({"/add-book"}) 
-	public String addBook() { 
+	public String addBookAdmin() { 
 		return "admin/addbook"; 
 	}
 	@GetMapping({"/add-user"}) 
-	public String addUser() { 
+	public String addUserAdmin() { 
 		return "admin/adduser"; 
 	}
-	@GetMapping({"/author"}) 
-	public String authorManage() { 
+	@GetMapping({"/author-manage"}) 
+	public String authorManageAdmin() { 
 		return "admin/author"; 
 	}
-	@GetMapping({"/bill"}) 
-	public String billManage() { 
+	@GetMapping({"/bill-manage"}) 
+	public String billManageAdmin() { 
 		return "admin/bill"; 
 	}
-	@GetMapping({"/book"}) 
-	public String bookManage() { 
+	@GetMapping({"/book-manage"}) 
+	public String manageBookAmin() { 
 		return "admin/book"; 
 	}
 	@GetMapping({"/dashboard"}) 
-	public String dashboardManage() { 
+	public String dashboardManageAdmin() { 
 		return "admin/dashboard"; 
 	}
 	@GetMapping({"/detail-bill-manage"}) 
-	public String detailBillManage() { 
+	public String detailBillManageAdmin() { 
 		return "admin/detailbill"; 
 	}
-	@GetMapping({"/order-status"}) 
-	public String orderstatusManage() { 
+	@GetMapping({"/orderstatus-manage"}) 
+	public String orderstatusManageAdmin() { 
 		return "admin/orderstatus"; 
 	}
-	@GetMapping({"/payment"}) 
-	public String paymentManage() { 
+	@GetMapping({"/payment-manage"}) 
+	public String paymentManageAdmin() { 
 		return "admin/payment"; 
 	}
-	@GetMapping({"/supplier"}) 
-	public String supplierManage() { 
+	@GetMapping({"/supplier-manage"}) 
+	public String supplierManageAdmin() { 
 		return "admin/supplier"; 
 	}
-	@GetMapping({"/transport"}) 
-	public String transportManage() { 
+	@GetMapping({"/transport-manage"}) 
+	public String transportManageAdmin() { 
 		return "admin/transport"; 
 	}
-	@GetMapping({"/typebook"}) 
-	public String typebookManage() { 
+	@GetMapping({"/typebook-manage"}) 
+	public String typebookManageAdmin() { 
 		return "admin/typebook"; 
 	}
-	@GetMapping({"/user"}) 
-	public String userManage() { 
+	@GetMapping({"/user-manage"}) 
+	public String userManageAdmin() { 
 		return "admin/user"; 
 	}
-	@GetMapping({"/userreview"}) 
-	public String userreviewManage() { 
+	@GetMapping({"/userreview-manage"}) 
+	public String userreviewManageAdmin() { 
 		return "admin/userreview"; 
 	}
 

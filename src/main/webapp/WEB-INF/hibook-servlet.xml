@@ -13,11 +13,13 @@
 	  <context:component-scan base-package="ute.hibook.dao" />
 	  
 	  <context:annotation-config/>
+	  
+	  <mvc:resources location="/resources/"
+		mapping="/resources/**"></mvc:resources>
+		
 	  <mvc:annotation-driven enable-matrix-variables="true" />
 	    
 	  <import resource="classpath:Hibernate.xml" />
-	  <mvc:resources location="/resources/"
-		mapping="/resources/**"></mvc:resources>
 		
 	  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	    <property name="prefix" value="/WEB-INF/views/" />

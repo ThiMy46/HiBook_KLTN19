@@ -16,7 +16,7 @@ public class RoleController {
 	@Autowired
 	RoleServiceImpl roleSer;
 	
-	@GetMapping("/role")
+	@GetMapping("/roles")
 	public String getAllRole() {
 		
 		List<RoleDTO> roles= roleSer.getAllRole();
@@ -26,7 +26,7 @@ public class RoleController {
 		return "<h1>Hello!!!</h1>";
 	}
 	
-	@GetMapping("/role/{idRole}")
+	@GetMapping("/roles/{idRole}")
 	public String getRoleById(@PathVariable int idRole) {
 		
 		RoleDTO role= roleSer.getRoleById(1);
@@ -34,7 +34,7 @@ public class RoleController {
 		return "<h1>Hello!!!</h1>";
 	}
 	
-	@GetMapping("/role/add")
+	@GetMapping("/roles/add")
 	public String addRole() {
 		
 		RoleDTO role= new RoleDTO();
@@ -43,7 +43,7 @@ public class RoleController {
 		return "<h1>Hello!!!</h1>";
 	}
 	
-	@GetMapping("/role/update")
+	@GetMapping("/roles/update")
 	public String updateRole() {
 		
 		RoleDTO role= new RoleDTO();
