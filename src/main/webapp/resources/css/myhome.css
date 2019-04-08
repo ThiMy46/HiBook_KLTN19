@@ -9,6 +9,45 @@ a.non-textdecoration{
 /*************************
 *******Header*************
 **************************/
+/*Top-header*/
+#menu ul {
+  list-style-type: none;
+  text-align: right;
+}
+#menu li {
+  float: right;
+  width: 120px;
+  height: 25px;
+  line-height: 25px;
+  border-left:1px solid #e8e1e1;
+  border-right:1px solid #e8e1e1;
+  text-align: center;
+  margin-right: 10px;
+}
+#menu li>a{
+  color:#333333;
+}
+#menu li:hover>a{
+  color:#e04622;
+  text-decoration: none;
+}
+#menu .sdt{
+  float: left;
+  border-left:0px;
+  width: 145px;
+  text-align: left;
+}
+#menu .gmail{
+  float: left;
+  border-left:0px;
+  width: 250px;
+  border-right: 0px;
+}
+#menu .gmail .glyphicon,#menu .sdt .glyphicon{
+  margin-right: 8px;
+}
+
+
 .form_search{
   background-color: #eef1f2;
   border-radius: 4px;
@@ -26,27 +65,26 @@ a.non-textdecoration{
 #header{
   font-weight: bold;
   font-size: 13px;
-  display: inline-block;
-  z-index: 999;
-  position: absolute;
   left: 0px;
   right: 0;
   width: 100%;
-
+  font-family: 'Open Sans', sans-serif;
 }
-/*chá»‰nh thuá»™c tÃ­nh cá»§a menu*/
+/*chỉnh thuộc tính của menu*/
 .affix {
-    top: 0;
+    top: 0px;
     width: 100%;
-    box-shadow: 0px 3px 3px #d7d8d7;
 }
 #header .affix{
+    background: rgba(39, 174, 97, 0.68);
+    margin-top: -10px;
 }
-
+#header .affix:hover{
+    background: rgba(39, 174, 97, 1);
+}
 .affix ~ .container {
      position: relative;
-     top: 0px;
-     margin-left: -50px;
+     top: 2000px;
 
 }
 .navbar-inverse .navbar-toggle {
@@ -60,43 +98,44 @@ a.non-textdecoration{
   padding: 5px 0;
   padding-bottom: 0px;
   border: 0px;
-  background: hsla(0, 0%, 100%, 0.9);
+  background: #27ae61;
   z-index: 999;
 }
 
 
-/*hÃ¬nh*/
+/*hình*/
 .navbar-brand {
   padding: 0;
   margin-top: -20px;
   margin-left: -10px;
   margin-bottom: 30px;
 }
-/*táº¡i khoáº£ng cÃ¡ch giá»¯a cÃ¡c Ã´ trÃªn menu*/
+/*tại khoảng cách giữa các ô trên menu*/
 .navbar-nav>li{
   margin-top: 15px;
   margin-left: 25px;
   padding-bottom: 15px;
 }
-/*toÃ n bá»™ tháº» a */
+/*toàn bộ thẻ a */
 .navbar-inverse .navbar-nav > li > a {
   padding: 8px 15px;
   border-radius: 3px;
-  color: #333333;
+  color: #fff;
   line-height: 20px;
   display: inline-block;
 }
 .navbar-inverse .navbar-nav > li {
   padding: 5px 0px;
   border-radius: 3px;
-  color: #333333;
+  color: #000;
   line-height: 20px;
   display: inline-block;
 }
-/* khi táº¥t cáº£ tháº» a khi Ä‘Æ°á»£c hover*/
+/* khi tất cả thẻ a khi được hover*/
 .navbar-inverse .navbar-nav > li > a:hover{
-	border: 1px solid #31af12;
-  color: #31af12;
+	border: 1px solid #fff;
+  background-color: #229955;
+  color: #fff;
 }
 /*header_search*/
 .navbar-inverse .navbar-nav > li .form-search {
@@ -124,7 +163,7 @@ a.non-textdecoration{
     margin-bottom: 8px;
 }
 .header_search:hover{
-  box-shadow: 0px 5px 5px #bfffbe;
+    border: 1px solid #31af12;
 }
 .header_search .search-bar {
     border: none;
@@ -144,34 +183,35 @@ a.non-textdecoration{
     width: 250px;
   } 
 }
-/*khi tháº» a Ä‘Æ°á»£c hover thÃ¬ nhá»¯ng báº£n thÃ¢n tháº» cÅ©ng pháº£i hiá»ƒn thá»‹ mÃ u*/
+/*khi thẻ a được hover thì những bản thân thẻ cũng phải hiển thị màu*/
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus,
-.navbar-inverse .navbar-nav > .open > a,/*cÃ¡c tháº» a trong dropdown-menu Ä‘Æ°á»£c open*/
+.navbar-inverse .navbar-nav > .open > a,/*các thẻ a trong dropdown-menu được open*/
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   border: 1px solid #31af12;
   color: #31af12;
   background: rgba(255, 254, 254, 0.16);
 }
-/*mÃ u cá»§a khung chung chá»©a cÃ¡c vÃ¹ng tháº» a*/
+/*màu của khung chung chứa các vùng thẻ a*/
 .navbar-inverse .navbar-nav .dropdown-menu {
   background-color: rgb(255, 255, 255);
 }
-/*mÃ u cá»§a cÃ¡c tháº» a cá»§a dropdown-menu*/
+/*màu của các thẻ a của dropdown-menu*/
 .navbar-inverse .navbar-nav .dropdown-menu > li > a {
   padding: 8px 15px;
   color: #333333;
 }
-/*khi hover cÃ¡c tháº» a dropdown-menu*/
+/*khi hover các thẻ a dropdown-menu*/
 .navbar-inverse .navbar-nav .dropdown-menu > li:hover > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li:focus > a,
 .navbar-inverse .navbar-nav .dropdown-menu > li.active > a {
-   border: 1px solid #31af12;
-  color: #31af12;
+   border: 1px solid #fff;
+  background-color: #229955;
+  color: #fff;
 }
-/*hiá»ƒn thá»‹ cÃ¡c dropdown-menu khi hover chuá»™t vÃ o thanh menu*/
+/*hiển thị các dropdown-menu khi hover chuột vào thanh menu*/
 .dropdown:hover .dropdown-menu {
     display: block;
     margin-top: -10px;
@@ -319,7 +359,7 @@ span.psw {
     cursor: pointer;
 }
 
-/* LÃ m má»� trang phÃ­a sau*/
+/* Làm mờ trang phía sau*/
 .animate {
     -webkit-animation: animatezoom 0.9s;
     animation: animatezoom 0.9s;
@@ -338,7 +378,7 @@ span.psw {
 .bg-grad{
   background-color:#f6f6f6;
 }
-/*khÃ³a há»�c tiÃªu biá»ƒu*/
+/*khóa học tiêu biểu*/
 .entry {
     border: 0px solid white;
     overflow: hidden;
@@ -379,7 +419,7 @@ span.psw {
   -webkit-transition-duration: 500ms;
 }
 #NameSP{
-  font-size: 15px; padding: 10px; font-weight: bold;
+  font-size: 16px; padding: 10px; font-weight: bold;
 }
 /*tin tuc*/
 .readmore{
@@ -420,11 +460,50 @@ span.psw {
   padding: 0 0 2px;
   display: block;
 }
-/*giá»›i thiá»‡u======*/
-.first-box{padding:10px;background:#9C0;}
-.second-box{padding:10px; background:#39F;}
-.third-box{padding:10px;background:#F66;}
-.fourth-box{padding:10px;background:#6CC;}
+/*giới thiệu======*/
+.intro{    
+  padding: 25px 20px;
+  text-align: center;
+
+}
+.single-banner{
+  display: flex;
+}
+
+@media (max-width: 1169px) and (min-width: 992px){
+  .single-banner .banner-img {
+      margin-right: 6px;
+      flex: 0 0 27px;
+  }
+}
+@media only screen and (max-width: 767px) and (min-width: 480px){
+  .intro .col-xs-12 {
+      width: 50%;
+  }
+  .intro{
+    max-width: 460px;
+  }
+}
+.single-banner .banner-img {
+    flex: 0 0 32px;
+    margin-top: 4px;
+}
+
+.single-banner .banner-text p {
+    color: #333;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.single-banner .banner-text h4 {
+    color: #222;
+    font-family: "Rufina", serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
 .bg-blue{
   background-color: #eaeff3;
   color: #040404;
@@ -474,7 +553,7 @@ p{
   padding-left: 5px;
   font-family: 'Open Sans', sans-serif;
 }
-/*======cáº£m  nghÄ©========*/
+/*======cảm  nghĩ========*/
 .carousel-control.right, .carousel-control.left {
     background-image: none;
     color: #f4511e;
@@ -498,7 +577,7 @@ p{
 .item span {
     font-style: normal;
 }*/
-/*Quay vá»� Ä‘áº§u trang*/
+/*Quay về đầu trang*/
 .btn-top{
   bottom: 0px;
   cursor: pointer;
@@ -595,7 +674,7 @@ p{
 /* FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF */
 /* Footer */
 section {
-    padding: 60px 0;
+    padding: 20px 0;
 }
 
 section .section-title {
@@ -605,7 +684,7 @@ section .section-title {
     text-transform: uppercase;
 }
 #footer {
-    background: #7b7b7b !important;
+    background: #484848 !important;
 }
 #footer h5{
   padding-left: 10px;
@@ -653,7 +732,7 @@ section .section-title {
 #footer ul.quick-links li:hover{
   padding: 3px 0;
   margin-left:5px;
-  font-weight:700;
+  font-size: 15px;
   color: #7fff00;
 }
 #footer ul.quick-links li a i{
@@ -710,15 +789,93 @@ section .section-title {
   background-color: #5cb85c;
     color: #fff;
 }
-.giohang_circle{
-	position: absolute;
-    height: 25px;
-    width: 25px;
-    font-size: 12px;
-    border-radius: 50px;
-    background: red;
+/*send mail*/
+.block-newsletter {
+    background: #27ae61;
     text-align: center;
-    line-height: 23px;
-    margin-left: 23px;
-    margin-top: -46px;
+    min-height: 110px;
+}
+
+
+.block-newsletter h2 {
+    color: #fff;
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+.block-newsletter p {
+    color: #fff;
+    font-size: 16px;
+    line-height: 24px;
+    font-family: 'Rufina', serif;
+    font-weight: 400;
+}
+.block-newsletter input[type="submit"] {
+    background: #fff none repeat scroll 0 0;
+    border-radius: 4px;
+    color: #333;
+    font-weight: 700;
+    padding: 6px 25px;
+    text-align: center;
+    text-transform: uppercase;
+}
+.block-newsletter form input[type="email"] {
+    background: rgba(108, 200, 148, 0.5) none repeat scroll 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 400;
+    height: 38px;
+    line-height: 30px;
+    color: #ffffff;
+    width: 50%;
+    padding-left: 5px;
+}
+.block-newsletter form {
+    margin-top: 20px;
+}
+/*BANNER ADS*/
+.banner-img-2 a {
+    border-radius: 3px;
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.banner-img-2 a img {
+    width: 100%;
+    transform: scale(1);
+    transition: .5s;
+}
+.banner-img-2 .banner-text {
+    left: 5%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.banner-img-2 .banner-text h3 {
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 7px;
+    text-transform: capitalize;
+}
+.banner-img-2 .banner-text h2 {
+    color: #fff;
+    display: block;
+    font-size: 28px;
+    line-height: 1;
+    margin-right: -218px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.banner-img-2:hover a img {
+    transform: scale(1.1);
 }

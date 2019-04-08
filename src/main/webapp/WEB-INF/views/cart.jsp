@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/fontawesome-all.min.css">
 
 <!--CSS-->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/mycssHome.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/myhome.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/animate.css" />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans"
 	rel="stylesheet">

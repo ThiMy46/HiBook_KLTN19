@@ -14,7 +14,7 @@
 <link href="<%=request.getContextPath()%>/resources/css/detail_css.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/resources/css/mycssHome.css" />
+	href="<%=request.getContextPath()%>/resources/css/myhome.css" />
 <!-- fa icon -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/resources/css/fontawesome-all.min.css">

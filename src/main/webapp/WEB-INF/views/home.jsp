@@ -4,18 +4,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Home</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--bootstrap & Jquery-->
-	<link href="resources/css/bootstrap.css" rel="stylesheet">
-	<!--Icon fa-->
-    <link rel="stylesheet" href="resources/css/fontawesome-all.min.css">
-	<!--CSS-->
-	<link rel="stylesheet" type="text/css" href="resources/css/mycssHome.css" />
-	<link rel="stylesheet" type="text/css" href="resources/css/animate.css" />
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans"
-		rel="stylesheet">
+<meta charset="UTF-8">
+<title>Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--bootstrap & Jquery-->
+<link href="resources/css/bootstrap.css" rel="stylesheet">
+<!--Icon fa-->
+<link rel="stylesheet" href="resources/css/fontawesome-all.min.css">
+<!--CSS-->
+<link rel="stylesheet" type="text/css" href="resources/css/myhome.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/animate.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans"
+	rel="stylesheet">
 
 </head>
 <body>
@@ -23,103 +23,164 @@
 			==============================Hearder====================================
 	-->
 	<div class="container">
-		<header id="header">
-			<nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
-				data-offset-top="0">
-				<div class="container">
-					<div class="navbar-header">
+		<div class="topbar">
+			<div id="menu">
+				<ul>
+					<li class="sdt"><span class="glyphicon glyphicon-earphone"></span>0123.4567.89
+					</li>
+					<li class="gmail"><span class="	glyphicon glyphicon-envelope"></span>HiBook@gmail.com</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<header id="header">
+		<nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
+			data-offset-top="50">
+			<div class="container">
+				<div class="navbar-header">
+					<c:choose>
+						<c:when test="${pageContext.request.userPrincipal.name !=null}">
+							<a class="navbar-brand" href="<%=request.getContextPath()%>/">
+								<img style="width: 220px; padding-top: 10px;"
+								src="<%=request.getContextPath()%>/resources/images/TC.png" />
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a class="navbar-brand" href="<%=request.getContextPath()%>/">
+								<img style="width: 220px; padding-top: 10px;"
+								src="<%=request.getContextPath()%>/resources/images/TC.png" />
+							</a>
+						</c:otherwise>
+					</c:choose>
+
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav ">
+						<li class="dropdown"><a href="khoahoc.html"
+							class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="fas fa-th-list"></i> THỂ LOẠI<span class="caret"></span></a>
+							<ul class="dropdown-menu" id="typeBook">
+
+							</ul></li>
+						<!-- form search -->
+						<li class="search">
+							<div class="header_search">
+								<span class="glyphicon glyphicon-search"
+									style="width: 18px; height: 18px; margin-right: 9.6px"></span>
+								<input class="gtm_search_bar search-bar" name="q"
+									placeholder="Tìm kiếm sách ..." style="font-family: Open Sans;"
+									type="text">
+							</div>
+						</li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right"
+						style="padding-left: -69px; margin-left: -29px; margin-top: -3px;">
 						<c:choose>
 							<c:when test="${pageContext.request.userPrincipal.name !=null}">
-								<a class="navbar-brand" href="<%=request.getContextPath()%>/"> <img
-									style="width: 220px; padding-top: 10px;"
-									src="<%=request.getContextPath()%>/resources/images/TC.png" />
-								</a>
+								<ul class="nav navbar-nav navbar-left" style="margin-top: -7px;">
+
+									<li id="giohanghome" class="getthongbao"><a
+										class="nav-link"
+										href="<%=request.getContextPath()%>/loadcart/${getIdUser}">
+											<img id="header_logo" alt="logo"
+											src="<%=request.getContextPath()%>/resources/images/shopping-cart.png" />
+											<div class="giohang_circle">
+												<span></span>
+											</div>
+									</a></li>
+								</ul>
+								<li class="dropdown"><a href="khoahoc.html"
+									class="dropdown-toggle" data-toggle="dropdown"> <i
+										class="fas fa-user fa-fw text-success"></i> Thông tin <span
+										class="caret"></span></a>
+									<ul class="dropdown-menu">
+
+
+										<li><a class="nav-link"
+											href="<%=request.getContextPath()%>/info_user/${getIdUser}">
+												${pageContext.request.userPrincipal.name}</a></li>
+										<li><a class="nav-link"
+											href="<%=request.getContextPath()%>/logout"> Logout</a></li>
+									</ul></li>
 							</c:when>
+
+
 							<c:otherwise>
-								<a class="navbar-brand" href="<%=request.getContextPath()%>/"> <img
-									style="width: 220px; padding-top: 10px;"
-									src="<%=request.getContextPath()%>/resources/images/TC.png" />
-								</a>
+								<li><a class="nav-link" id="nutDK" data-toggle="modal">
+										ĐĂNG KÝ </a></li>
+								<li><a class="nav-link" id="nutDN" data-toggle="modal">
+										ĐĂNG NHẬP </a></li>
 							</c:otherwise>
 						</c:choose>
 
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
+					</ul>
+
+
+				</div>
+			</div>
+			<!--end container-->
+		</nav>
+		<!--end nav-->
+	</header>
+	<!--end header-->
+<!--
+	===========================giới thiệu====================
+  -->
+    <div class="container intro">
+	<div class="row " >
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<div class="single-banner">
+							<div class="banner-img">
+								<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/1.png" alt="banner"></a>
+							</div>
+							<div class="banner-text">
+								<h4>Free shipping item</h4>
+								<p>Cho tất cả hóa trên trên 200.000đ</p>
+							</div>
+						</div>
 					</div>
-
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav ">
-							<li class="dropdown"><a href="khoahoc.html"
-								class="dropdown-toggle" data-toggle="dropdown"> <i
-									class="fas fa-th-list"></i> Thể Loại<span class="caret"></span></a>
-								<ul class="dropdown-menu" id="typeBook">
-									
-								</ul>
-							</li>
-							<!-- form search -->
-							<li class="search">
-								<div class="header_search">
-										<span class="glyphicon glyphicon-search"
-											style="width: 18px; height: 18px; margin-right: 9.6px"></span>
-									<input class="gtm_search_bar search-bar" name="q"
-											placeholder="Tìm kiếm sách ..."
-											style="font-family: Open Sans;" type="text">
-								</div>
-							</li>
-						</ul>
-						
-						<ul class="nav navbar-nav navbar-right"
-							style="padding-left: -69px; margin-left: -29px; margin-top: -3px;">
-							<c:choose>
-								<c:when test="${pageContext.request.userPrincipal.name !=null}">
-									<ul class="nav navbar-nav navbar-left" style="margin-top: -7px;">
-		
-												<li id="giohanghome" class="getthongbao"><a class="nav-link" href="<%=request.getContextPath()%>/loadcart/${getIdUser}">
-													<img id="header_logo" alt="logo"
-														src="<%=request.getContextPath()%>/resources/images/shopping-cart.png"/>
-														<div class="giohang_circle">
-															<span></span>
-														</div>
-														</a>
-												</li>
-									</ul>
-									<li class="dropdown"><a href="khoahoc.html"
-										class="dropdown-toggle" data-toggle="dropdown"> 
-											<i class="fas fa-user fa-fw text-success"></i> Thông tin <span class="caret"></span></a>
-										<ul class="dropdown-menu">
-
-
-											<li><a class="nav-link" 
-												 href="<%=request.getContextPath()%>/info_user/${getIdUser}">
-													${pageContext.request.userPrincipal.name}</a></li>
-											<li><a class="nav-link" href="<%=request.getContextPath()%>/logout"> Logout</a></li>
-										</ul>
-									</li>
-								</c:when>
-
-							
-								<c:otherwise>
-									<li><a class="nav-link" id="nutDK" data-toggle="modal">
-											Đăng Ký </a></li>
-									<li><a class="nav-link" id="nutDN" data-toggle="modal">
-											Đăng Nhập </a></li>
-								</c:otherwise>
-							</c:choose>
-
-						</ul>
-
-
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<div class="single-banner">
+							<div class="banner-img">
+								<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/2.png" alt="banner"></a>
+							</div>
+							<div class="banner-text">
+								<h4>Đảm bảo hoàn tiền</h4>
+								<p>Hoàn tiền 100% cho sản phẩm lỗi</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 hidden-sm col-xs-12">
+						<div class="single-banner">
+							<div class="banner-img">
+								<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/3.png" alt="banner"></a>
+							</div>
+							<div class="banner-text">
+								<h4>Thanh toán khi nhận hàng</h4>
+								<p>Hỗ trợ thanh toán khi nhận hàng</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+						<div class="single-banner mrg-none-xs">
+							<div class="banner-img">
+								<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/4.png" alt="banner"></a>
+							</div>
+							<div class="banner-text">
+								<h4>Hỗ trợ</h4>
+								<p>Gọi qua: 0123.4567.89</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				<!--end container-->
-			</nav>
-			<!--end nav-->
-		</header>
-		<!--end header-->
 	</div>
 	<!--
 			==============================Login mờ màn hình====================================
@@ -166,7 +227,8 @@
 	-->
 
 	<div id="idCreate" class="modal">
-		<form class="modal-content animate" action="<%=request.getContextPath()%>/register" method="post">
+		<form class="modal-content animate"
+			action="<%=request.getContextPath()%>/register" method="post">
 			<div class="imgcontainer">
 				<span id="btnClose1" class="close" title="Close Modal">&times;</span>
 				<img src="resources/images/TC.png" alt="Avatar" class="avatar">
@@ -199,7 +261,9 @@
 					Ký</button>
 				<br />
 			</div>
-			<div><span>${erro}</span></div>
+			<div>
+				<span>${erro}</span>
+			</div>
 
 			<div class="inputcontainer">
 				<button type="button" id="btnCancel1" class="cancelbtn">Hủy</button>
@@ -225,17 +289,17 @@
 		<!-- Wrapper for slides -->
 		<div class="carousel-inner">
 			<div class="item active">
-				<img src="resources/images/trangchu/p4.png" alt="Hinh slide 1"
+				<img src="resources/images/banner/p4.png" alt="Hinh slide 1"
 					style="width: 100%;">
 			</div>
 
 			<div class="item">
-				<img src="resources/images/trangchu/P6.png" alt="Hinh slide 2"
+				<img src="resources/images/banner/P6.png" alt="Hinh slide 2"
 					style="width: 100%;">
 			</div>
 
 			<div class="item">
-				<img src="resources/images/trangchu/P2.png" alt="Hinh slide 3"
+				<img src="resources/images/banner/P2.png" alt="Hinh slide 3"
 					style="width: 100%;">
 			</div>
 		</div>
@@ -254,48 +318,6 @@
 	================================NỘI DUNG=======================
   -->
 	<!--
-	===========================giới thiệu====================
-  -->
-	<div class="container-fluid bg-blue">
-		<div class="container khung1">
-			<div class="row text-center">
-				<div class="col-sm-3 col-xs-6 first-box">
-					<h1>
-						<i class="fas fa-book"></i>
-					</h1>
-					<h3>Đa thể loại</h3>
-					<p>Thể loại đa dạng, nhiều tựa sách</p>
-					<br>
-				</div>
-				<div class="col-sm-3 col-xs-6 second-box">
-					<h1>
-						<i class="fas fa-shipping-fast"></i>
-					</h1>
-					<h3>Vận chuyển nhanh</h3>
-					<p>Vận chuyển nhanh nhất có thể</p>
-					<br>
-				</div>
-				<div class="col-sm-3 col-xs-6 third-box">
-					<h1>
-						<i class="fas fa-home"></i>
-					</h1>
-					<h3>Giao hàng tận nhà</h3>
-					<p>Giao tận nơi, kiểm tra hàng khi nhận</p>
-					<br>
-				</div>
-				<div class="col-sm-3 col-xs-6 fourth-box">
-					<h1>
-						<i class="fas fa-piggy-bank"></i>
-					</h1>
-					<h3>Tiết kiệm</h3>
-					<p>Tiết kiệm đến 40% so với giá thị trường</p>
-					<br>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!--
 	========================SÁCH VỪA XUẤT BẢN================
 	-->
 	<div class="container-fluid" id="courseshome">
@@ -306,14 +328,29 @@
 				</h2>
 				<p class="p_home">Một số sách vừa được xuất bản</p>
 			</div>
-			<div class="row container wow slideInUp" style="padding-top: 20px" id="booknew0">
-				
-			</div>
-			<div class="row container wow slideInUp" style="padding-top: 20px" id="booknew1">
-				
-			</div>
+			<div class="row container wow slideInUp" style="padding-top: 20px"
+				id="booknew0"></div>
+			<div class="row container wow slideInUp" style="padding-top: 20px"
+				id="booknew1"></div>
 			<div style="margin-top: 10px;">
-				<button class="btn btn-success btn_xemthem" onclick="window.location.href='/HiBookTLCN/booknew'">Xem thêm</button>
+				<button class="btn btn-success btn_xemthem"
+					onclick="window.location.href='/HiBookTLCN/booknew'">Xem
+					thêm</button>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Banner Ads -->
+	<div class="container" style="margin-top: 20px">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="banner-img-2">
+					<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/5.jpg" alt="banner"></a>
+					<div class="banner-text">
+						<h3>Sách G. Meyer &amp; Spiritual Traveler Press</h3>
+						<h2>Giảm đến 30%</h2>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -335,7 +372,9 @@
 			<div class="row container wow slideInUp" id="loadtrangchu1"
 				style="padding-top: 20px"></div>
 			<div class="text-center" style="margin-top: 10px;">
-				<button class="btn btn-success btn_xemthem" onclick="window.location.href='/HiBookTLCN/bookssold'">Xem thêm</button>
+				<button class="btn btn-success btn_xemthem"
+					onclick="window.location.href='/HiBookTLCN/bookssold'">Xem
+					thêm</button>
 			</div>
 
 		</div>
@@ -419,7 +458,22 @@
 	</div>
 	<!--.container-->
 
-	<!--  -->
+	<!-- REGISTER RECEIVE MAIL -->
+	<div class="row">
+		<div class="block-newsletter">
+			<div class="col-sm-6">
+				<h2>Đăng ký nhận bản tin</h2>
+				<p>Đừng bỏ lỡ hàng ngàn sản phẩm và chương trình siêu hấp dẫn</p>
+			</div>
+			<div class="col-sm-6">
+				<form action="#">
+				<input type="email" placeholder="Enter your email address">
+				<input type="submit" value="Send Email">
+			</form>
+			</div>
+			
+		</div>
+	</div>
 	<!--
 	==========================Footer================
 	-->
@@ -437,7 +491,7 @@
 						<li><a href="javascript:void();"><i
 								class="fa fa-angle-double-right"></i>Điều khoản dịch vụ</a></li>
 						<li><a href="javascript:void();"><i
-								class="fa fa-angle-double-right"></i>đánh giá</a></li>
+								class="fa fa-angle-double-right"></i>Đánh giá</a></li>
 						<li><a href="javascript:void();"><i
 								class="fa fa-angle-double-right"></i>Tuyển dụng</a></li>
 					</ul>
@@ -473,9 +527,9 @@
 				<div class="col-xs-12 col-sm-3 col-md-3">
 					<h5>LIÊN HỆ</h5>
 					<ul class="list-unstyled quick-links">
-						<li><a><i class="fa fa-map-marker"></i>Address : Số 1, Võ
+						<li><a><i class="fa fa-map-marker"></i>Số 1, Võ
 								Văn Ngân, Thủ Đức, TP Hồ Chí Minh</a></li>
-						<li><a><i class="fa fa-phone"></i>(+84)1869123456</a></li>
+						<li><a><i class="fa fa-phone"></i>0123.4567.89</a></li>
 						<li><a href="#"><i class="fa fa-envelope"></i>hibook@gmail.com</a>
 						</li>
 					</ul>
@@ -515,15 +569,17 @@
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
-	
+
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/myjsHome.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/wow.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/handlehome.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
+	<script
+		src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
 	<script>
 		new WOW().init();
 	</script>
