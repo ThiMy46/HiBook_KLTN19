@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import ute.hibook.dao.imp.BookDaoImpl;
 import ute.hibook.dto.BookDTO;
 import ute.hibook.entity.Book;
-import ute.hibook.entity.Supplier;
 import ute.hibook.service.BookService;
 
 @Service

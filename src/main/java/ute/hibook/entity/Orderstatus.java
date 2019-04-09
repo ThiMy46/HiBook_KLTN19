@@ -20,7 +20,7 @@ public class Orderstatus implements Serializable {
 	private String nameStatus;
 
 	//bi-directional many-to-one association to Bill
-	@OneToMany(mappedBy="orderstatus")
+	@OneToMany(mappedBy="orderstatus", fetch = FetchType.EAGER)
 	private List<Bill> bills;
 
 	public Orderstatus() {

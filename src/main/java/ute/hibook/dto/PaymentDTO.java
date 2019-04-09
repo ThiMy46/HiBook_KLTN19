@@ -2,14 +2,22 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Bill;
-
 public class PaymentDTO {
 	
 	private int idPayment;
 	private String namePayment;
-	private List<Bill> bills;
+	private List<BillDTO> bills;
 	
+	public PaymentDTO() {
+		super();
+	}
+
+	public PaymentDTO(int idPayment, String namePayment) {
+		super();
+		this.idPayment = idPayment;
+		this.namePayment = namePayment;
+	}
+
 	public int getIdPayment() {
 		return this.idPayment;
 	}
@@ -26,11 +34,11 @@ public class PaymentDTO {
 		this.namePayment = namePayment;
 	}
 
-	public List<Bill> getBills() {
+	public List<BillDTO> getBills() {
 		return this.bills;
 	}
 
-	public void setBills(List<Bill> bills) {
+	public void setBills(List<BillDTO> bills) {
 		this.bills = bills;
 	}
 }

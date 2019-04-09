@@ -1,14 +1,17 @@
 package ute.hibook.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 
 
 /**
@@ -28,8 +31,8 @@ public class Author implements Serializable {
 	//bi-directional many-to-many association to Book
 	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name="authorbook",
-	joinColumns=@JoinColumn(name="idAuthor"),
-	inverseJoinColumns=@JoinColumn(name="idBook"))
+		joinColumns=@JoinColumn(name="idAuthor"),
+		inverseJoinColumns=@JoinColumn(name="idBook"))
 	private List<Book> books;
 
 	public Author() {

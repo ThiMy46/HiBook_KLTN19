@@ -24,7 +24,7 @@ public class Transport implements Serializable {
 	private String nameTransport;
 
 	//bi-directional many-to-one association to Bill
-	@OneToMany(mappedBy="transport")
+	@OneToMany(mappedBy="transport", fetch = FetchType.EAGER)
 	private List<Bill> bills;
 
 	public Transport() {

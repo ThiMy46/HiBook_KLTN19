@@ -4,6 +4,18 @@ public class RoleDTO {
 
 	private int idRole;
 	private String nameRole;
+	
+	
+
+	public RoleDTO() {
+		super();
+	}
+
+	public RoleDTO(int idRole, String nameRole) {
+		super();
+		this.idRole = idRole;
+		this.nameRole = nameRole;
+	}
 
 	public int getIdRole() {
 		return this.idRole;

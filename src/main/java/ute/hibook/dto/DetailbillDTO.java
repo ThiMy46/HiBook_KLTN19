@@ -1,15 +1,12 @@
 package ute.hibook.dto;
 
-import ute.hibook.entity.Bill;
-import ute.hibook.entity.Book;
-
 public class DetailbillDTO {
 
 	private int idDetailBill;
 	private int price;
 	private int quantityBuy;
-	private Bill bill;
-	private Book book;
+	private BillDTO bill;
+	private BookDTO book;
 
 	public int getIdDetailBill() {
 		return this.idDetailBill;
@@ -35,19 +32,19 @@ public class DetailbillDTO {
 		this.quantityBuy = quantityBuy;
 	}
 
-	public Bill getBill() {
+	public BillDTO getBill() {
 		return this.bill;
 	}
 
-	public void setBill(Bill bill) {
+	public void setBill(BillDTO bill) {
 		this.bill = bill;
 	}
 
-	public Book getBook() {
+	public BookDTO getBook() {
 		return this.book;
 	}
 
-	public void setBook(Book book) {
+	public void setBook(BookDTO book) {
 		this.book = book;
 	}
 }

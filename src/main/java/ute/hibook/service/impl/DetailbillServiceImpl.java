@@ -6,8 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ute.hibook.dao.imp.BillDaoImpl;
+import ute.hibook.dao.imp.BookDaoImpl;
 import ute.hibook.dao.imp.DetailbillDaoImpl;
+import ute.hibook.dto.BillDTO;
+import ute.hibook.dto.BookDTO;
 import ute.hibook.dto.DetailbillDTO;
+import ute.hibook.entity.Bill;
+import ute.hibook.entity.Book;
 import ute.hibook.entity.Detailbill;
 import ute.hibook.service.DetailbillService;
 
@@ -16,13 +22,19 @@ public class DetailbillServiceImpl implements DetailbillService{
 
 	@Autowired
 	DetailbillDaoImpl detailbillDao;
+	@Autowired
+	BookDaoImpl bookDao;
+	@Autowired
+	BillDaoImpl billDao;
 	
 	public void addDetailbill(DetailbillDTO detailbillDTO) {
 		Detailbill detailbill= new Detailbill();
 		detailbill.setPrice(detailbillDTO.getPrice());
 		detailbill.setQuantityBuy(detailbillDTO.getQuantityBuy());
-		detailbill.setBill(detailbillDTO.getBill());
-		detailbill.setBook(detailbillDTO.getBook());
+		Bill bill= billDao.getBillById(detailbillDTO.getBill().getIdBill());
+		detailbill.setBill(bill);
+		Book book= bookDao.getBookById(detailbillDTO.getBook().getIdBook());
+		detailbill.setBook(book);
 		
 		detailbillDao.addDetailbill(detailbill);		
 		System.out.println("add Detailbill successful!");
@@ -33,8 +45,10 @@ public class DetailbillServiceImpl implements DetailbillService{
 		if(detailbill!=null) {
 			detailbill.setPrice(detailbillDTO.getPrice());
 			detailbill.setQuantityBuy(detailbillDTO.getQuantityBuy());
-			detailbill.setBill(detailbillDTO.getBill());
-			detailbill.setBook(detailbillDTO.getBook());
+			Bill bill= billDao.getBillById(detailbillDTO.getBill().getIdBill());
+			detailbill.setBill(bill);
+			Book book= bookDao.getBookById(detailbillDTO.getBook().getIdBook());
+			detailbill.setBook(book);
 			
 			detailbillDao.updateDetailbill(detailbill);
 			System.out.println("update Detailbill successful!");
@@ -56,8 +70,13 @@ public class DetailbillServiceImpl implements DetailbillService{
 		detailbillDTO.setIdDetailBill(detailbill.getIdDetailBill());
 		detailbillDTO.setPrice(detailbill.getPrice());
 		detailbillDTO.setQuantityBuy(detailbill.getQuantityBuy());
-		detailbillDTO.setBill(detailbill.getBill());
-		detailbillDTO.setBook(detailbill.getBook());
+		BillDTO billDTO=new BillDTO(detailbill.getBill().getIdBill(),detailbill.getBill().getDateCreate()
+				, detailbill.getBill().getDeliveryAdress(), detailbill.getBill().getNameReceiver()
+				, detailbill.getBill().getNumberphone(), detailbill.getBill().getTotal());
+		detailbillDTO.setBill(billDTO);
+		BookDTO bookDTO=new BookDTO(detailbill.getBook().getIdBook(), detailbill.getBook().getDiscount(), detailbill.getBook().getNameBook()
+				, detailbill.getBook().getPicBook(), detailbill.getBook().getPrice(), detailbill.getBook().getQuantity(), detailbill.getBook().getStatus());
+		detailbillDTO.setBook(bookDTO);
 		
 		//System.out.println(Detailbill.getUsers().get(0).getEmail());
 		
@@ -74,8 +93,13 @@ public class DetailbillServiceImpl implements DetailbillService{
 			detailbillDTO.setIdDetailBill(detailbill.getIdDetailBill());
 			detailbillDTO.setPrice(detailbill.getPrice());
 			detailbillDTO.setQuantityBuy(detailbill.getQuantityBuy());
-			detailbillDTO.setBill(detailbill.getBill());
-			detailbillDTO.setBook(detailbill.getBook());
+			BillDTO billDTO=new BillDTO(detailbill.getBill().getIdBill(),detailbill.getBill().getDateCreate()
+					, detailbill.getBill().getDeliveryAdress(), detailbill.getBill().getNameReceiver()
+					, detailbill.getBill().getNumberphone(), detailbill.getBill().getTotal());
+			detailbillDTO.setBill(billDTO);
+			BookDTO bookDTO=new BookDTO(detailbill.getBook().getIdBook(), detailbill.getBook().getDiscount(), detailbill.getBook().getNameBook()
+					, detailbill.getBook().getPicBook(), detailbill.getBook().getPrice(), detailbill.getBook().getQuantity(), detailbill.getBook().getStatus());
+			detailbillDTO.setBook(bookDTO);
 		
 			lstDetailbillDTO.add(detailbillDTO);
 		}

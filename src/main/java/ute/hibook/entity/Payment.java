@@ -20,7 +20,7 @@ public class Payment implements Serializable {
 	private String namePayment;
 
 	//bi-directional many-to-one association to Bill
-	@OneToMany(mappedBy="payment")
+	@OneToMany(mappedBy="payment", fetch = FetchType.EAGER)
 	private List<Bill> bills;
 
 	public Payment() {

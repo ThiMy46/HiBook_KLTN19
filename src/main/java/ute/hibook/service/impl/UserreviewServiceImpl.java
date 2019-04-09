@@ -6,8 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ute.hibook.dao.imp.BookDaoImpl;
+import ute.hibook.dao.imp.UserDaoImpl;
 import ute.hibook.dao.imp.UserreviewDaoImpl;
+import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.UserDTO;
 import ute.hibook.dto.UserreviewDTO;
+import ute.hibook.entity.Book;
+import ute.hibook.entity.User;
 import ute.hibook.entity.Userreview;
 import ute.hibook.service.UserreviewService;
 
@@ -16,6 +22,10 @@ public class UserreviewServiceImpl implements UserreviewService{
 
 	@Autowired
 	UserreviewDaoImpl userreviewDao;
+	@Autowired
+	UserDaoImpl userDao;
+	@Autowired
+	BookDaoImpl bookDao;
 	
 	public void addUserreview(UserreviewDTO userreviewDTO) {
 		Userreview userreview= new Userreview();
@@ -24,8 +34,10 @@ public class UserreviewServiceImpl implements UserreviewService{
 		userreview.setStar(userreviewDTO.getStar());
 		userreview.setTimeReview(userreviewDTO.getTimeReview());
 		userreview.setTitle(userreviewDTO.getTitle());
-		userreview.setBook(userreviewDTO.getBook());
-		userreview.setUser(userreviewDTO.getUser());
+		Book book= bookDao.getBookById(userreviewDTO.getBook().getIdBook());
+		userreview.setBook(book);
+		User user= userDao.getUserById(userreviewDTO.getUser().getIdUser());
+		userreview.setUser(user);
 		
 		userreviewDao.addUserreview(userreview);		
 		System.out.println("add Userreview successful!");
@@ -39,8 +51,10 @@ public class UserreviewServiceImpl implements UserreviewService{
 			userreview.setStar(userreviewDTO.getStar());
 			userreview.setTimeReview(userreviewDTO.getTimeReview());
 			userreview.setTitle(userreviewDTO.getTitle());
-			userreview.setBook(userreviewDTO.getBook());
-			userreview.setUser(userreviewDTO.getUser());
+			Book book= bookDao.getBookById(userreviewDTO.getBook().getIdBook());
+			userreview.setBook(book);
+			User user= userDao.getUserById(userreviewDTO.getUser().getIdUser());
+			userreview.setUser(user);
 			
 			userreviewDao.updateUserreview(userreview);
 			System.out.println("update Userreview successful!");
@@ -65,8 +79,13 @@ public class UserreviewServiceImpl implements UserreviewService{
 		userreviewDTO.setStar(userreview.getStar());
 		userreviewDTO.setTimeReview(userreview.getTimeReview());
 		userreviewDTO.setTitle(userreview.getTitle());
-		userreviewDTO.setBook(userreview.getBook());
-		userreviewDTO.setUser(userreview.getUser());
+		BookDTO bookDTO=new BookDTO(userreview.getBook().getIdBook(), userreview.getBook().getDiscount(), userreview.getBook().getNameBook()
+				, userreview.getBook().getPicBook(), userreview.getBook().getPrice(), userreview.getBook().getQuantity(), userreview.getBook().getStatus());
+		userreviewDTO.setBook(bookDTO);
+		
+		UserDTO userDTO= new UserDTO(userreview.getUser().getIdUser(), userreview.getUser().getAddress(),
+				userreview.getUser().getEmail(), userreview.getUser().getNameUser(), userreview.getUser().getNumberphone());
+		userreviewDTO.setUser(userDTO);
 		
 		return userreviewDTO;
 	}
@@ -84,8 +103,13 @@ public class UserreviewServiceImpl implements UserreviewService{
 			userreviewDTO.setStar(userreview.getStar());
 			userreviewDTO.setTimeReview(userreview.getTimeReview());
 			userreviewDTO.setTitle(userreview.getTitle());
-			userreviewDTO.setBook(userreview.getBook());
-			userreviewDTO.setUser(userreview.getUser());
+			BookDTO bookDTO=new BookDTO(userreview.getBook().getIdBook(), userreview.getBook().getDiscount(), userreview.getBook().getNameBook()
+					, userreview.getBook().getPicBook(), userreview.getBook().getPrice(), userreview.getBook().getQuantity(), userreview.getBook().getStatus());
+			userreviewDTO.setBook(bookDTO);
+			
+			UserDTO userDTO= new UserDTO(userreview.getUser().getIdUser(), userreview.getUser().getAddress(),
+					userreview.getUser().getEmail(), userreview.getUser().getNameUser(), userreview.getUser().getNumberphone());
+			userreviewDTO.setUser(userDTO);
 		
 			lstUserreviewDTO.add(userreviewDTO);
 		}

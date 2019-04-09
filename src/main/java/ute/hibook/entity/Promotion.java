@@ -1,8 +1,18 @@
 package ute.hibook.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 
 
 /**
@@ -31,15 +41,11 @@ public class Promotion implements Serializable {
 	private String titlePromotion;
 
 	//bi-directional many-to-many association to Book
-	@ManyToMany
-	@JoinTable(
-		name="detailpromotion"
-		, joinColumns={
-			@JoinColumn(name="idPromotion")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idBook")
-			}
+	
+	@ManyToMany(cascade=CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinTable( name="detailpromotion"
+		, joinColumns={ @JoinColumn(name="idPromotion") }
+		, inverseJoinColumns={ @JoinColumn(name="idBook") }
 		)
 	private List<Book> books;
 

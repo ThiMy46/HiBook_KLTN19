@@ -2,13 +2,22 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Bill;
-
 public class OrderstatusDTO {
 
 	private int idStatus;
 	private String nameStatus;
-	private List<Bill> bills;
+	private List<BillDTO> bills;
+
+	
+	public OrderstatusDTO() {
+		super();
+	}
+
+	public OrderstatusDTO(int idStatus, String nameStatus) {
+		super();
+		this.idStatus = idStatus;
+		this.nameStatus = nameStatus;
+	}
 
 	public int getIdStatus() {
 		return this.idStatus;
@@ -26,11 +35,11 @@ public class OrderstatusDTO {
 		this.nameStatus = nameStatus;
 	}
 
-	public List<Bill> getBills() {
+	public List<BillDTO> getBills() {
 		return this.bills;
 	}
 
-	public void setBills(List<Bill> bills) {
+	public void setBills(List<BillDTO> bills) {
 		this.bills = bills;
 	}
 }

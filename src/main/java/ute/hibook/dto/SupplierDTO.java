@@ -2,13 +2,11 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Book;
-
 public class SupplierDTO {
 
 	private int idSupplier;
 	private String nameSupplier;
-	private List<Book> books;
+	private List<BookDTO> books;
 
 	public int getIdSupplier() {
 		return this.idSupplier;
@@ -26,11 +24,11 @@ public class SupplierDTO {
 		this.nameSupplier = nameSupplier;
 	}
 
-	public List<Book> getBooks() {
+	public List<BookDTO> getBooks() {
 		return this.books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
 }

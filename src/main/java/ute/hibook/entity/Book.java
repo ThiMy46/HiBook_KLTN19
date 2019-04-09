@@ -19,8 +19,6 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 
 /**
  * The persistent class for the book database table.

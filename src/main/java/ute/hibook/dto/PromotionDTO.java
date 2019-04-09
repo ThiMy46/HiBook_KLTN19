@@ -2,8 +2,6 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Book;
-
 public class PromotionDTO {
 
 	private int idPromotion;
@@ -13,7 +11,7 @@ public class PromotionDTO {
 	private String timeEnd;
 	private String timeStart;
 	private String titlePromotion;
-	private List<Book> books;
+	private List<BookDTO> books;
 	
 	public int getIdPromotion() {
 		return this.idPromotion;
@@ -71,11 +69,11 @@ public class PromotionDTO {
 		this.titlePromotion = titlePromotion;
 	}
 
-	public List<Book> getBooks() {
+	public List<BookDTO> getBooks() {
 		return this.books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
 }

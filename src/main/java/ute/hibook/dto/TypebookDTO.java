@@ -2,14 +2,12 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Book;
-
 public class TypebookDTO {
 
 	private int idType;
 	private String imgType;
 	private String nameType;
-	private List<Book> books;
+	private List<BookDTO> books;
 
 	public int getIdType() {
 		return this.idType;
@@ -35,11 +33,11 @@ public class TypebookDTO {
 		this.nameType = nameType;
 	}
 
-	public List<Book> getBooks() {
+	public List<BookDTO> getBooks() {
 		return this.books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
 }

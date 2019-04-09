@@ -1,15 +1,12 @@
 package ute.hibook.dto;
 
-import ute.hibook.entity.Book;
-import ute.hibook.entity.User;
-
 public class CartDTO {
 
 	private int idCart;
 	private int price;
 	private int quantity;
-	private Book book;
-	private User user;
+	private BookDTO book;
+	private UserDTO user;
 	public int getIdCart() {
 		return this.idCart;
 	}
@@ -34,19 +31,19 @@ public class CartDTO {
 		this.quantity = quantity;
 	}
 
-	public Book getBook() {
-		return this.book;
+	public BookDTO getBook() {
+		return book;
 	}
 
-	public void setBook(Book book) {
+	public void setBook(BookDTO book) {
 		this.book = book;
 	}
 
-	public User getUser() {
-		return this.user;
+	public UserDTO getUser() {
+		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 }

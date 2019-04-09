@@ -23,7 +23,7 @@ public class Typebook implements Serializable {
 	private String nameType;
 
 	//bi-directional many-to-one association to Book
-	@OneToMany(mappedBy="typebook")
+	@OneToMany(mappedBy="typebook", fetch = FetchType.EAGER)
 	private List<Book> books;
 
 	public Typebook() {

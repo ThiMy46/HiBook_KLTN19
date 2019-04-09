@@ -48,7 +48,7 @@ public class Bill implements Serializable {
 	private User user;
 
 	//bi-directional many-to-one association to Detailbill
-	@OneToMany(mappedBy="bill")
+	@OneToMany(mappedBy="bill", fetch = FetchType.EAGER)
 	private List<Detailbill> detailbills;
 
 	public Bill() {

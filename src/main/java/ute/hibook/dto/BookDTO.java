@@ -27,6 +27,23 @@ public class BookDTO {
 	private List<PromotionDTO> promotions;
 	private List<UserreviewDTO> userreviews;
 
+	
+	public BookDTO() {
+		super();
+	}
+
+	public BookDTO(int idBook, int discount, String nameBook, String picBook, int price, int quantity, int status
+			) {
+		super();
+		this.idBook = idBook;
+		this.discount = discount;
+		this.nameBook = nameBook;
+		this.picBook = picBook;
+		this.price = price;
+		this.quantity = quantity;
+		this.status = status;
+	}
+
 	public int getIdBook() {
 		return this.idBook;
 	}

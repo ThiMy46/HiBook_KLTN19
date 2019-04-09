@@ -2,11 +2,6 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Bill;
-import ute.hibook.entity.Cart;
-import ute.hibook.entity.Role;
-import ute.hibook.entity.Userreview;
-
 public class UserDTO {
 
 	private int idUser;
@@ -17,10 +12,23 @@ public class UserDTO {
 	private String numberphone;
 	private String password;
 	private byte sex;
-	private List<Bill> bills;
-	private List<Cart> carts;
-	private Role role;
-	private List<Userreview> userreviews;
+	private List<BillDTO> bills;
+	private List<CartDTO> carts;
+	private RoleDTO role;
+	private List<UserreviewDTO> userreviews;
+
+	public UserDTO() {
+		super();
+	}
+
+	public UserDTO(int idUser, String address, String email, String nameUser, String numberphone) {
+		super();
+		this.idUser = idUser;
+		this.address = address;
+		this.email = email;
+		this.nameUser = nameUser;
+		this.numberphone = numberphone;
+	}
 
 	public int getIdUser() {
 		return this.idUser;
@@ -86,35 +94,35 @@ public class UserDTO {
 		this.sex = sex;
 	}
 
-	public List<Bill> getBills() {
+	public List<BillDTO> getBills() {
 		return this.bills;
 	}
 
-	public void setBills(List<Bill> bills) {
+	public void setBills(List<BillDTO> bills) {
 		this.bills = bills;
 	}
 
-	public List<Cart> getCarts() {
+	public List<CartDTO> getCarts() {
 		return this.carts;
 	}
 
-	public void setCarts(List<Cart> carts) {
+	public void setCarts(List<CartDTO> carts) {
 		this.carts = carts;
 	}
 
-	public Role getRole() {
+	public RoleDTO getRole() {
 		return this.role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(RoleDTO role) {
 		this.role = role;
 	}
 
-	public List<Userreview> getUserreviews() {
+	public List<UserreviewDTO> getUserreviews() {
 		return this.userreviews;
 	}
 
-	public void setUserreviews(List<Userreview> userreviews) {
+	public void setUserreviews(List<UserreviewDTO> userreviews) {
 		this.userreviews = userreviews;
 	}
 }

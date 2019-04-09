@@ -2,12 +2,6 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Detailbill;
-import ute.hibook.entity.Orderstatus;
-import ute.hibook.entity.Payment;
-import ute.hibook.entity.Transport;
-import ute.hibook.entity.User;
-
 public class BillDTO {
 
 	private int idBill;
@@ -16,11 +10,26 @@ public class BillDTO {
 	private String nameReceiver;
 	private String numberphone;
 	private int total;
-	private Payment payment;
-	private Orderstatus orderstatus;
-	private Transport transport;
-	private User user;
-	private List<Detailbill> detailbills;
+	private PaymentDTO payment;
+	private OrderstatusDTO orderstatus;
+	private TransportDTO transport;
+	private UserDTO user;
+	private List<DetailbillDTO> detailbills;
+
+	public BillDTO(int idBill, String dateCreate, String deliveryAdress, String nameReceiver, String numberphone,
+			int total) {
+		super();
+		this.idBill = idBill;
+		this.dateCreate = dateCreate;
+		this.deliveryAdress = deliveryAdress;
+		this.nameReceiver = nameReceiver;
+		this.numberphone = numberphone;
+		this.total = total;
+	}
+
+	public BillDTO() {
+		super();
+	}
 
 	public int getIdBill() {
 		return this.idBill;
@@ -70,45 +79,43 @@ public class BillDTO {
 		this.total = total;
 	}
 
-	public Payment getPayment() {
-		return this.payment;
+	public PaymentDTO getPayment() {
+		return payment;
 	}
 
-	public void setPayment(Payment payment) {
+	public void setPayment(PaymentDTO payment) {
 		this.payment = payment;
 	}
 
-	public Orderstatus getOrderstatus() {
-		return this.orderstatus;
+	public OrderstatusDTO getOrderstatus() {
+		return orderstatus;
 	}
 
-	public void setOrderstatus(Orderstatus orderstatus) {
+	public void setOrderstatus(OrderstatusDTO orderstatus) {
 		this.orderstatus = orderstatus;
 	}
 
-	public Transport getTransport() {
-		return this.transport;
+	public TransportDTO getTransport() {
+		return transport;
 	}
 
-	public void setTransport(Transport transport) {
+	public void setTransport(TransportDTO transport) {
 		this.transport = transport;
 	}
 
-	public User getUser() {
-		return this.user;
+	public UserDTO getUser() {
+		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserDTO user) {
 		this.user = user;
 	}
 
-	public List<Detailbill> getDetailbills() {
-		return this.detailbills;
+	public List<DetailbillDTO> getDetailbills() {
+		return detailbills;
 	}
 
-	public void setDetailbills(List<Detailbill> detailbills) {
+	public void setDetailbills(List<DetailbillDTO> detailbills) {
 		this.detailbills = detailbills;
 	}
-
-	
 }

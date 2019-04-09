@@ -6,8 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ute.hibook.dao.imp.RoleDaoImpl;
 import ute.hibook.dao.imp.UserDaoImpl;
+import ute.hibook.dto.RoleDTO;
 import ute.hibook.dto.UserDTO;
+import ute.hibook.entity.Role;
 import ute.hibook.entity.User;
 import ute.hibook.service.UserService;
 /*
@@ -23,6 +26,8 @@ public class UserServiceImpl implements UserService{
 
 	@Autowired
 	UserDaoImpl userDao;
+	@Autowired
+	RoleDaoImpl roleDao;
 	
 	public void addUser(UserDTO userDTO) {
 		User user= new User();
@@ -33,7 +38,9 @@ public class UserServiceImpl implements UserService{
 		user.setNumberphone(userDTO.getNumberphone());
 		user.setPassword(userDTO.getPassword());
 		user.setSex(userDTO.getSex());
-		user.setRole(userDTO.getRole());
+		
+		Role role=roleDao.getRoleById(userDTO.getRole().getIdRole());
+		user.setRole(role);
 		
 		userDao.addUser(user);		
 		System.out.println("add User successful!");
@@ -49,7 +56,8 @@ public class UserServiceImpl implements UserService{
 			user.setNumberphone(userDTO.getNumberphone());
 			user.setPassword(userDTO.getPassword());
 			user.setSex(userDTO.getSex());
-			user.setRole(userDTO.getRole());
+			Role role=roleDao.getRoleById(userDTO.getRole().getIdRole());
+			user.setRole(role);
 			
 			userDao.updateUser(user);
 			System.out.println("update User successful!");
@@ -77,8 +85,8 @@ public class UserServiceImpl implements UserService{
 		userDTO.setNumberphone(user.getNumberphone());
 		userDTO.setPassword(user.getPassword());
 		userDTO.setSex(user.getSex());
-		userDTO.setRole(user.getRole());
-		//System.out.println(user.getBills().get(0).getNameReceiver());
+		RoleDTO roleDTO=new RoleDTO(user.getRole().getIdRole(), user.getRole().getNameRole());
+		userDTO.setRole(roleDTO);
 		
 		return userDTO;
 	}
@@ -98,7 +106,9 @@ public class UserServiceImpl implements UserService{
 			userDTO.setNumberphone(user.getNumberphone());
 			userDTO.setPassword(user.getPassword());
 			userDTO.setSex(user.getSex());
-			userDTO.setRole(user.getRole());
+			
+			RoleDTO roleDTO=new RoleDTO(user.getRole().getIdRole(), user.getRole().getNameRole());
+			userDTO.setRole(roleDTO);
 		
 			lstUserDTO.add(userDTO);
 		}

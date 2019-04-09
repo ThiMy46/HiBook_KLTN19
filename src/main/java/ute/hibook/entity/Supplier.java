@@ -20,7 +20,7 @@ public class Supplier implements Serializable {
 	private String nameSupplier;
 
 	//bi-directional many-to-one association to Book
-	@OneToMany(mappedBy="supplier")
+	@OneToMany(mappedBy="supplier", fetch = FetchType.EAGER)
 	private List<Book> books;
 
 	public Supplier() {
