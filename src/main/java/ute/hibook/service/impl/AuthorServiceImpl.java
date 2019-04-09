@@ -62,6 +62,9 @@ public class AuthorServiceImpl implements AuthorService{
 			AuthorDTO authorDTO= new AuthorDTO();
 			authorDTO.setIdAuthor(author.getIdAuthor());
 			authorDTO.setNameAuthor(author.getNameAuthor());
+			if(!author.getBooks().isEmpty()) {
+				System.out.println(author.getBooks().get(0).getNameBook());
+			}
 		
 			lstAuthorDTO.add(authorDTO);
 		}

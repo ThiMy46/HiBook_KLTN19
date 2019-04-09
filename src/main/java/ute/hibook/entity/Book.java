@@ -1,8 +1,25 @@
 package ute.hibook.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /**
@@ -48,16 +65,10 @@ public class Book implements Serializable {
 	private String tagList;
 
 	//bi-directional many-to-many association to Author
-	@ManyToMany
-	@JoinTable(
-		name="authorbook"
-		, joinColumns={
-			@JoinColumn(name="idBook")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="idAuthor")
-			}
-		)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name="authorbook",
+		joinColumns=@JoinColumn(name="idBook"),
+		inverseJoinColumns=@JoinColumn(name="idAuthor"))
 	private List<Author> authors;
 
 	//bi-directional many-to-one association to Supplier
@@ -71,19 +82,23 @@ public class Book implements Serializable {
 	private Typebook typebook;
 
 	//bi-directional many-to-one association to Cart
-	@OneToMany(mappedBy="book")
+	@OneToMany(mappedBy="book", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Cart> carts;
 
 	//bi-directional many-to-one association to Detailbill
-	@OneToMany(mappedBy="book")
+	@OneToMany(mappedBy="book", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Detailbill> detailbills;
 
 	//bi-directional many-to-many association to Promotion
-	@ManyToMany(mappedBy="books")
+	@ManyToMany(mappedBy="books", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Promotion> promotions;
 
 	//bi-directional many-to-one association to Userreview
-	@OneToMany(mappedBy="book")
+	@OneToMany(mappedBy="book", fetch = FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
 	private List<Userreview> userreviews;
 
 	public Book() {

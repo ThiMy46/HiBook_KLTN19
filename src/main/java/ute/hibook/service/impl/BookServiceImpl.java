@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ute.hibook.dao.imp.BookDaoImpl;
 import ute.hibook.dto.BookDTO;
 import ute.hibook.entity.Book;
+import ute.hibook.entity.Supplier;
 import ute.hibook.service.BookService;
 
 @Service
@@ -33,8 +34,16 @@ public class BookServiceImpl implements BookService{
 		book.setSize(bookDTO.getSize());
 		book.setStatus(bookDTO.getStatus());
 		book.setTagList(bookDTO.getTagList());
-		book.setSupplier(bookDTO.getSupplier());
-		book.setTypebook(bookDTO.getTypebook());
+		
+		/*
+		 * Supplier supplier=new Supplier();
+		 * supplier.setIdSupplier(bookDTO.getSupplier().getIdSupplier());
+		 * supplier.setNameSupplier(bookDTO.getSupplier().getNameSupplier());
+		 */
+		/*
+		 * book.setSupplier(bookDTO.getSupplier());
+		 * book.setTypebook(bookDTO.getTypebook());
+		 */
 		
 		bookDao.addBook(book);		
 		System.out.println("add Book successful!");
@@ -57,8 +66,10 @@ public class BookServiceImpl implements BookService{
 			book.setSize(bookDTO.getSize());
 			book.setStatus(bookDTO.getStatus());
 			book.setTagList(bookDTO.getTagList());
-			book.setSupplier(bookDTO.getSupplier());
-			book.setTypebook(bookDTO.getTypebook());
+			/*
+			 * book.setSupplier(bookDTO.getSupplier());
+			 * book.setTypebook(bookDTO.getTypebook());
+			 */
 			
 			bookDao.updateBook(book);
 			System.out.println("update Book successful!");
@@ -92,8 +103,10 @@ public class BookServiceImpl implements BookService{
 		bookDTO.setSize(book.getSize());
 		bookDTO.setStatus(book.getStatus());
 		bookDTO.setTagList(book.getTagList());
-		bookDTO.setSupplier(book.getSupplier());
-		bookDTO.setTypebook(book.getTypebook());
+		/*
+		 * bookDTO.setSupplier(book.getSupplier());
+		 * bookDTO.setTypebook(book.getTypebook());
+		 */
 		//System.out.println(book.getAuthors().get(0).getNameAuthor());
 		
 		return bookDTO;
@@ -121,8 +134,10 @@ public class BookServiceImpl implements BookService{
 			bookDTO.setSize(book.getSize());
 			bookDTO.setStatus(book.getStatus());
 			bookDTO.setTagList(book.getTagList());
-			bookDTO.setSupplier(book.getSupplier());
-			bookDTO.setTypebook(book.getTypebook());
+			/*
+			 * bookDTO.setSupplier(book.getSupplier());
+			 * bookDTO.setTypebook(book.getTypebook());
+			 */
 		
 			lstBookDTO.add(bookDTO);
 		}

@@ -568,16 +568,16 @@
 		</a>
 	</div>
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/myjsHome.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/wow.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/wow.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/handlehome.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/apihome.js"></script>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
 	<script>

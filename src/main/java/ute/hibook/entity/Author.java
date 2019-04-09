@@ -2,6 +2,12 @@ package ute.hibook.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -20,7 +26,10 @@ public class Author implements Serializable {
 	private String nameAuthor;
 
 	//bi-directional many-to-many association to Book
-	@ManyToMany(mappedBy="authors", fetch = FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinTable(name="authorbook",
+	joinColumns=@JoinColumn(name="idAuthor"),
+	inverseJoinColumns=@JoinColumn(name="idBook"))
 	private List<Book> books;
 
 	public Author() {

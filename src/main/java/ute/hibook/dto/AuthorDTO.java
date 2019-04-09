@@ -2,13 +2,11 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Book;
-
 public class AuthorDTO {
 
 	private int idAuthor;
 	private String nameAuthor;
-	private List<Book> books;
+	private List<BookDTO> books;
 
 	public int getIdAuthor() {
 		return this.idAuthor;
@@ -26,11 +24,11 @@ public class AuthorDTO {
 		this.nameAuthor = nameAuthor;
 	}
 
-	public List<Book> getBooks() {
+	public List<BookDTO> getBooks() {
 		return this.books;
 	}
 
-	public void setBooks(List<Book> books) {
+	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
 }

@@ -2,14 +2,6 @@ package ute.hibook.dto;
 
 import java.util.List;
 
-import ute.hibook.entity.Author;
-import ute.hibook.entity.Cart;
-import ute.hibook.entity.Detailbill;
-import ute.hibook.entity.Promotion;
-import ute.hibook.entity.Supplier;
-import ute.hibook.entity.Typebook;
-import ute.hibook.entity.Userreview;
-
 public class BookDTO {
 
 	private int idBook;
@@ -27,13 +19,13 @@ public class BookDTO {
 	private String size;
 	private int status;
 	private String tagList;
-	private List<Author> authors;
-	private Supplier supplier;
-	private Typebook typebook;
-	private List<Cart> carts;
-	private List<Detailbill> detailbills;
-	private List<Promotion> promotions;
-	private List<Userreview> userreviews;
+	private List<AuthorDTO> authors;
+	private SupplierDTO supplier;
+	private TypebookDTO typebook;
+	private List<CartDTO> carts;
+	private List<DetailbillDTO> detailbills;
+	private List<PromotionDTO> promotions;
+	private List<UserreviewDTO> userreviews;
 
 	public int getIdBook() {
 		return this.idBook;
@@ -155,59 +147,59 @@ public class BookDTO {
 		this.tagList = tagList;
 	}
 
-	public List<Author> getAuthors() {
-		return this.authors;
+	public List<AuthorDTO> getAuthors() {
+		return authors;
 	}
 
-	public void setAuthors(List<Author> authors) {
+	public void setAuthors(List<AuthorDTO> authors) {
 		this.authors = authors;
 	}
 
-	public Supplier getSupplier() {
-		return this.supplier;
+	public SupplierDTO getSupplier() {
+		return supplier;
 	}
 
-	public void setSupplier(Supplier supplier) {
+	public void setSupplier(SupplierDTO supplier) {
 		this.supplier = supplier;
 	}
 
-	public Typebook getTypebook() {
-		return this.typebook;
+	public TypebookDTO getTypebook() {
+		return typebook;
 	}
 
-	public void setTypebook(Typebook typebook) {
+	public void setTypebook(TypebookDTO typebook) {
 		this.typebook = typebook;
 	}
 
-	public List<Cart> getCarts() {
-		return this.carts;
+	public List<CartDTO> getCarts() {
+		return carts;
 	}
 
-	public void setCarts(List<Cart> carts) {
+	public void setCarts(List<CartDTO> carts) {
 		this.carts = carts;
 	}
 
-	public List<Detailbill> getDetailbills() {
-		return this.detailbills;
+	public List<DetailbillDTO> getDetailbills() {
+		return detailbills;
 	}
 
-	public void setDetailbills(List<Detailbill> detailbills) {
+	public void setDetailbills(List<DetailbillDTO> detailbills) {
 		this.detailbills = detailbills;
 	}
 
-	public List<Promotion> getPromotions() {
-		return this.promotions;
+	public List<PromotionDTO> getPromotions() {
+		return promotions;
 	}
 
-	public void setPromotions(List<Promotion> promotions) {
+	public void setPromotions(List<PromotionDTO> promotions) {
 		this.promotions = promotions;
 	}
 
-	public List<Userreview> getUserreviews() {
-		return this.userreviews;
+	public List<UserreviewDTO> getUserreviews() {
+		return userreviews;
 	}
 
-	public void setUserreviews(List<Userreview> userreviews) {
+	public void setUserreviews(List<UserreviewDTO> userreviews) {
 		this.userreviews = userreviews;
 	}
 
