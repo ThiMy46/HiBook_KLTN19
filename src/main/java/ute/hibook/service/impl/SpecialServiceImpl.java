@@ -73,7 +73,7 @@ public class SpecialServiceImpl {
 		return lstBookDTO;
 	}
 	
-	public List<BookDTO> searchNameBook(String key, String type) {
+	public List<BookDTO> searchBook(String key, String type) {
 		List<Book> lstSearch= specialDao.searchNameBook(key, type);
 		
 		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();

@@ -21,6 +21,6 @@ public class TagsearchController {
 		tagDTO.setNumOfSearch(1);
 		
 		tagSer.addTag(tagDTO);
-		return "hello";
+		return "home";
 	}
 }

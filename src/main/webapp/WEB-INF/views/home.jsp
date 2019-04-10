@@ -571,16 +571,13 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
-	<script
-		src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/myjsHome.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/apihome.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
-	<script>
+	<script src="<%=request.getContextPath()%>/resources/js/user-api/apihome.js"></script>
+	<script type="text/javascript">
 		new WOW().init();
 	</script>
 </body>

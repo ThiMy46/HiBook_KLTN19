@@ -6,7 +6,7 @@ $(document).ready(function() {
 	var gia = 0;
 	$.ajax({
 		type : "GET",
-		url : "/HiBookTLCN/api/get-detail-book/" + idSach
+		url : "/HiBook_KLTN19/api/v1/books/" + idSach
 	}).then(
 			function(data) {
 
@@ -15,44 +15,30 @@ $(document).ready(function() {
 				}
 				$('.item-photo').append(
 						'<img style="max-width:100%;" src="../resources/images/book/'
-						+ data.picBook
-						+ '" />');
+						+ data.picBook + '" />');
 				$('#tensach').text(data.nameBook);
-				$('#tensach').attr('data-type',data.typeBook.idType);
+				$('#tensach').attr('data-type',data.typebook.idType);
 				$('#giaban').text(data.price * (100 - data.discount) / 100 + " đ");
 				$('#giamgia').text(data.discount + "%");
-				$('#giagoc small').text("Giá bìa: "
-						+ data.price
-						+ " đ");
+				$('#giagoc small').text("Giá bìa: "+ data.price+ " đ");
 				gia = data.price;
-				$('#tab_default_1').append(
-						'<p style="font-weight: bold;">'
-						+ data.nameBook
-						+ '</p><p>'
-						+ data.introBook
-						+ '</p>');
+				$('#tab_default_1').append('<p style="font-weight: bold;">'
+						+ data.nameBook+ '</p><p>'+ data.introBook+ '</p>');
 				$('#table_chitiet')
-				.append(
-						'<tbody><tr>'
+				.append('<tbody><tr>'
 						+ '<th style="width: 25%">Công ty phát hành</th><td><a href="#">'
-						+ data.supplier.nameSupplier
-						+ '</a></td>'
+						+ data.supplier.nameSupplier + '</a></td>'
 						+ '</tr><tr><th>Tác giả</th><td><a id="tacgia1" href="#"></a></td>'
 						+ '</tr><tr><th >Nhà xuất bản</th><td>'
-						+ data.publisher
-						+ '</td></tr>'
+						+ data.publisher + '</td></tr>'
 						+ '<tr><th >Ngày xuất bản</th><td>'
-						+ data.publicationDate
-						+ '</td></tr>'
+						+ data.publicationDate + '</td></tr>'
 						+ '<tr><th >Kích thước</th><td>'
-						+ data.size
-						+ '</td></tr>'
+						+ data.size + '</td></tr>'
 						+ '<tr><th >Số trang</th><td>'
-						+ data.numberPage
-						+ '</td></tr>'
+						+ data.numberPage + '</td></tr>'
 						+ '<tr><th >Loại bìa</th><td>'
-						+ data.cover
-						+ '</td></tr></tbody>');
+						+ data.cover + '</td></tr></tbody>');
 				var text_author = "";
 				$.each(data.authors, function(i, item) {
 					text_author += item.nameAuthor
@@ -64,10 +50,9 @@ $(document).ready(function() {
 				var text_review = "";
 				var star_number=0;
 				var dem=0;
-				$.each(data.userReviews,function(i, item) {
-					var st;
+				$.each(data.userreviews,function(i, item) {
 					var start = "";
-					for (st = 0; st < item.star; st++) {
+					for (var st = 0; st < item.star; st++) {
 						start += '<span class="fa fa-star checked"></span>';
 					}
 					star_number+=item.star;
@@ -92,44 +77,19 @@ $(document).ready(function() {
 					}
 				}
 			});
-	$("#btn-purchase").click(function() {
-
-		var email = $(".get-email").attr("data-email");
-		var quantity = $(".section > div > input").val();
-		$.ajax({
-			url : "/HiBookTLCN/api/getnotice/" + idSach,
-			type : "GET",
-			data : {
-				email : email,
-				price : gia,
-			},
-			success : function(data) {
-				var value = $(".giohang_circle").find("span").text();
-				if (data == 0) {
-					if(value==''){
-						value=1;
-					}else{
-						value++;
-					}
-				}
-				alert("Đã thêm vào giỏ!");
-				$(".giohang_circle").find("span").text(value);
-			}
-		})
-	});
 
 	$("#TryRead").click(function () { 
 		var file=$('#TryRead a').data('value');
 		if(file==null)
 		{
 
-		}else{$("#frame").attr("src", '/HiBookTLCN/resources/images/file/'+file);}
+		}else{$("#frame").attr("src", '/HiBook_KLTN19/resources/images/file/'+file);}
 	});
 	/*Get book same type */
 	var idType=$('#tensach').data('type');
 	$.ajax({
 		type : "GET",
-		url : "/HiBookTLCN/api/search",
+		url : "/HiBook_KLTN19/api/v1/searchs",
 		data:{
 			q:'',
 			type:idType
@@ -140,10 +100,10 @@ $(document).ready(function() {
 		$.each(data,function(i, item) {
 			if(i<4){
 				sp1+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
-					+'<img src="/HiBookTLCN/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
+					+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
 			}else if(i>3&&i<8){
 				sp2+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
-					+'<img src="/HiBookTLCN/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
+					+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
 			}
 		});
 		$('#sp_type1').append(sp1);

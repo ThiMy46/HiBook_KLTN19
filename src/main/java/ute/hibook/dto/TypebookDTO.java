@@ -9,6 +9,18 @@ public class TypebookDTO {
 	private String nameType;
 	private List<BookDTO> books;
 
+	
+	public TypebookDTO() {
+		super();
+	}
+
+	public TypebookDTO(int idType, String imgType, String nameType) {
+		super();
+		this.idType = idType;
+		this.imgType = imgType;
+		this.nameType = nameType;
+	}
+
 	public int getIdType() {
 		return this.idType;
 	}

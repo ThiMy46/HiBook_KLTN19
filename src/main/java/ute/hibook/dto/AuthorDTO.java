@@ -8,6 +8,17 @@ public class AuthorDTO {
 	private String nameAuthor;
 	private List<BookDTO> books;
 
+	
+	public AuthorDTO() {
+		super();
+	}
+
+	public AuthorDTO(int idAuthor, String nameAuthor) {
+		super();
+		this.idAuthor = idAuthor;
+		this.nameAuthor = nameAuthor;
+	}
+
 	public int getIdAuthor() {
 		return this.idAuthor;
 	}

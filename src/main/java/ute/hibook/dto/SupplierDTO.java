@@ -8,6 +8,17 @@ public class SupplierDTO {
 	private String nameSupplier;
 	private List<BookDTO> books;
 
+	
+	public SupplierDTO() {
+		super();
+	}
+
+	public SupplierDTO(int idSupplier, String nameSupplier) {
+		super();
+		this.idSupplier = idSupplier;
+		this.nameSupplier = nameSupplier;
+	}
+
 	public int getIdSupplier() {
 		return this.idSupplier;
 	}

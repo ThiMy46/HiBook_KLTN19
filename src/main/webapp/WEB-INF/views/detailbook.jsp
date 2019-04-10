@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Thông tin</title>
+<title>Chi tiết Sách</title>
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css"
 	rel="stylesheet">
@@ -24,104 +24,114 @@
 			==============================Hearder====================================
 	-->
 	<div class="container">
-		<header id="header">
-			<nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
-				data-offset-top="0">
-				<div class="container">
-					<div class="navbar-header">
+		<div class="topbar">
+			<div id="menu">
+				<ul>
+					<li class="sdt"><span class="glyphicon glyphicon-earphone"></span>0123.4567.89
+					</li>
+					<li class="gmail"><span class="	glyphicon glyphicon-envelope"></span>HiBook@gmail.com</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<header id="header">
+		<nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
+			data-offset-top="50">
+			<div class="container">
+				<div class="navbar-header">
+					<c:choose>
+						<c:when test="${pageContext.request.userPrincipal.name !=null}">
+							<a class="navbar-brand" href="<%=request.getContextPath()%>/">
+								<img style="width: 220px; padding-top: 10px;"
+								src="<%=request.getContextPath()%>/resources/images/TC.png" />
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a class="navbar-brand" href="<%=request.getContextPath()%>/">
+								<img style="width: 220px; padding-top: 10px;"
+								src="<%=request.getContextPath()%>/resources/images/TC.png" />
+							</a>
+						</c:otherwise>
+					</c:choose>
+
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target=".navbar-collapse">
+						<span class="sr-only">Toggle navigation</span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
+				</div>
+
+				<div class="collapse navbar-collapse">
+					<ul class="nav navbar-nav ">
+						<li class="dropdown"><a href="khoahoc.html"
+							class="dropdown-toggle" data-toggle="dropdown"> <i
+								class="fas fa-th-list"></i> THỂ LOẠI<span class="caret"></span></a>
+							<ul class="dropdown-menu" id="typeBook">
+
+							</ul></li>
+						<!-- form search -->
+						<li class="search">
+							<div class="header_search">
+								<span class="glyphicon glyphicon-search"
+									style="width: 18px; height: 18px; margin-right: 9.6px"></span>
+								<input class="gtm_search_bar search-bar" name="q"
+									placeholder="Tìm kiếm sách ..." style="font-family: Open Sans;"
+									type="text">
+							</div>
+						</li>
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right"
+						style="padding-left: -69px; margin-left: -29px; margin-top: -3px;">
 						<c:choose>
 							<c:when test="${pageContext.request.userPrincipal.name !=null}">
-								<a class="navbar-brand" href="<%=request.getContextPath()%>/"> <img
-									style="width: 220px; padding-top: 10px;"
-									src="<%=request.getContextPath()%>/resources/images/TC.png" />
-								</a>
+								<ul class="nav navbar-nav navbar-left" style="margin-top: -7px;">
+
+									<li id="giohanghome" class="getthongbao"><a
+										class="nav-link"
+										href="<%=request.getContextPath()%>/loadcart/${getIdUser}">
+											<img id="header_logo" alt="logo"
+											src="<%=request.getContextPath()%>/resources/images/shopping-cart.png" />
+											<div class="giohang_circle">
+												<span></span>
+											</div>
+									</a></li>
+								</ul>
+								<li class="dropdown"><a href="khoahoc.html"
+									class="dropdown-toggle" data-toggle="dropdown"> <i
+										class="fas fa-user fa-fw text-success"></i> Thông tin <span
+										class="caret"></span></a>
+									<ul class="dropdown-menu">
+
+
+										<li><a class="nav-link"
+											href="<%=request.getContextPath()%>/info_user/${getIdUser}">
+												${pageContext.request.userPrincipal.name}</a></li>
+										<li><a class="nav-link"
+											href="<%=request.getContextPath()%>/logout"> Logout</a></li>
+									</ul></li>
 							</c:when>
+
+
 							<c:otherwise>
-								<a class="navbar-brand" href="<%=request.getContextPath()%>/"> <img
-									style="width: 220px; padding-top: 10px;"
-									src="<%=request.getContextPath()%>/resources/images/TC.png" />
-								</a>
+								<li><a class="nav-link" id="nutDK" data-toggle="modal">
+										ĐĂNG KÝ </a></li>
+								<li><a class="nav-link" id="nutDN" data-toggle="modal">
+										ĐĂNG NHẬP </a></li>
 							</c:otherwise>
 						</c:choose>
 
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="sr-only">Toggle navigation</span> <span
-								class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-					</div>
-
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav ">
-							<li class="dropdown"><a href="khoahoc.html"
-								class="dropdown-toggle" data-toggle="dropdown"> <i
-									class="fas fa-th-list"></i> Thể Loại<span class="caret"></span></a>
-								<ul class="dropdown-menu" id="typeBook">
-									
-								</ul>
-							</li>
-							<!-- form search -->
-							<li class="search">
-								<div class="header_search">
-										<span class="glyphicon glyphicon-search"
-											style="width: 18px; height: 18px; margin-right: 9.6px"></span>
-									<input class="gtm_search_bar search-bar" name="q"
-											placeholder="Tìm kiếm sách ..."
-											style="font-family: Open Sans;" type="text">
-								</div>
-							</li>
-						</ul>
-						
-						<ul class="nav navbar-nav navbar-right"
-							style="padding-left: -69px; margin-left: -29px; margin-top: -3px;">
-							<c:choose>
-								<c:when test="${pageContext.request.userPrincipal.name !=null}">
-									<ul class="nav navbar-nav navbar-left" style="margin-top: -7px;">
-		
-												<li id="giohanghome" class="getthongbao"><a class="nav-link" href="<%=request.getContextPath()%>/loadcart/${getIdUser}">
-													<img id="header_logo" alt="logo"
-														src="<%=request.getContextPath()%>/resources/images/shopping-cart.png"/>
-														<div class="giohang_circle">
-															<span></span>
-														</div>
-														</a>
-												</li>
-									</ul>
-									<li class="dropdown"><a href="khoahoc.html"
-										class="dropdown-toggle" data-toggle="dropdown"> 
-											<i class="fas fa-user fa-fw text-success"></i> Thông tin <span class="caret"></span></a>
-										<ul class="dropdown-menu">
+					</ul>
 
 
-											<li><a class="nav-link" 
-												 href="<%=request.getContextPath()%>/info_user/${getIdUser}">
-													${pageContext.request.userPrincipal.name}</a></li>
-											<li><a class="nav-link" href="<%=request.getContextPath()%>/logout"> Logout</a></li>
-										</ul>
-									</li>
-								</c:when>
-
-							
-								<c:otherwise>
-									<li><a class="nav-link" id="nutDK" data-toggle="modal">
-											Đăng Ký </a></li>
-									<li><a class="nav-link" id="nutDN" data-toggle="modal">
-											Đăng Nhập </a></li>
-								</c:otherwise>
-							</c:choose>
-
-						</ul>
-
-
-					</div>
 				</div>
-				<!--end container-->
-			</nav>
-			<!--end nav-->
-		</header>
-		<!--end header-->
-	</div>
+			</div>
+			<!--end container-->
+		</nav>
+		<!--end nav-->
+	</header>
+	<!--end header-->
 	<!--
 			==============================Login mờ màn hình====================================
 	-->
@@ -589,15 +599,13 @@
 	</div>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/detail_js.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/handle-js/detailbook.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/myjsHome.js"></script>
 	<!-- api -->
-	<script
-		src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/handle-detail.js"></script>
 </body>
 </html>

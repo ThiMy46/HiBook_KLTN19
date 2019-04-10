@@ -1,7 +1,9 @@
 package ute.hibook.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /* 
  * Display page .jsp when use redirect to difference page 
@@ -24,9 +26,16 @@ public class PageController {
 	public String cartPage() {
 		return "cart";
 	}
+	
+	@GetMapping({"/search"})
+	public String searchPage() {
+		return "listbook";
+	}
 
-	@GetMapping({"/detail-book"})
-	public String detailBook() {
+	@GetMapping({"/detail-book/{idBook}"})
+	public String detailBook(@PathVariable int idBook, Model model) {
+		System.out.println(idBook);
+		model.addAttribute("idBook", idBook);
 		return "detailbook";
 	}
 

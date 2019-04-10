@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ute.hibook.dto.BookDTO;
@@ -36,5 +37,15 @@ public class SpecialController {
 			return new ResponseEntity<List<BookDTO>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<List<BookDTO>>(lstBookLimit,HttpStatus.OK);
+	}
+	
+	@GetMapping("/searchs")
+	public ResponseEntity<List<BookDTO>> getSearch(@RequestParam(value = "q") String key,@RequestParam(value = "type") String type) {
+		List<BookDTO> lstBookSearch= specialSer.searchBook(key, type);
+		
+		if(lstBookSearch.isEmpty()) {
+			return new ResponseEntity<List<BookDTO>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<BookDTO>>(lstBookSearch,HttpStatus.OK);
 	}
 }

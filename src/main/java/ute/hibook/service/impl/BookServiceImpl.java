@@ -7,8 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ute.hibook.dao.imp.BookDaoImpl;
+import ute.hibook.dto.AuthorDTO;
 import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.SupplierDTO;
+import ute.hibook.dto.TypebookDTO;
+import ute.hibook.dto.UserDTO;
+import ute.hibook.dto.UserreviewDTO;
+import ute.hibook.entity.Author;
 import ute.hibook.entity.Book;
+import ute.hibook.entity.Userreview;
 import ute.hibook.service.BookService;
 
 @Service
@@ -102,11 +109,34 @@ public class BookServiceImpl implements BookService{
 		bookDTO.setSize(book.getSize());
 		bookDTO.setStatus(book.getStatus());
 		bookDTO.setTagList(book.getTagList());
-		/*
-		 * bookDTO.setSupplier(book.getSupplier());
-		 * bookDTO.setTypebook(book.getTypebook());
-		 */
-		//System.out.println(book.getAuthors().get(0).getNameAuthor());
+		TypebookDTO type=new TypebookDTO(book.getTypebook().getIdType(), book.getTypebook().getImgType()
+				, book.getTypebook().getNameType());
+		bookDTO.setTypebook(type);
+		SupplierDTO supplier=new SupplierDTO(book.getSupplier().getIdSupplier(), book.getSupplier().getNameSupplier());
+		bookDTO.setSupplier(supplier);
+		  
+		List<AuthorDTO> lstAuthor=new ArrayList<AuthorDTO>();
+		for (Author author : book.getAuthors()) {
+			lstAuthor.add(new AuthorDTO(author.getIdAuthor(), author.getNameAuthor()));
+		}
+		bookDTO.setAuthors(lstAuthor);
+		
+		List<UserreviewDTO> reviews=new ArrayList<UserreviewDTO>();
+		for (Userreview userreview : book.getUserreviews()) {
+			UserreviewDTO userreviewDTO= new UserreviewDTO();
+			userreviewDTO.setIdReview(userreview.getIdReview());
+			userreviewDTO.setContent(userreview.getContent());
+			userreviewDTO.setReportNum(userreview.getReportNum());
+			userreviewDTO.setStar(userreview.getStar());
+			userreviewDTO.setTimeReview(userreview.getTimeReview());
+			userreviewDTO.setTitle(userreview.getTitle());
+			UserDTO user=new UserDTO();
+			user.setIdUser(userreview.getUser().getIdUser());
+			user.setNameUser(userreview.getUser().getNameUser());
+			userreviewDTO.setUser(user);
+			reviews.add(userreviewDTO);
+		}
+		bookDTO.setUserreviews(reviews);
 		
 		return bookDTO;
 	}
