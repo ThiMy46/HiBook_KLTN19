@@ -2,6 +2,9 @@ package ute.hibook.dao.imp;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -38,6 +41,14 @@ public class UserDaoImpl implements UserDao{
 
 	public List<User> getAllUser() {
 		return sessionFactory.getCurrentSession().createQuery("from user").getResultList();
+	}
+	
+	public User getUserbyEmail(String email) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from user where email = :email");
+		query.setParameter("email", email);
+		User user = (User) query.getSingleResult();
+		return user;
 	}
 
 }

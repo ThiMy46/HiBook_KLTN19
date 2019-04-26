@@ -125,6 +125,13 @@
 			<img src="resources/images/TC.png" alt="Avatar" class="avatar">
 		</div>
 
+	 	<!-- /login?error=true -->
+	     <c:if test="${param.error}">
+	         <div style="color:red;margin:10px 0px;">
+	                Login Failed!!!<br />
+	                Reason :  ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+	         </div>
+	    </c:if>
 		<div class="inputcontainer">
 			<input type="text" id="username" placeholder="Tên đăng nhập*"
 				name="username" required><br />
@@ -188,9 +195,8 @@
 			<p>
 				<span class="error" id="email_error"></span>
 			</p>
-			<button type="submit" id="btnDangKy btn-register" class="submitbtn">Đăng
-				Ký</button>
-			<br />
+			<button type="submit" id="btnDangKy" class="submitbtn">Đăng Ký</button>
+			<br/>
 		</div>
 		<div>
 			<span>${erro}</span>
@@ -202,7 +208,7 @@
 	</form>
 	<!--end form-->
 </div>
-<!--end div login-->
+<!--end div register-->
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>

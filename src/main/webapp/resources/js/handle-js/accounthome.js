@@ -91,10 +91,11 @@ $(document).ready(function(){
                 $("#username_error").html("Không được để trống!!!");
                 $("#username_error").show(); 
                 //$("#username_error").css("color","red");
-                error_username = true;
+                error_username = false;
             }
             else {
                 $("#username_error").hide();
+                error_username = true;
             }
         
         }
@@ -108,27 +109,28 @@ $(document).ready(function(){
                 $("#password_error").html("Không được để trống!!!");
                 $("#password_error").show();
                 //$("#password_error").css("color","red");
-                error_password = true;
+                error_password = false;
             }
             else if(password_length < 8) {
                 $("#password_error").html("Mật khẩu phải lớn hơn 8 kí tự");
                 $("#password_error").show();
-                error_password = true;
+                error_password = false;
             } else {
                 $("#password_error").hide();
+                error_password = true;
             }
         }
         function check_username1() {
         
-            var username_length = $("#username1").val().length;
             if($("#username1").val()=="")
             {
                 $("#username1_error").html("Không được để trống!!!");
                 $("#username1_error").show(); 
-                error_username1 = true;
+                error_username1 = false;
             }
             else {
                 $("#username1_error").hide();
+                error_username1 = true;
             }
         
         }
@@ -141,14 +143,15 @@ $(document).ready(function(){
             {
                 $("#password0_error").html("Không được để trống!!!");
                 $("#password0_error").show();
-                error_password0 = true;
+                error_password0 = false;
             }
             else if(password_length < 6) {
                 $("#password0_error").html("Mật khẩu phải lớn hơn 5 kí tự");
                 $("#password0_error").show();
-                error_password0 = true;
+                error_password0 = false;
             } else {
                 $("#password0_error").hide();
+                error_password0 = true;
             }
         }
         function check_password1() {
@@ -158,9 +161,10 @@ $(document).ready(function(){
             if($("#password1").val()!=$("#password0").val()) {
                 $("#password1_error").html("Mật khẩu nhập lại phải khớp với mật khẩu trên");
                 $("#password1_error").show();
-                error_password1 = true;
+                error_password1 = false;
             } else {
                 $("#password1_error").hide();
+                error_password1 = true;
             }
         }
 
@@ -170,44 +174,48 @@ $(document).ready(function(){
         
             if(pattern.test($("#email").val())) {
                 $("#email_error").hide();
+                error_email = true;
             } else {
                 $("#email_error").html("Hãy nhập địa chỉ email!");
                 $("#email_error").show();
-                error_email = true;
+                error_email = false;
             }
         
         }
         $("#btnDangNhap").click(function() {
                                                 
-            var error_username = false;
-            var error_password = false;
+            error_username = false;
+            error_password = false;
                                                 
             check_username();
             check_password();
             
-            if(error_username == false && error_password == false) {
+            if(error_username == false || error_password == false) {
+                return false;
+            }if(error_username == true && error_password == true) {
                 return true;
-            } else {
-                return false;   
             }
+            return false;   
         });
         $("#btnDangKy").click(function() {
                                                 
-            var error_username1 = false;
-            var error_password0 = false;
-            var error_email = false;
-            var error_password1 = false;
+            error_username1 = false;
+            error_password0 = false;
+            error_email = false;
+            error_password1 = false;
                                                 
             check_username1();
             check_password0();
             check_password1();
             check_email();
             
-            if(error_username1 == false && error_password0 == false && error_email == false && error_password1 == false) {
+            if(error_username1 == false || error_password0 == false || error_email == false || error_password1 == false) {
+                return false;
+            } 
+            if(error_username1 == true && error_password0 == true && error_email == true && error_password1 == true) {
                 return true;
-            } else {
-                return false;   
             }
+            return false;
         });
         
 });

@@ -283,7 +283,7 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/user-api/apihome.js"></script>
+	<%-- <script src="<%=request.getContextPath()%>/resources/js/user-api/apihome.js"></script> --%>
 	<script type="text/javascript">
 		new WOW().init();
 	</script>
