@@ -11,5 +11,6 @@ public interface BillService {
 	public void updateBill(BillDTO billDTO);
 	public void deleteBill(int idBill);
 	public BillDTO getBillById(int idBill);
+	public List<BillDTO> getBillsByIdUser(int idUser);
 	public List<BillDTO> getAllBill();
 }

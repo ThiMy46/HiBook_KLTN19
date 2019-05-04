@@ -11,4 +11,5 @@ public interface UserDao {
 	public void deleteUser(int idUser);
 	public User getUserById(int idUser);
 	public List<User> getAllUser();
+	public User getUserByEmail(String email);
 }

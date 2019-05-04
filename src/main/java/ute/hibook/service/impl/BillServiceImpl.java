@@ -12,11 +12,14 @@ import ute.hibook.dao.imp.PaymentDaoImpl;
 import ute.hibook.dao.imp.TransportDaoImpl;
 import ute.hibook.dao.imp.UserDaoImpl;
 import ute.hibook.dto.BillDTO;
+import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.DetailbillDTO;
 import ute.hibook.dto.OrderstatusDTO;
 import ute.hibook.dto.PaymentDTO;
 import ute.hibook.dto.TransportDTO;
 import ute.hibook.dto.UserDTO;
 import ute.hibook.entity.Bill;
+import ute.hibook.entity.Detailbill;
 import ute.hibook.entity.Orderstatus;
 import ute.hibook.entity.Payment;
 import ute.hibook.entity.Transport;
@@ -102,7 +105,7 @@ public class BillServiceImpl implements BillService{
 		PaymentDTO paymentDTO=new PaymentDTO(bill.getPayment().getIdPayment(), bill.getPayment().getNamePayment());
 		billDTO.setPayment(paymentDTO);
 		
-		OrderstatusDTO orderstatusDTO=new OrderstatusDTO(bill.getOrderstatus().getIdStatus(), bill.getPayment().getNamePayment());
+		OrderstatusDTO orderstatusDTO=new OrderstatusDTO(bill.getOrderstatus().getIdStatus(), bill.getOrderstatus().getNameStatus());
 		billDTO.setOrderstatus(orderstatusDTO);
 		
 		TransportDTO transportDTO= new TransportDTO(bill.getTransport().getIdTransport()
@@ -112,6 +115,20 @@ public class BillServiceImpl implements BillService{
 		UserDTO userDTO= new UserDTO(bill.getUser().getIdUser(), bill.getUser().getAddress(),
 				bill.getUser().getEmail(), bill.getUser().getNameUser(), bill.getUser().getNumberphone());
 		billDTO.setUser(userDTO);
+		
+		List<DetailbillDTO> lstDetailDTO = new ArrayList<DetailbillDTO>();
+		for(Detailbill detail : bill.getDetailbills()) {
+			DetailbillDTO detailDTO = new DetailbillDTO();
+			detailDTO.setIdDetailBill(detail.getIdDetailBill());
+			detailDTO.setPrice(detail.getPrice());
+			detailDTO.setQuantityBuy(detail.getQuantityBuy());
+			BookDTO book =new BookDTO();
+			book.setIdBook(detail.getBook().getIdBook());
+			book.setNameBook(detail.getBook().getNameBook());
+			detailDTO.setBook(book);
+			lstDetailDTO.add(detailDTO);
+		}
+		billDTO.setDetailbills(lstDetailDTO);
 		
 		return billDTO;
 	}
@@ -133,7 +150,7 @@ public class BillServiceImpl implements BillService{
 			PaymentDTO paymentDTO=new PaymentDTO(bill.getPayment().getIdPayment(), bill.getPayment().getNamePayment());
 			billDTO.setPayment(paymentDTO);
 			
-			OrderstatusDTO orderstatusDTO=new OrderstatusDTO(bill.getOrderstatus().getIdStatus(), bill.getPayment().getNamePayment());
+			OrderstatusDTO orderstatusDTO=new OrderstatusDTO(bill.getOrderstatus().getIdStatus(), bill.getOrderstatus().getNameStatus());
 			billDTO.setOrderstatus(orderstatusDTO);
 			
 			TransportDTO transportDTO= new TransportDTO(bill.getTransport().getIdTransport()
@@ -143,6 +160,63 @@ public class BillServiceImpl implements BillService{
 			UserDTO userDTO= new UserDTO(bill.getUser().getIdUser(), bill.getUser().getAddress(),
 					bill.getUser().getEmail(), bill.getUser().getNameUser(), bill.getUser().getNumberphone());
 			billDTO.setUser(userDTO);
+			
+			List<DetailbillDTO> lstDetailDTO = new ArrayList<DetailbillDTO>();
+			for(Detailbill detail : bill.getDetailbills()) {
+				DetailbillDTO detailDTO = new DetailbillDTO();
+				detailDTO.setIdDetailBill(detail.getIdDetailBill());
+				detailDTO.setPrice(detail.getPrice());
+				detailDTO.setQuantityBuy(detail.getQuantityBuy());
+				BookDTO book =new BookDTO();
+				book.setIdBook(detail.getBook().getIdBook());
+				book.setNameBook(detail.getBook().getNameBook());
+				detailDTO.setBook(book);
+				lstDetailDTO.add(detailDTO);
+			}
+			billDTO.setDetailbills(lstDetailDTO);
+		
+			lstBillDTO.add(billDTO);
+		}
+		return lstBillDTO;
+	}
+
+	public List<BillDTO> getBillsByIdUser(int idUser) {
+		List<Bill> lstBill= billDao.getBillsByIdUser(idUser);
+		
+		List<BillDTO> lstBillDTO= new ArrayList<BillDTO>();
+		for (Bill bill : lstBill) {
+			
+			BillDTO billDTO= new BillDTO();
+			billDTO.setIdBill(bill.getIdBill());
+			billDTO.setDateCreate(bill.getDateCreate());
+			billDTO.setDeliveryAdress(bill.getDeliveryAdress());
+			billDTO.setNameReceiver(bill.getNameReceiver());
+			billDTO.setNumberphone(bill.getNumberphone());
+			billDTO.setTotal(bill.getTotal());
+			
+			PaymentDTO paymentDTO=new PaymentDTO(bill.getPayment().getIdPayment(), bill.getPayment().getNamePayment());
+			billDTO.setPayment(paymentDTO);
+			
+			OrderstatusDTO orderstatusDTO=new OrderstatusDTO(bill.getOrderstatus().getIdStatus(), bill.getOrderstatus().getNameStatus());
+			billDTO.setOrderstatus(orderstatusDTO);
+			
+			TransportDTO transportDTO= new TransportDTO(bill.getTransport().getIdTransport()
+					,bill.getTransport().getDescribes(),bill.getTransport().getFee(),bill.getTransport().getNameTransport());
+			billDTO.setTransport(transportDTO);
+			
+			List<DetailbillDTO> lstDetailDTO = new ArrayList<DetailbillDTO>();
+			for(Detailbill detail : bill.getDetailbills()) {
+				DetailbillDTO detailDTO = new DetailbillDTO();
+				detailDTO.setIdDetailBill(detail.getIdDetailBill());
+				detailDTO.setPrice(detail.getPrice());
+				detailDTO.setQuantityBuy(detail.getQuantityBuy());
+				BookDTO book =new BookDTO();
+				book.setIdBook(detail.getBook().getIdBook());
+				book.setNameBook(detail.getBook().getNameBook());
+				detailDTO.setBook(book);
+				lstDetailDTO.add(detailDTO);
+			}
+			billDTO.setDetailbills(lstDetailDTO);
 		
 			lstBillDTO.add(billDTO);
 		}

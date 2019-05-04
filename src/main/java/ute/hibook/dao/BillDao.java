@@ -10,5 +10,6 @@ public interface BillDao {
 	public void updateBill(Bill bill);
 	public void deleteBill(int idBill);
 	public Bill getBillById(int idBill);
+	public List<Bill> getBillsByIdUser(int idUser);
 	public List<Bill> getAllBill();
 }

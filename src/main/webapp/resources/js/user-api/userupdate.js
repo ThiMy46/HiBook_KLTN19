@@ -12,7 +12,7 @@ $(document).ready(function() {
     	var formatted = (birthday.getMonth() + 1)+"/"+birthday.getDate()+"/"+birthday.getFullYear();
     	var address=$('#address').val();
 		$.ajax({
-			url : "/HiBookTLCN/api/user/"+idUser,
+			url : "/HiBook_KLTN19/api/v1/users/"+idUser,
 	    	type : "PUT",
 	    	data:JSON.stringify({
 	    		nameUser:nameUser,
@@ -29,7 +29,7 @@ $(document).ready(function() {
         	},
 	    	success : function(data) {
 	    		alert("Chỉnh sửa thành công!!!");
-	    		window.location = '/HiBookTLCN/user_update/'+idUser;
+	    		window.location = '/HiBook_KLTN19/user-update';
 	        },
 	    	statusCode: {
 	    	    404: function() {
@@ -48,7 +48,7 @@ $(document).ready(function() {
 		var pass1=$('#passwordagain').val();
 		if(pass==pass1){
 			$.ajax({
-				url : "/HiBookTLCN/api/user/"+idUser,
+				url : "/HiBook_KLTN19/api/v1/users/"+idUser,
 		    	type : "POST",
 		    	data:{
 		    		old:old,

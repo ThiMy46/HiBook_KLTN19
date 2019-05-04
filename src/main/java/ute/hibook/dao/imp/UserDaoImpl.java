@@ -42,13 +42,17 @@ public class UserDaoImpl implements UserDao{
 	public List<User> getAllUser() {
 		return sessionFactory.getCurrentSession().createQuery("from user").getResultList();
 	}
-	
-	public User getUserbyEmail(String email) {
+
+	public User getUserByEmail(String email) {
 		Session session=sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from user where email = :email");
-		query.setParameter("email", email);
-		User user = (User) query.getSingleResult();
-		return user;
+		try {
+			Query query = session.createQuery("FROM user WHERE email = :email");
+			query.setParameter("email", email);
+			User user = (User) query.getSingleResult();
+			return user;
+		} catch(Exception se) {
+			return null;
+		}
 	}
 
 }

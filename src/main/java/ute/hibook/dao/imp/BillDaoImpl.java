@@ -2,6 +2,9 @@ package ute.hibook.dao.imp;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -38,6 +41,14 @@ public class BillDaoImpl implements BillDao{
 
 	public List<Bill> getAllBill() {
 		return sessionFactory.getCurrentSession().createQuery("from bill").getResultList();
+	}
+
+	public List<Bill> getBillsByIdUser(int idUser) {
+		Session session=sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from bill where idUser = :idUser");
+		q.setParameter("idUser", idUser);
+		List<Bill> bills= q.getResultList();
+		return bills;
 	}
 
 }

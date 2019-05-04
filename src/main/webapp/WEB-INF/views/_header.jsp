@@ -84,10 +84,8 @@
 									class="fas fa-user fa-fw text-success"></i> Thông tin <span
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
-
-
 									<li><a class="nav-link"
-										href="<%=request.getContextPath()%>/info_user/${getIdUser}">
+										href="<%=request.getContextPath()%>/user-info">
 											${pageContext.request.userPrincipal.name}</a></li>
 									<li><a class="nav-link"
 										href="<%=request.getContextPath()%>/logout"> Logout</a></li>
@@ -209,7 +207,13 @@
 	<!--end form-->
 </div>
 <!--end div register-->
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
+<c:if test="${not empty param.erro}">
+	<script>
+		alert("${param.erro}");
+	</script>
+</c:if>

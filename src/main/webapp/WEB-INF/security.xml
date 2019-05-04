@@ -13,13 +13,17 @@
 
 		<intercept-url pattern="/" access="permitAll" />
 		<intercept-url pattern="/search" access="permitAll" />
-		<intercept-url pattern="/loginsuccess"
-			access="permitAll" />
 		<intercept-url pattern="/resources/**"
 			access="permitAll" />
-		<intercept-url pattern="/admin**"
+		<intercept-url pattern="/user**"
+			access="hasRole('USER')" />
+		<intercept-url pattern="/manage**"
 			access="hasRole('ADMIN')" />
-		<intercept-url pattern="/adminmain"
+		<intercept-url pattern="/dashboard"
+			access="hasRole('ADMIN')" />
+		<intercept-url pattern="/add-book"
+			access="hasRole('ADMIN')" />
+		<intercept-url pattern="/add-user"
 			access="hasRole('ADMIN')" />
 
 		<access-denied-handler error-page="/403" />

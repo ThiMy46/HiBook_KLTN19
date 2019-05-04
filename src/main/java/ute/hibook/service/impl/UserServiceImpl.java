@@ -56,8 +56,8 @@ public class UserServiceImpl implements UserService{
 			user.setNumberphone(userDTO.getNumberphone());
 			user.setPassword(userDTO.getPassword());
 			user.setSex(userDTO.getSex());
-			Role role=roleDao.getRoleById(userDTO.getRole().getIdRole());
-			user.setRole(role);
+//			Role role=roleDao.getRoleById(userDTO.getRole().getIdRole());
+//			user.setRole(role);
 			
 			userDao.updateUser(user);
 			System.out.println("update User successful!");
@@ -113,6 +113,27 @@ public class UserServiceImpl implements UserService{
 			lstUserDTO.add(userDTO);
 		}
 		return lstUserDTO;
+	}
+
+	public UserDTO getUserByEmail(String email) {
+		User user= userDao.getUserByEmail(email);
+		if(null != user) {
+			UserDTO userDTO= new UserDTO();
+			userDTO.setIdUser(user.getIdUser());
+			userDTO.setNameUser(user.getNameUser());
+			userDTO.setAddress(user.getAddress());
+			userDTO.setBirthday(user.getBirthday());
+			userDTO.setEmail(user.getEmail());
+			userDTO.setNumberphone(user.getNumberphone());
+			userDTO.setPassword(user.getPassword());
+			userDTO.setSex(user.getSex());
+			RoleDTO roleDTO=new RoleDTO(user.getRole().getIdRole(), user.getRole().getNameRole());
+			userDTO.setRole(roleDTO);
+			
+			return userDTO;
+		}else {
+			return null;
+		}
 	}
 
 }
