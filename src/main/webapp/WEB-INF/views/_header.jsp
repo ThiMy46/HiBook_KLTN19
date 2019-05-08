@@ -70,7 +70,7 @@
 							<ul class="nav navbar-nav navbar-left" style="margin-top: -7px;">
 
 								<li id="giohanghome" class="getthongbao">
-									<a class="nav-link" href="<%=request.getContextPath()%>/loadcart/${getIdUser}">
+									<a class="nav-link" href="<%=request.getContextPath()%>/cart">
 										<img id="header_logo" alt="logo"
 										src="<%=request.getContextPath()%>/resources/images/shopping-cart.png" />
 										<div class="giohang_circle">
@@ -116,11 +116,11 @@
 -->
 
 <div id="idLogin" class="modal">
-	<form class="modal-content animate" action="j_spring_security_login"
+	<form class="modal-content animate" action="<%=request.getContextPath()%>/j_spring_security_login"
 		method="post">
 		<div class="imgcontainer">
 			<span id="btnClose" class="close" title="Close Modal">&times;</span>
-			<img src="resources/images/TC.png" alt="Avatar" class="avatar">
+			<img src="<%=request.getContextPath()%>/resources/images/TC.png" alt="Avatar" class="avatar">
 		</div>
 
 	 	<!-- /login?error=true -->
@@ -167,7 +167,7 @@
 		action="<%=request.getContextPath()%>/register" method="post">
 		<div class="imgcontainer">
 			<span id="btnClose1" class="close" title="Close Modal">&times;</span>
-			<img src="resources/images/TC.png" alt="Avatar" class="avatar">
+			<img src="<%=request.getContextPath()%>/resources/images/TC.png" alt="Avatar" class="avatar">
 		</div>
 
 		<div class="inputcontainer">

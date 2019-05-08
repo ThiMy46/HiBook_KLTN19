@@ -23,8 +23,8 @@ public class BillDaoImpl implements BillDao{
 	@Autowired
 	SessionFactory sessionFactory;
 	
-	public void addBill(Bill bill) {
-		sessionFactory.getCurrentSession().save(bill);
+	public int addBill(Bill bill) {
+		return (Integer)sessionFactory.getCurrentSession().save(bill);
 	}
 
 	public void updateBill(Bill bill) {

@@ -40,7 +40,7 @@ public class BillServiceImpl implements BillService{
 	@Autowired
 	UserDaoImpl userDao;
 	
-	public void addBill(BillDTO billDTO) {
+	public int addBill(BillDTO billDTO) {
 		Bill bill= new Bill();
 		bill.setDateCreate(billDTO.getDateCreate());
 		bill.setDeliveryAdress(billDTO.getDeliveryAdress());
@@ -57,8 +57,8 @@ public class BillServiceImpl implements BillService{
 		User user= userDao.getUserById(billDTO.getUser().getIdUser());
 		bill.setUser(user);
 		
-		billDao.addBill(bill);		
 		System.out.println("add Bill successful!");
+		return billDao.addBill(bill);		
 	}
 
 	public void updateBill(BillDTO billDTO) {

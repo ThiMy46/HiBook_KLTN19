@@ -85,6 +85,31 @@ $(document).ready(function() {
 
 		}else{$("#frame").attr("src", '/HiBook_KLTN19/resources/images/file/'+file);}
 	});
+	
+	//click buy book (*)
+	$("#btn-purchase").click(function() {
+		
+		var amount = $("#get-quantity").val();
+		var quantity = $(".section > div > input").val();
+		$.ajax({
+			url : "/HiBook_KLTN19/api/v1/numCart/" + idSach,
+			type : "GET",
+			data : {
+				price : gia,
+				amount : amount
+			},
+			success : function(data) {
+				if(data != -1) {
+					alert("Đã thêm vào giỏ!");
+					$(".giohang_circle").find("span").text(data);
+				}
+				else{
+					alert("Lỗi!!!");
+				}
+			}
+		});
+	});
+	
 	/*Get book same type */
 	var idType=$('#tensach').data('type');
 	$.ajax({

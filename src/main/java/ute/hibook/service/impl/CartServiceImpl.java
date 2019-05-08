@@ -42,7 +42,7 @@ public class CartServiceImpl implements CartService{
 
 	public void updateCart(CartDTO cartDTO) {
 		Cart cart= cartDao.getCartById(cartDTO.getIdCart());
-		if(cart!=null) {
+		if(cart != null) {
 			cart.setPrice(cartDTO.getPrice());
 			cart.setQuantity(cartDTO.getQuantity());
 			User user= userDao.getUserById(cartDTO.getUser().getIdUser());
@@ -83,6 +83,28 @@ public class CartServiceImpl implements CartService{
 
 	public List<CartDTO> getAllCart() {
 		List<Cart> lstCart= cartDao.getAllCart();
+		
+		List<CartDTO> lstCartDTO= new ArrayList<CartDTO>();
+		for (Cart cart : lstCart) {
+			
+			CartDTO cartDTO= new CartDTO();
+			cartDTO.setIdCart(cart.getIdCart());
+			cartDTO.setPrice(cart.getPrice());
+			cartDTO.setQuantity(cart.getQuantity());
+			UserDTO userDTO=new UserDTO(cart.getUser().getIdUser(), cart.getUser().getAddress(),
+					cart.getUser().getEmail(), cart.getUser().getNameUser(), cart.getUser().getNumberphone());
+			cartDTO.setUser(userDTO);
+			BookDTO bookDTO=new BookDTO(cart.getBook().getIdBook(), cart.getBook().getDiscount(), cart.getBook().getNameBook()
+					, cart.getBook().getPicBook(), cart.getBook().getPrice(), cart.getBook().getQuantity(), cart.getBook().getStatus());
+			cartDTO.setBook(bookDTO);
+		
+			lstCartDTO.add(cartDTO);
+		}
+		return lstCartDTO;
+	}
+
+	public List<CartDTO> getAllCartOfUser(int idUser) {
+		List<Cart> lstCart= cartDao.getAllCartOfUser(idUser);
 		
 		List<CartDTO> lstCartDTO= new ArrayList<CartDTO>();
 		for (Cart cart : lstCart) {

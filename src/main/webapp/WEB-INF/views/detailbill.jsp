@@ -4,7 +4,10 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<!-- Xác định bộ mã ký tự cho văn bản HTML. -->
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Giúp trang web dễ nhìn trên tất cả các thiết bị -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootstrap.min.css">
@@ -13,7 +16,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/fullcalendar.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootadmin.min.css">
 
-<title>Detail Bill | HiBookAdmin</title>
+<title>Chi tiết hóa đơn</title>
 <style type="text/css">
 .top-alert {
 	position: fixed;
@@ -43,9 +46,7 @@
 </style>
 </head>
 <body class="bg-light">
-	<div class="container">
-		<h2 class="mb-4">HÓA ĐƠN</h2>
-
+	<div class="container" style="margin-top: 20px;">
 		<div class="card">
 			<div class="card-body">
 				<div class="row py-5">
@@ -101,7 +102,7 @@
 							<tbody>
 								<c:forEach var="value" items="${listcart}">
 									<tr>
-										<td class="tensp">${value.getNameBook()}</td>
+										<td class="tensp">${value.book.getNameBook()}</td>
 										<td class="soluong" data-num="${value.getQuantity()}">${value.getQuantity()}</td>
 										<td class="giasp" data-many="${value.getPrice()}">${value.getPrice()}</td>
 										<td class="tongtien"></td>
@@ -155,22 +156,19 @@
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Hủy
-							bỏ</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Hủy bỏ</button>
 						<button id="dat-hang" class="btn btn-success">Đặt hàng</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<script src="<%=request.getContextPath()%>/resources/js/jquery.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 	<script
-		src="<%=request.getContextPath()%>/resources/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/datatables.min.js"></script>
-	<script src="<%=request.getContextPath()%>/resources/js/moment.min.js"></script>
-	<script
-		src="<%=request.getContextPath()%>/resources/js/fullcalendar.min.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.bundle.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/datatables.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/moment.min.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/out-js/fullcalendar.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hoadon.js"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -181,9 +179,6 @@
 
 		gtag('config', 'UA-118868344-1');
 	</script>
-
-	<!-- CUSTOM JS AJAX  -->
-	<!-- <script src="<%=request.getContextPath()%>/resources/js/user-custom/getListtypebook.js"></script> -->
 
 </body>
 </html>

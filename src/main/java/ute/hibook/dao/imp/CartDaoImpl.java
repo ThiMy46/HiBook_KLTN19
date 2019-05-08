@@ -2,6 +2,9 @@ package ute.hibook.dao.imp;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -38,6 +41,14 @@ public class CartDaoImpl implements CartDao{
 
 	public List<Cart> getAllCart() {
 		return sessionFactory.getCurrentSession().createQuery("from cart").getResultList();
+	}
+
+	public List<Cart> getAllCartOfUser(int idUser) {
+		Session session=sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from cart where idUser = :idUser");
+		q.setParameter("idUser", idUser);
+		List<Cart> carts= q.getResultList();
+		return carts;
 	}
 
 }

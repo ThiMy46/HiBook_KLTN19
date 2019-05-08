@@ -17,6 +17,10 @@
 			access="permitAll" />
 		<intercept-url pattern="/user**"
 			access="hasRole('USER')" />
+			<intercept-url pattern="/cart"
+			access="hasRole('USER')" />
+			<intercept-url pattern="/detail-bill"
+			access="hasRole('USER')" />
 		<intercept-url pattern="/manage**"
 			access="hasRole('ADMIN')" />
 		<intercept-url pattern="/dashboard"

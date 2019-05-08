@@ -11,4 +11,5 @@ public interface CartDao {
 	public void deleteCart(int idCart);
 	public Cart getCartById(int idCart);
 	public List<Cart> getAllCart();
+	public List<Cart> getAllCartOfUser(int idUser);
 }

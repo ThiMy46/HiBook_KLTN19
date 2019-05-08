@@ -14,8 +14,7 @@
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/myhome.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/animate.css" />
-<link href="https://fonts.googleapis.com/css?family=Open+Sans"
-	rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 
 </head>
 <body>
@@ -283,7 +282,7 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
-	<%-- <script src="<%=request.getContextPath()%>/resources/js/user-api/apihome.js"></script> --%>
+	<script src="<%=request.getContextPath()%>/resources/js/user-api/apihome.js"></script>
 	<script type="text/javascript">
 		new WOW().init();
 	</script>

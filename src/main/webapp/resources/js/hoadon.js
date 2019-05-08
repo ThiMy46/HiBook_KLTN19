@@ -24,24 +24,24 @@ $(document).ready(function() {
 		var idUser=$('#nameReceiver').data('id');
 		var idPayment=$('#payment').data('id');
 		var idTransport=$('#transport').data('id');	
-
+		
 		$.ajax({
-			url : "/HiBookTLCN/api/bill",
+			url : "/HiBook_KLTN19/api/v1/bills",
 			type : "POST",
 			data:{
-				nameReceiver:nameReceiver,
-				numberphone:numberphone,
-				deliveryAdress:deliveryAdress,
-				dateCreate:dateCreate,
-				total:tongtiensp,
-				idUser:idUser,
-				idPayment:idPayment,
-				idTransport:idTransport
+				nameReceiver : nameReceiver,
+				numberphone : numberphone,
+				deliveryAdress : deliveryAdress,
+				dateCreate : dateCreate,
+				total : parseInt(tongtiensp),
+				idUser : parseInt(idUser),
+				idPayment : parseInt(idPayment),
+				idTransport : parseInt(idTransport)
 			},
 			success : function(data) {
 				
 				alert("Đặt hàng thành công!");
-				window.location ="/HiBookTLCN";
+				window.location ="/HiBook_KLTN19";
 			}
 
 		})

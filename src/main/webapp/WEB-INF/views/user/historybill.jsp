@@ -69,7 +69,7 @@
 									</div>
 									<div class="row">
 
-										<table id="table_bill" class="table table-sm table-hover" data-id="${getIdUser }">
+										<table id="table_bill" class="table table-sm table-hover" data-id="${info.getIdUser()}">
 										  <thead>
 										    <tr>
 										      <th>Mã đơn hàng</th>

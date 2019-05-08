@@ -1,6 +1,8 @@
 package ute.hibook.controller;
 
 import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,8 +25,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ute.hibook.dto.CartDTO;
+import ute.hibook.dto.PaymentDTO;
 import ute.hibook.dto.RoleDTO;
+import ute.hibook.dto.TransportDTO;
 import ute.hibook.dto.UserDTO;
+import ute.hibook.service.impl.CartServiceImpl;
+import ute.hibook.service.impl.PaymentServiceImpl;
+import ute.hibook.service.impl.TransportServiceImpl;
 import ute.hibook.service.impl.UserServiceImpl;
 
 /* 
@@ -35,17 +43,19 @@ public class PageController {
 
 	@Autowired
 	UserServiceImpl userSer;
+	
+	@Autowired
+	CartServiceImpl cartSer;
+	
+	@Autowired
+	TransportServiceImpl tranSer;
+	
+	@Autowired
+	PaymentServiceImpl paySer;
 
 	/* ====PAGE BOOK===== */
 	@GetMapping({ "/", "/login" })
-	public String homePage(ModelMap model) {
-		/*
-		 * Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		 * if(auth.getPrincipal() instanceof User) { User
-		 * us=(User)(auth.getPrincipal()); get id from email UserDTO user =
-		 * userSer.getUserByEmail(us.getUsername()); int id = user.getIdUser();
-		 * //System.out.println(id); model.addAttribute("getIdUser", id); }
-		 */
+	public String homePage(ModelMap model) {		 
 		return "home";
 	}
 
@@ -55,8 +65,22 @@ public class PageController {
 	}
 
 	@GetMapping({ "/cart" })
-	public String cartPage() {
-		return "cart";
+	public String cartPage(ModelMap model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(auth.getPrincipal() instanceof User) { 
+    		User us=(User)(auth.getPrincipal()); 
+			 //get id from email 
+			 UserDTO user = userSer.getUserByEmail(us.getUsername());
+			 
+			//get list cart of user current
+	        List<CartDTO> carts=cartSer.getAllCartOfUser(user.getIdUser());
+			 
+	        model.addAttribute("listcart", carts);
+			model.addAttribute("userinfo", user);
+			return "cart";
+    	}
+    	model.addAttribute("erro", "Vui lòng đăng nhập!!!");
+		return "/";
 	}
 
 	@GetMapping({ "/search" })
@@ -71,9 +95,34 @@ public class PageController {
 		return "detailbook";
 	}
 
-	@GetMapping({ "/detail-bill" })
-	public String detailBill() {
-		return "detailbill";
+
+	@PostMapping(value="/detail-bill")
+    public String getbill(@RequestParam(name="tenKhachHang") String tenKhachHang ,
+    		@RequestParam(name="soDT") String soDT, @RequestParam(name="noigiaohang") int noigiaohang,  @RequestParam(name="diaChiGiao") String diaChiGiao,
+    		@RequestParam(name="vanchuyen") int vanchuyen,ModelMap model)  {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	if(auth.getPrincipal() instanceof User) { 
+    		User us=(User)(auth.getPrincipal()); 
+			 //get id from email 
+			 UserDTO user = userSer.getUserByEmail(us.getUsername());
+			 
+			//get list cart of user current
+	        List<CartDTO> carts=cartSer.getAllCartOfUser(user.getIdUser());
+	        Date date = new Date();
+	        TransportDTO tran = tranSer.getTransportById(vanchuyen);
+	        PaymentDTO pay = paySer.getPaymentById(noigiaohang);
+			 
+			model.addAttribute("listcart", carts); 
+			model.addAttribute("idUser", user.getIdUser());
+        	model.addAttribute("namereviece", tenKhachHang);
+        	model.addAttribute("SDT", soDT);
+        	model.addAttribute("diachi", diaChiGiao);
+        	model.addAttribute("date", date);
+        	model.addAttribute("vanchuyen", tran);
+        	model.addAttribute("thanhtoan", pay);
+			return "detailbill";
+    	}
+		return "/";
 	}
 
 	@PostMapping(value = "/register")
@@ -143,8 +192,7 @@ public class PageController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/";// You can redirect wherever you want, but generally it's a good practice to
-							// show login screen again.
+		return "redirect:/";
 	}
 
 	@GetMapping(value = "/403")
@@ -159,10 +207,8 @@ public class PageController {
 		 if(auth.getPrincipal() instanceof User) { 
 			 User us=(User)(auth.getPrincipal()); 
 			 //get id from email 
-			 UserDTO user = userSer.getUserByEmail(us.getUsername()); 
-			 int id = user.getIdUser();
-			 System.out.println(id); 
-			 model.addAttribute("getIdUser", id); 
+			 UserDTO user = userSer.getUserByEmail(us.getUsername());
+			 
 			 model.addAttribute("info", user);
 			 return "user/info";
 		}
@@ -176,9 +222,7 @@ public class PageController {
 			 User us=(User)(auth.getPrincipal()); 
 			 //get id from email 
 			 UserDTO user = userSer.getUserByEmail(us.getUsername()); 
-			 int id = user.getIdUser();
-			 System.out.println(id); 
-			 model.addAttribute("getIdUser", id); 
+			 
 			 model.addAttribute("info", user);
 			 return "user/historybill";
 		}
@@ -192,9 +236,7 @@ public class PageController {
 			 User us=(User)(auth.getPrincipal()); 
 			 //get id from email 
 			 UserDTO user = userSer.getUserByEmail(us.getUsername()); 
-			 int id = user.getIdUser();
-			 System.out.println(id); 
-			 model.addAttribute("getIdUser", id); 
+
 			 model.addAttribute("info", user);
 			 return "user/updateinfo";
 		}

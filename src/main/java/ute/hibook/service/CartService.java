@@ -12,4 +12,5 @@ public interface CartService {
 	public void deleteCart(int idCart);
 	public CartDTO getCartById(int idCart);
 	public List<CartDTO> getAllCart();
+	public List<CartDTO> getAllCartOfUser(int idUser);
 }

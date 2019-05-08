@@ -7,7 +7,7 @@ import ute.hibook.dto.BillDTO;
 
 public interface BillService {
 
-	public void addBill(BillDTO billDTO);
+	public int addBill(BillDTO billDTO);
 	public void updateBill(BillDTO billDTO);
 	public void deleteBill(int idBill);
 	public BillDTO getBillById(int idBill);
