@@ -8,7 +8,7 @@ $(document).ready(function getlistsupplier() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/supplier"
+    	url : "api/v1/suppliers"
     }).then(function(data) {
     	var auth = ''; 
     	$.each(data, function (i, item) {	 	
@@ -82,7 +82,7 @@ $(document).ready(function getlistsupplier() {
     function addsupplier(name){
     	$.ajax({
         	type : "POST",
-        	url : "api/supplier",
+        	url : "api/v1/suppliers",
         	data:{
         		nameSupplier:name
         	},
@@ -104,7 +104,7 @@ $(document).ready(function getlistsupplier() {
     /* update supplier */
     function updatesupplier(idSupplier, namesupplier, idx){
     	$.ajax({
-        	url : "api/supplier/"+idSupplier,
+        	url : "api/v1/suppliers/"+idSupplier,
         	type : "PUT",
         	data:JSON.stringify({
         		nameSupplier: namesupplier
@@ -148,7 +148,7 @@ $(document).ready(function getlistsupplier() {
     	$('#delete-supplier').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/supplier/"+idSupplier,
+            	url : "api/v1/suppliers/"+idSupplier,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

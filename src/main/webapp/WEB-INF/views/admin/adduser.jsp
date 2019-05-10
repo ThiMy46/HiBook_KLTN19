@@ -128,10 +128,10 @@
             </div>
         </div>
 	</div>
-<script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.bundle.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootadmin.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/jquery-ui.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/user-custom/add_user.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootadmin.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/jquery-ui.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/admin-api/add_user.js"></script>
 </body>
 </html>

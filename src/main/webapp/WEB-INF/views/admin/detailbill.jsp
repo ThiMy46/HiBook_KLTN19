@@ -157,7 +157,7 @@
 <script src="<%=request.getContextPath() %>/resources/js/moment.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/fullcalendar.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/bootadmin.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/user-custom/detail-bill.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/admin-api/detail-bill.js"></script>
 
 <script>
     window.dataLayer = window.dataLayer || [];

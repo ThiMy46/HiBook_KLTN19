@@ -9,7 +9,7 @@ $(document).ready(function getlistbook() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/book"
+    	url : "api/v1/books"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
@@ -21,7 +21,7 @@ $(document).ready(function getlistbook() {
                 '<td class="quantity">'+item.quantity+'</td>'+
                 '<td class="price">'+item.price+'</td>'+
                 '<td class="discount">'+item.discount+'</td>'+
-                '<td class="typeBook" data-id="'+item.typeBook.idType+'">'+item.typeBook.nameType+'</td>'+
+                '<td class="typeBook" data-id="'+item.typebook.idType+'">'+item.typebook.nameType+'</td>'+
                 '<td class="supplier" data-id="'+item.supplier.idSupplier+'">'+item.supplier.nameSupplier+'</td>'+
                 '<td><a href="#" class="edit-book btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
                 '<a href="#" class="btn btn-icon btn-pill btn-danger delete-book" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>'+
@@ -67,7 +67,7 @@ $(document).ready(function getlistbook() {
     $('#table-book tbody ').on( 'click', 'a.edit-book', function () {
 		//get data row clicked
         var id=$(this).closest("tr").find('.idBook').text();
-        window.location = '/HiBookTLCN/add-book/'+id;
+        window.location = '/HiBook_KLTN/add-book/'+id;
     });
     
     /*click delete*/ 
@@ -85,7 +85,7 @@ $(document).ready(function getlistbook() {
     	$('#delete-book').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/book/"+idBook,
+            	url : "api/v1/books/"+idBook,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

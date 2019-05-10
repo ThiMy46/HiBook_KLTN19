@@ -24,33 +24,7 @@ public class BookServiceImpl implements BookService{
 	@Autowired
 	BookDaoImpl bookDao;
 	
-	public void addBook(BookDTO bookDTO) {
-		Book book= new Book();
-		book.setNameBook(bookDTO.getNameBook());
-		book.setCover(bookDTO.getCover());
-		book.setDiscount(bookDTO.getDiscount());
-		book.setIntroBook(bookDTO.getIntroBook());
-		book.setNumberPage(bookDTO.getNumberPage());
-		book.setPicBook(bookDTO.getPicBook());
-		book.setPrice(bookDTO.getPrice());
-		book.setProofread(bookDTO.getProofread());
-		book.setPublicationDate(bookDTO.getPublicationDate());
-		book.setPublisher(bookDTO.getPublisher());
-		book.setQuantity(bookDTO.getQuantity());
-		book.setSize(bookDTO.getSize());
-		book.setStatus(bookDTO.getStatus());
-		book.setTagList(bookDTO.getTagList());
-		
-		/*
-		 * Supplier supplier=new Supplier();
-		 * supplier.setIdSupplier(bookDTO.getSupplier().getIdSupplier());
-		 * supplier.setNameSupplier(bookDTO.getSupplier().getNameSupplier());
-		 */
-		/*
-		 * book.setSupplier(bookDTO.getSupplier());
-		 * book.setTypebook(bookDTO.getTypebook());
-		 */
-		
+	public void addBook(Book book) {
 		bookDao.addBook(book);		
 		System.out.println("add Book successful!");
 	}
@@ -163,10 +137,25 @@ public class BookServiceImpl implements BookService{
 			bookDTO.setSize(book.getSize());
 			bookDTO.setStatus(book.getStatus());
 			bookDTO.setTagList(book.getTagList());
-			/*
-			 * bookDTO.setSupplier(book.getSupplier());
-			 * bookDTO.setTypebook(book.getTypebook());
-			 */
+			
+			TypebookDTO typeDTO = new TypebookDTO();
+			typeDTO.setIdType(book.getTypebook().getIdType());
+			typeDTO.setNameType(book.getTypebook().getNameType());
+			bookDTO.setTypebook(typeDTO);
+			
+			SupplierDTO supplierDTO = new SupplierDTO();
+			supplierDTO.setIdSupplier(book.getSupplier().getIdSupplier());
+			supplierDTO.setNameSupplier(book.getSupplier().getNameSupplier());
+			bookDTO.setSupplier(supplierDTO);
+			
+			List<AuthorDTO> authors=new ArrayList<AuthorDTO>();
+			for (Author author : book.getAuthors()) {
+				AuthorDTO authDTO = new AuthorDTO();
+				authDTO.setIdAuthor(author.getIdAuthor());
+				authDTO.setNameAuthor(author.getNameAuthor());
+				authors.add(authDTO);
+			}
+			bookDTO.setAuthors(authors);
 		
 			lstBookDTO.add(bookDTO);
 		}

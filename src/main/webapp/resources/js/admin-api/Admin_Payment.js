@@ -8,7 +8,7 @@ $(document).ready(function getlistpayment() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/payment"
+    	url : "api/v1/payments"
     }).then(function(data) {
     	var auth = ''; 
     	$.each(data, function (i, item) {	 	
@@ -82,7 +82,7 @@ $(document).ready(function getlistpayment() {
     function addpayment(name){
     	$.ajax({
         	type : "POST",
-        	url : "api/payment",
+        	url : "api/v1/payments",
         	data:{
         		namePayment:name
         	},
@@ -104,7 +104,7 @@ $(document).ready(function getlistpayment() {
     /* update payment */
     function updatepayment(idPayment, namepayment, idx){
     	$.ajax({
-        	url : "api/payment/"+idPayment,
+        	url : "api/v1/payments/"+idPayment,
         	type : "PUT",
         	data:JSON.stringify({
         		namePayment: namepayment
@@ -148,7 +148,7 @@ $(document).ready(function getlistpayment() {
     	$('#delete-payment').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/payment/"+idPayment,
+            	url : "api/v1/payments/"+idPayment,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

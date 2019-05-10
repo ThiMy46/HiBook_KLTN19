@@ -8,7 +8,7 @@ $(document).ready(function getlistreview() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/review"
+    	url : "api/v1/reviews"
     }).then(function(data) {
     	var auth = ''; 
     	$.each(data, function (i, item) {	 	
@@ -35,16 +35,18 @@ $(document).ready(function getlistreview() {
         var id=$(this).data('id');
         var name=$(this).closest("tr").find('.nameUser').text();
         var index= table.row( $(this).closest("tr") ).index();
+        alert(id);
         $('#xoa-title').text('Bạn có chắc muốn xóa bình luận của: "'+name+'" này không?');
         deletereview(id, index);
     });
+    
     /* Delete review */
     function deletereview(idReview, index){
     	$('#modalDelete').modal('toggle');
     	$('#delete-review').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/review/"+idReview,
+            	url : "api/v1/reviews/"+idReview,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

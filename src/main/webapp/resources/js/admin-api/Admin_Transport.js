@@ -8,7 +8,7 @@ $(document).ready(function getlisttransport() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/transport"
+    	url : "api/v1/transports"
     }).then(function(data) {
     	var auth = ''; 
     	$.each(data, function (i, item) {	 	
@@ -96,7 +96,7 @@ $(document).ready(function getlisttransport() {
     function addtransport(name, describes, fee){
     	$.ajax({
         	type : "POST",
-        	url : "api/transport",
+        	url : "api/v1/transports",
         	data:{
         		nameTransport:name,
         		describes: describes,
@@ -120,7 +120,7 @@ $(document).ready(function getlisttransport() {
     /* update transport */
     function updatetransport(idTransport, nametransport, describes, fee, idx){
     	$.ajax({
-        	url : "api/transport/"+idTransport,
+        	url : "api/v1/transports/"+idTransport,
         	type : "PUT",
         	data:JSON.stringify({
         		nameTransport: nametransport,
@@ -168,7 +168,7 @@ $(document).ready(function getlisttransport() {
     	$('#delete-transport').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/transport/"+idTransport,
+            	url : "api/v1/transports/"+idTransport,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

@@ -202,10 +202,10 @@
              <!--===============-->
          </div>
     </div>
-<script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.bundle.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootadmin.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/user-custom/add_book.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootadmin.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/admin-api/add_book.js"></script>
 
 <script>
     window.dataLayer = window.dataLayer || [];

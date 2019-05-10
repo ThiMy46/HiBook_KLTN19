@@ -8,7 +8,7 @@ $(document).ready(function getliststatus() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/status"
+    	url : "api/v1/status"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
@@ -82,7 +82,7 @@ $(document).ready(function getliststatus() {
     function addstatus(name){
     	$.ajax({
         	type : "POST",
-        	url : "api/status",
+        	url : "api/v1/status",
         	data:{
         		nameStatus:name
         	},
@@ -104,7 +104,7 @@ $(document).ready(function getliststatus() {
     /* update status */
     function updatestatus(idStatus, nameStatus, idx){
     	$.ajax({
-        	url : "api/status/"+idStatus,
+        	url : "api/v1/status/"+idStatus,
         	type : "PUT",
         	data:JSON.stringify({
         		nameStatus: nameStatus
@@ -148,7 +148,7 @@ $(document).ready(function getliststatus() {
     	$('#delete-status').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/status/"+idStatus,
+            	url : "api/v1/status/"+idStatus,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

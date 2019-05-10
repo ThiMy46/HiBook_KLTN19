@@ -27,7 +27,7 @@
                 <li class="nav-item dropdown">
                     <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${pageContext.request.userPrincipal.name}</a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd_user">
-                        <a href="<%=request.getContextPath()%>/info_user/${getIdUseradmin}" class="dropdown-item">Profile</a>
+                       <%--  <a href="<%=request.getContextPath()%>/info_user/${getIdUseradmin}" class="dropdown-item">Profile</a> --%>
                         <a href="<%=request.getContextPath()%>/logout" class="dropdown-item">Logout</a>
                     </div>
                 </li>
@@ -36,27 +36,9 @@
 	</nav>
 
 	<div class="d-flex">
-		<div class="sidebar sidebar-dark bg-dark">
-			<ul class="list-unstyled">
-				<li class="active"><a href="adminmain"><i
-						class="fa fa-fw fa-tachometer-alt"></i> Dashboard</a></li>
-				<li><a href="#sm_base" data-toggle="collapse" aria-expanded="true"> <i
-						class="fa fa-fw fa-cube"></i> Base </a>
-					<ul id="sm_base" class="list-unstyled collapse show">
-						<li><a href="admin-author"> Tác giả</a></li>
-						<li><a href="admin-status"> Tình trạng đơn hàng</a></li>
-						<li><a href="admin-payment"> Thanh toán</a></li>
-						<li><a href="admin-supplier"> Nhà cung cấp</a></li>
-						<li><a href="admin-transport"> Vận chuyển</a></li>
-						<li><a href="admin-typebook"> Loại sách</a></li>
-						<li><a href="admin-userreview"> Review sách</a></li>
-					</ul></li>
-				<li><a href="admin-book"><i class="fas fa-fw fa-book"></i> Sách</a></li>
-				<li><a href="admin-bill"><i class="fa fa-fw fa-edit"></i> Hóa đơn</a></li>
-				<li><a href="admin-user"><i class="fa fa-fw fa-users"></i> Tài khoản</a></li>
-				<li><a href="#"><i class="fas fa-gift"></i> Khuyến mãi</a></li>
-			</ul>
-		</div>
+		<!-- MENU LEFT -->
+		<%@ include file="_leftmenu.jsp" %>
+		
 		<!-- CONTENT  -->
 		<div class="content p-4">
 
@@ -248,14 +230,8 @@
 		</div>
 	</div>
 
-	<script src="resources/js/jquery.min.js"></script>
-	<script src="resources/js/bootstrap.bundle.min.js"></script>
-	<script src="resources/js/datatables.min.js"></script>
-	<script src="resources/js/moment.min.js"></script>
-	<script src="resources/js/fullcalendar.min.js"></script>
-	<script src="resources/js/bootadmin.min.js"></script>
-	<script type="text/javascript"
-		src="https://www.gstatic.com/charts/loader.js"></script>
+	
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript">
         google.charts.load('current', {'packages': ['corechart']});
         google.charts.setOnLoadCallback(drawChart3);

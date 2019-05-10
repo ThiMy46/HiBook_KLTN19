@@ -8,14 +8,14 @@ $(document).ready(function getlistAuthor() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/author"
+    	url : "api/v1/authors"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
     		
     		auth+='<tr><td class="idAuthor">'+item.idAuthor+'</td> ' +
                 '<td class="nameAuthor">'+item.nameAuthor+'</td>'+
-                '<td>'+item.numberBook+'</td>'+
+                '<td>'+Object.keys(item.books).length+'</td>'+
                 '<td><a href="#" class="edit-author btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
                 '<a href="#" class="btn btn-icon btn-pill btn-danger delete-author" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>'+
                 '</td></tr>';
@@ -83,7 +83,7 @@ $(document).ready(function getlistAuthor() {
     function addAuthor(name){
     	$.ajax({
         	type : "POST",
-        	url : "api/author",
+        	url : "api/v1/authors",
         	data:{
         		nameAuthor:name
         	},
@@ -105,7 +105,7 @@ $(document).ready(function getlistAuthor() {
     /* update author */
     function updateAuthor(idAuthor, nameAuthor, idx){
     	$.ajax({
-        	url : "api/author/"+idAuthor,
+        	url : "api/v1/authors/"+idAuthor,
         	type : "PUT",
         	data:JSON.stringify({
         		nameAuthor: nameAuthor
@@ -149,7 +149,7 @@ $(document).ready(function getlistAuthor() {
     	$('#delete-author').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/author/"+idAuthor,
+            	url : "api/v1/authors/"+idAuthor,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();

@@ -9,7 +9,7 @@ $(document).ready(function getlistaddbook() {
 	/* Get Type Book*/
     $.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/typebook"
+    	url : "/HiBook_KLTN19/api/v1/typebooks"
     }).then(function(data) {
     	var type = '<option value="0">Please select</option>';    	
     	$.each(data, function (i, item) {	 	
@@ -21,7 +21,7 @@ $(document).ready(function getlistaddbook() {
     /* Get Supplier Book*/
     $.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/supplier"
+    	url : "/HiBook_KLTN19/api/v1/suppliers"
     }).then(function(data) {
     	var sup = '<option value="0">Please select</option>';    	
     	$.each(data, function (i, item) {	 	
@@ -33,7 +33,7 @@ $(document).ready(function getlistaddbook() {
     /* Get Author Book*/
     $.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/author"
+    	url : "/HiBook_KLTN19/api/v1/authors"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
@@ -45,7 +45,7 @@ $(document).ready(function getlistaddbook() {
     if(idBook!=''&&idBook!='add-book'){
 		$.ajax({
 	    	type : "GET",
-	    	url : "/HiBookTLCN/api/book/"+idBook
+	    	url : "/HiBook_KLTN19/api/v1/books/"+idBook
 	    }).then(function(data) {
 	       $('#nameBook').val(data.nameBook);
 	 	   $('#price').val(data.price);
@@ -92,7 +92,7 @@ $(document).ready(function getlistaddbook() {
     	forms.append("file", imgfiles[0]);
     	$.ajax({
         	type : "POST",
-        	url : "/HiBookTLCN/api/upload-img",
+        	url : "/HiBook_KLTN19/api/v1/upload-img",
         	data: forms,
         	contentType: false,
         	processData: false,
@@ -123,7 +123,7 @@ $(document).ready(function getlistaddbook() {
     	forms.append("file", files[0]);
     	$.ajax({
         	type : "POST",
-        	url : "/HiBookTLCN/api/upload-img",
+        	url : "/HiBook_KLTN19/api/v1/upload-img",
         	data: forms,
         	contentType: false,
         	processData: false,
@@ -212,7 +212,7 @@ $(document).ready(function getlistaddbook() {
 	   if(them){
 		   
 		   $.ajax({
-	       	url : "/HiBookTLCN/api/book",
+	       	url : "/HiBook_KLTN19/api/v1/books",
 	       	type : "POST",
 	       	data:{
 	       		publisher:publisher,
@@ -233,7 +233,7 @@ $(document).ready(function getlistaddbook() {
 	       	},
 	       	success : function(data) {
 	               alert('thêm thành công!');
-	               window.location = '/HiBookTLCN/admin-book';
+	               window.location = '/HiBook_KLTN19/manage-book';
 	       },
 	    	statusCode: {
 	    	    404: function() {
@@ -255,7 +255,7 @@ $(document).ready(function getlistaddbook() {
 		   }
 		  
 		   $.ajax({
-		       	url : "/HiBookTLCN/api/book/"+idBook,
+		       	url : "/HiBook_KLTN19/api/v1/books/"+idBook,
 		       	type : "PUT",
 		       	data:JSON.stringify({
 		       		publisher:publisher,
@@ -280,7 +280,7 @@ $(document).ready(function getlistaddbook() {
 	        	},
 		       	success: function(data) {
 		               alert('update thành công!');
-		               window.location = '/HiBookTLCN/admin-book';
+		               window.location = '/HiBook_KLTN19/manage-book';
 		       },
 		    	statusCode: {
 		    	    404: function() {

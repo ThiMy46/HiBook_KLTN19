@@ -8,7 +8,7 @@ $(document).ready(function getlisttypebook() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/typebook"
+    	url : "api/v1/typebooks"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
@@ -82,7 +82,7 @@ $(document).ready(function getlisttypebook() {
     function addtypebook(name){
     	$.ajax({
         	type : "POST",
-        	url : "api/typebook",
+        	url : "api/v1/typebooks",
         	data:{
         		nameType:name
         	},
@@ -104,7 +104,7 @@ $(document).ready(function getlisttypebook() {
     /* update typebook */
     function updatetypebook(idType, nameType, idx){
     	$.ajax({
-        	url : "api/typebook/"+idType,
+        	url : "api/v1/typebooks/"+idType,
         	type : "PUT",
         	data:JSON.stringify({
         		nameType: nameType
@@ -148,7 +148,7 @@ $(document).ready(function getlisttypebook() {
     	$('#delete-typebook').click(function(){
     		$('#modalDelete').modal('toggle');
     		$.ajax({
-            	url : "api/typebook/"+idType,
+            	url : "api/v1/typebooks/"+idType,
             	type : "DELETE",
             	success : function(data) {
                     table.row(index).remove().draw();
