@@ -13,4 +13,5 @@ public interface BillService {
 	public BillDTO getBillById(int idBill);
 	public List<BillDTO> getBillsByIdUser(int idUser);
 	public List<BillDTO> getAllBill();
+	public boolean updateStatusBill(int idBill, int idStatus);
 }

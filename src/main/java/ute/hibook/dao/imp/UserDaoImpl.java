@@ -55,4 +55,17 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
+	public boolean updateRoleUser(int idUser, int idRole) {
+		Session session=sessionFactory.getCurrentSession();
+		Query us= session.createQuery("update user set idRole= :idRole where idUser = :idUser");
+		us.setParameter("idRole", idRole);
+		us.setParameter("idUser", idUser);
+		try{
+			us.executeUpdate();
+		}catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 }

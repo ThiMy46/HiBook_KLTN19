@@ -29,7 +29,7 @@ public class User implements Serializable {
 
 	private String password;
 
-	private byte sex;
+	private int sex;
 
 	//bi-directional many-to-one association to Bill
 	@OneToMany(mappedBy="user", fetch = FetchType.LAZY)
@@ -107,11 +107,11 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public byte getSex() {
+	public int getSex() {
 		return this.sex;
 	}
 
-	public void setSex(byte sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 

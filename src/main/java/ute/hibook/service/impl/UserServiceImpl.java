@@ -136,4 +136,8 @@ public class UserServiceImpl implements UserService{
 		}
 	}
 
+	public boolean updateRoleUser(int idUser, int idRole) {
+		return userDao.updateRoleUser(idUser, idRole);
+	}
+
 }

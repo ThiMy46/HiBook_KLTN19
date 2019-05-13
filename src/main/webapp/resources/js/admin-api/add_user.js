@@ -10,7 +10,7 @@ $(document).ready(function getlistaddbook() {
 	$("#birthday").datepicker('setDate', new Date());
     $.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/role"
+    	url : "/HiBook_KLTN19/api/v1/roles"
     }).then(function(data) {
     	var role = '';    	
     	$.each(data, function (i, item) {	 	
@@ -22,7 +22,7 @@ $(document).ready(function getlistaddbook() {
     if(idUser!=''&&idUser!='add-user'){
 		$.ajax({
 	    	type : "GET",
-	    	url : "/HiBookTLCN/api/user/"+idUser
+	    	url : "/HiBook_KLTN19/api/v1/users/"+idUser
 	    }).then(function(data) {
 	    	$('#nameUser').val(data.nameUser);
 	    	$('#numberphone').val(data.numberphone);
@@ -55,7 +55,7 @@ $(document).ready(function getlistaddbook() {
     	if(them==true){
 	    	var role=$('#role option:selected').val();
 			$.ajax({
-				url : "api/user",
+				url : "/HiBook_KLTN19/api/v1/users",
 		    	type : "POST",
 		    	data:{
 		    		nameUser:nameUser,
@@ -69,7 +69,7 @@ $(document).ready(function getlistaddbook() {
 		    	},
 		    	success : function(data) {
 		    		alert("Thêm thành công!!!");
-		    		window.location = 'admin-user';
+		    		window.location = 'manage-user';
 		        },
 		    	statusCode: {
 		    	    404: function() {
@@ -84,7 +84,7 @@ $(document).ready(function getlistaddbook() {
     	}else{
 	    	alert(nameUser+formatted);
 			$.ajax({
-				url : "/HiBookTLCN/api/user/"+idUser,
+				url : "/HiBook_KLTN19/api/v1/users/"+idUser,
 		    	type : "PUT",
 		    	data:JSON.stringify({
 		    		nameUser:nameUser,
@@ -101,7 +101,7 @@ $(document).ready(function getlistaddbook() {
 	        	},
 		    	success : function(data) {
 		    		alert("Chỉnh sửa thành công!!!");
-		    		window.location = '/HiBookTLCN/admin-user';
+		    		window.location = '/HiBook_KLTN19/manage-user';
 		        },
 		    	statusCode: {
 		    	    404: function() {

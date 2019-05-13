@@ -259,8 +259,8 @@ public class PageController {
 		return "admin/addbook";
 	}
 
-	@GetMapping({ "/add-user" })
-	public String addUserAdmin() {
+	@GetMapping({ "/add-user","/add-user/{idUser}" })
+	public String addUserAdmin(ModelMap model) {
 		return "admin/adduser";
 	}
 
@@ -284,7 +284,7 @@ public class PageController {
 		return "admin/dashboard";
 	}
 
-	@GetMapping({ "/manage-detail-bill" })
+	@GetMapping({ "/manage-detail-bill/{idBill}" })
 	public String detailBillManageAdmin() {
 		return "admin/detailbill";
 	}

@@ -11,7 +11,7 @@ public class UserDTO {
 	private String nameUser;
 	private String numberphone;
 	private String password;
-	private byte sex;
+	private int sex;
 	private List<BillDTO> bills;
 	private List<CartDTO> carts;
 	private RoleDTO role;
@@ -28,6 +28,17 @@ public class UserDTO {
 		this.email = email;
 		this.nameUser = nameUser;
 		this.numberphone = numberphone;
+	}
+	public UserDTO( String nameUser, String numberphone, String email, String password, int sex,
+			String birthday, String address) {
+		super();
+		this.nameUser = nameUser;
+		this.numberphone = numberphone;
+		this.email = email;
+		this.password = password;
+		this.sex = sex;
+		this.birthday = birthday;
+		this.address = address;
 	}
 
 	public int getIdUser() {
@@ -86,11 +97,11 @@ public class UserDTO {
 		this.password = password;
 	}
 
-	public byte getSex() {
+	public int getSex() {
 		return this.sex;
 	}
 
-	public void setSex(byte sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 

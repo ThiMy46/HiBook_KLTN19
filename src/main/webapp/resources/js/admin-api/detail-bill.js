@@ -5,7 +5,7 @@ $(document).ready(function getlistBill() {
 	var idBill = vars[vars.length-1];
 	$.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/status",
+    	url : "/HiBook_KLTN19/api/v1/status",
     	success : function(data) {
     		status=data;
     	}
@@ -13,10 +13,10 @@ $(document).ready(function getlistBill() {
 	
     $.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/bill/"+idBill
+    	url : "/HiBook_KLTN19/api/v1/bills/"+idBill
     }).then(function(data) {
     	var auth = '';  
-    	$('p.orderStatus').append(getStatus(data.idStatus));
+    	$('p.orderStatus').append(getStatus(data.orderstatus.idStatus));
     	$('#idBill').text(data.idBill);
     	$('#nameReceiver').text(data.nameReceiver);
     	$('#numberphone').text(data.numberphone);
@@ -26,9 +26,9 @@ $(document).ready(function getlistBill() {
     	//info sách
     	var detail='';
     	var total_all=0;
-    	$.each(data.detailBillDTOs,function(i, item){
+    	$.each(data.detailbills,function(i, item){
     		detail+='<tr><td id="nameBook">'+item.book.nameBook+'</td>'+
-                '<td id="imgBook"><img style="width: 100px;" src="/HiBookTLCN/resources/images/book/'+item.book.picBook+'"/></td>'+
+                '<td id="imgBook"><img style="width: 100px;" src="/HiBook_KLTN19/resources/images/book/'+item.book.picBook+'"/></td>'+
                 '<td id="quantity">'+item.quantityBuy+'</td>'+
                 '<td id="price">'+item.price+'</td>'+
                 '<td id="total" class="text-right">'+item.quantityBuy*item.price+'</td>'+
@@ -38,13 +38,13 @@ $(document).ready(function getlistBill() {
     	detail+='<tr class="bg-light font-weight-bold"><td></td><td></td><td></td>'+
             '<td class="text-uppercase">Tổng cộng</td><td id="total-all" class="text-right">'+total_all+'</td></tr>'+
             '<tr class="bg-light font-weight-bold"><td></td><td></td><td></td>'+
-            '<td class="text-uppercase">Vận chuyển</td><td class="text-right">'+data.feeTransport+'</td></tr>'+
+            '<td class="text-uppercase">Vận chuyển</td><td class="text-right">'+data.transport.fee+'</td></tr>'+
             '<tr class="bg-light font-weight-bold"><td></td><td></td><td></td>'+
-            '<td class="text-uppercase">Tổng thanh toán</td><td id="total-payment" class="text-right">'+(total_all+data.feeTransport)+'</td></tr>';
+            '<td class="text-uppercase">Tổng thanh toán</td><td id="total-payment" class="text-right">'+(total_all+data.transport.fee)+'</td></tr>';
     	$('tbody').append(detail);
-    	$('#nameUser').text(data.nameUser);
-    	$('#payment').text(data.namePayment);
-    	$('#transport').text(data.nameTransport);
+    	$('#nameUser').text(data.user.nameUser);
+    	$('#payment').text(data.payment.namePayment);
+    	$('#transport').text(data.transport.nameTransport);
     });
     function getStatus(sta_selected){
 		var status1='<select class="badge-success myselect">';
@@ -68,7 +68,7 @@ $(document).ready(function getlistBill() {
         $('#change-status').click(function(){
     		$('#modalChange').modal('toggle');
     		$.ajax({
-            	url : "/HiBookTLCN/api/bill/"+idBill+"/status/"+idStatus,
+            	url : "/HiBook_KLTN19/api/v1/bills/"+idBill+"/status/"+idStatus,
             	type : "PUT",
             	success : function(data) {
             		$('.thongbao').html('<div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Thay đổi thành công!!!</div>');

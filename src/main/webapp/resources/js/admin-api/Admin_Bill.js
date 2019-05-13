@@ -8,7 +8,7 @@ $(document).ready(function getlistBill() {
 	
 	$.ajax({
     	type : "GET",
-    	url : "/HiBookTLCN/api/status",
+    	url : "/HiBook_KLTN19/api/v1/status",
     	success : function(data) {
     		status=data;
     	}
@@ -16,7 +16,7 @@ $(document).ready(function getlistBill() {
 	
     $.ajax({
     	type : "GET",
-    	url : "api/bill"
+    	url : "api/v1/bills"
     }).then(function(data) {
     	var auth = '';    	
     	$.each(data, function (i, item) {	 	
@@ -26,7 +26,7 @@ $(document).ready(function getlistBill() {
                 '<td class="dateCreate">'+item.dateCreate+'</td>'+
                 '<td class="total">'+item.total+'</td>'+
                 '<td class="payment" data-id="'+item.payment.idPayment+'">'+item.payment.namePayment+'</td>'+
-                '<td class="orderStatus" >'+getStatus(item.orderStatus.idStatus)+'</td>'+
+                '<td class="orderStatus" >'+getStatus(item.orderstatus.idStatus)+'</td>'+
                 '<td class="transport" data-id="'+item.transport.idTransport+'">'+item.transport.nameTransport+'</td></tr>';
         });
     	mydata=data;
@@ -56,7 +56,7 @@ $(document).ready(function getlistBill() {
         $('#change-status').click(function(){
     		$('#modalChange').modal('toggle');
     		$.ajax({
-            	url : "api/bill/"+idBill+"/status/"+idStatus,
+            	url : "api/v1/bills/"+idBill+"/status/"+idStatus,
             	type : "PUT",
             	success : function(data) {
             		$('.thongbao').html('<div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Thay đổi thành công!!!</div>');
@@ -85,7 +85,7 @@ $(document).ready(function getlistBill() {
     
     $('#table-Bill tbody').on( 'click', 'tr', function () {
     	var idBill=$(this).find('.idBill').text();
-		var link= "/HiBookTLCN/detail-bill/"+idBill;
+		var link= "/HiBook_KLTN19/manage-detail-bill/"+idBill;
     	window.location = link;
     });
 

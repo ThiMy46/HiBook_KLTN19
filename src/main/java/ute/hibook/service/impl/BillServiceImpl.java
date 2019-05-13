@@ -125,6 +125,7 @@ public class BillServiceImpl implements BillService{
 			BookDTO book =new BookDTO();
 			book.setIdBook(detail.getBook().getIdBook());
 			book.setNameBook(detail.getBook().getNameBook());
+			book.setPicBook(detail.getBook().getPicBook());
 			detailDTO.setBook(book);
 			lstDetailDTO.add(detailDTO);
 		}
@@ -221,6 +222,10 @@ public class BillServiceImpl implements BillService{
 			lstBillDTO.add(billDTO);
 		}
 		return lstBillDTO;
+	}
+
+	public boolean updateStatusBill(int idBill, int idStatus) {
+		return billDao.updateStatusBill(idBill, idStatus);
 	}
 
 }

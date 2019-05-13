@@ -51,4 +51,17 @@ public class BillDaoImpl implements BillDao{
 		return bills;
 	}
 
+	public boolean updateStatusBill(int idBill, int idStatus) {
+		Session session=sessionFactory.getCurrentSession();
+		Query bill= session.createQuery("update bill set idStatus= :idStatus where idBill = :idBill");
+		bill.setParameter("idBill", idBill);
+		bill.setParameter("idStatus", idStatus);
+		try{
+			bill.executeUpdate();
+		}catch (Exception e) {
+			return false;
+		}
+		return true;
+	}
+
 }

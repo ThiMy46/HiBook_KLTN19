@@ -151,12 +151,12 @@
 	        </div>
 	    </div>
 </div>
-<script src="<%=request.getContextPath() %>/resources/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootstrap.bundle.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/datatables.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/moment.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/fullcalendar.min.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/bootadmin.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/jquery.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootstrap.bundle.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/datatables.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/moment.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/fullcalendar.min.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/out-js/bootadmin.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/admin-api/detail-bill.js"></script>
 
 <script>
@@ -166,9 +166,6 @@
 
     gtag('config', 'UA-118868344-1');
 </script>
-
-<!-- CUSTOM JS AJAX  -->
-<!-- <script src="<%=request.getContextPath() %>/resources/js/user-custom/getListtypebook.js"></script> -->
 
 </body>
 </html>

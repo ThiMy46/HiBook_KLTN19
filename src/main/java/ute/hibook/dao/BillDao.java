@@ -12,4 +12,5 @@ public interface BillDao {
 	public Bill getBillById(int idBill);
 	public List<Bill> getBillsByIdUser(int idUser);
 	public List<Bill> getAllBill();
+	public boolean updateStatusBill(int idBill, int idStatus);
 }

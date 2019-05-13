@@ -12,4 +12,5 @@ public interface UserService {
 	public UserDTO getUserById(int idUser);
 	public List<UserDTO> getAllUser();
 	public UserDTO getUserByEmail(String email);
+	public boolean updateRoleUser(int idUser, int idRole);
 }

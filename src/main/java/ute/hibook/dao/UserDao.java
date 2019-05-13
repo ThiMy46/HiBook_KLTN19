@@ -12,4 +12,5 @@ public interface UserDao {
 	public User getUserById(int idUser);
 	public List<User> getAllUser();
 	public User getUserByEmail(String email);
+	public boolean updateRoleUser(int idUser, int idRole);
 }

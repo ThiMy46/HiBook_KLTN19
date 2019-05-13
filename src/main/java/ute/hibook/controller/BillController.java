@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -111,5 +112,14 @@ public class BillController {
 			System.out.println("Đặt hàng thành công!");
 		}
 		return new ResponseEntity<Integer>(idBillCurrent,HttpStatus.OK);
+	}
+	/*======================Update Status Bill ================= */
+	@PutMapping(value="/bills/{idBill}/status/{idStatus}")
+	public ResponseEntity<?> updateRoleUser(@PathVariable int idBill, @PathVariable int idStatus){
+		boolean update=billSer.updateStatusBill(idBill, idStatus);
+		if(!update){
+			return new ResponseEntity<Boolean>(false, HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	}
 }

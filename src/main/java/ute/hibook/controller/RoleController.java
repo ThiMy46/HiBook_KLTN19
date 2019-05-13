@@ -3,27 +3,31 @@ package ute.hibook.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ute.hibook.dto.RoleDTO;
 import ute.hibook.service.impl.RoleServiceImpl;
 
 @RestController
+@RequestMapping(value = "/api/v1")
 public class RoleController {
 
 	@Autowired
 	RoleServiceImpl roleSer;
 	
 	@GetMapping("/roles")
-	public String getAllRole() {
+	public ResponseEntity<List<RoleDTO>> getAllRole() {
 		
 		List<RoleDTO> roles= roleSer.getAllRole();
-		for (RoleDTO role : roles) {
-			System.out.println(role.getNameRole());
+		if(roles.isEmpty()) {
+			return new ResponseEntity<List<RoleDTO>>(HttpStatus.NOT_FOUND);
 		}
-		return "<h1>Hello!!!</h1>";
+		 return new ResponseEntity<List<RoleDTO>>(roles,HttpStatus.OK);
 	}
 	
 	@GetMapping("/roles/{idRole}")

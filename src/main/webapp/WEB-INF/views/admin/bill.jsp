@@ -151,8 +151,5 @@
     gtag('config', 'UA-118868344-1');
 </script>
 
-<!-- CUSTOM JS AJAX  -->
-<!-- <script src="resources/js/user-custom/getListBill.js"></script> -->
-
 </body>
 </html>
