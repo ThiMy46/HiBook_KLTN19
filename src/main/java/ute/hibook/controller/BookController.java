@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.BookUpdateDTO;
 import ute.hibook.entity.Author;
 import ute.hibook.entity.Book;
 import ute.hibook.entity.Supplier;
@@ -54,9 +57,6 @@ public class BookController {
 			@RequestParam int quantity, @RequestParam String cover, @RequestParam String intro, @RequestParam String fileimg,
 			@RequestParam String fileproofread, @RequestParam int idType, @RequestParam int idSupplier, @RequestParam(value="arr_author[]") List<Integer> arr_author){
 	
-		/*System.out.println(nameBook+'='+price+"="+discount+"="+publisher+'='+size+"="+numberPage+"="
-				   +publicationDate+'='+quantity+"="+cover+"="+intro+"="+fileimg+"="+fileproofread+"="+idType+
-				   "="+idSupplier+"="+arr_author.get(0));*/
 		Book book=new Book();
 		book.setNameBook(nameBook);
 		book.setCover(cover);
@@ -95,41 +95,16 @@ public class BookController {
 		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 	}
 	/*======================UPDATE Book================= */
-	/*@PutMapping(value="/book/{idBook}")
-	public ResponseEntity<?> updateBook(@PathVariable int idBook, @RequestBody BookDTO bookdto){
+	@PutMapping(value="/books/{idBook}")
+	public ResponseEntity<?> updateBook(@PathVariable int idBook, @RequestBody BookUpdateDTO bookdto){
 	
-		//System.out.println(bookdto.getNameBook()+'='+bookdto.getPrice()+'='+bookdto.getFileimg()+'='+bookdto.getFileproofread()+"="+bookdto.getIdSupplier()+"="+bookdto.getArr_author().get(0));
-		Book book=bookSer.getDetailBook(idBook);
-		book.setNameBook(bookdto.getNameBook());
+		bookdto.setIdBook(idBook);
 		
-		book.setTypeBook(new TypeBook(bookdto.getIdType(), null));
-		book.setCover(bookdto.getCover());
-		book.setPublisher(bookdto.getPublisher());
-		book.setSize(bookdto.getSize());
-		book.setNumberPage(bookdto.getNumberPage());
-		book.setPublicationDate(bookdto.getPublicationDate());
-		book.setQuantity(bookdto.getQuantity());
-		book.setIntroBook(bookdto.getIntro());
-		book.setDiscount(bookdto.getDiscount());
-		book.setPrice(bookdto.getPrice());
-		book.setPicBook(bookdto.getFileimg());
-		book.setProofread(bookdto.getFileproofread());
-		
-		book.setSupplier(new Supplier(bookdto.getIdSupplier(),null));
-		List<Author> authors=new ArrayList<Author>();
-		for (int author : bookdto.getArr_author()) {
-			authors.add(new Author(author,null));
-		}
-		book.setAuthors(authors);
-		
-		boolean idAdd= bookSer.updateBook(book);
-		if(!idAdd){
-			return new ResponseEntity<Integer>(HttpStatus.NOT_FOUND);
-		}
+		bookSer.updateBook(bookdto);
 		return new ResponseEntity<Integer>(idBook, HttpStatus.OK);
-	}*/
+	}
 	/*======================DELETE book by ID================= */
-	@DeleteMapping(value="/book/{idBook}")
+	@DeleteMapping(value="/books/{idBook}")
 	public ResponseEntity<?> deleteBook(@PathVariable int idBook){
 		bookSer.deleteBook(idBook);
 		

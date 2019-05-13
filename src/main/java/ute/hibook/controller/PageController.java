@@ -28,11 +28,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ute.hibook.dto.CartDTO;
 import ute.hibook.dto.PaymentDTO;
 import ute.hibook.dto.RoleDTO;
+import ute.hibook.dto.SupplierDTO;
 import ute.hibook.dto.TransportDTO;
+import ute.hibook.dto.TypebookDTO;
 import ute.hibook.dto.UserDTO;
 import ute.hibook.service.impl.CartServiceImpl;
 import ute.hibook.service.impl.PaymentServiceImpl;
+import ute.hibook.service.impl.SupplierServiceImpl;
 import ute.hibook.service.impl.TransportServiceImpl;
+import ute.hibook.service.impl.TypebookServiceImpl;
 import ute.hibook.service.impl.UserServiceImpl;
 
 /* 
@@ -43,15 +47,16 @@ public class PageController {
 
 	@Autowired
 	UserServiceImpl userSer;
-	
 	@Autowired
 	CartServiceImpl cartSer;
-	
 	@Autowired
 	TransportServiceImpl tranSer;
-	
 	@Autowired
 	PaymentServiceImpl paySer;
+	@Autowired
+	TypebookServiceImpl typeSer;
+	@Autowired
+	SupplierServiceImpl supplierSer;
 
 	/* ====PAGE BOOK===== */
 	@GetMapping({ "/", "/login" })
@@ -245,8 +250,12 @@ public class PageController {
 
 	/* ====PAGE ADMIN===== */
 
-	@GetMapping({ "/add-book" })
-	public String addBookAdmin() {
+	@GetMapping({ "/add-book","/add-book/{idBook}"})
+	public String addBookAdmin(ModelMap model) {
+		List<TypebookDTO> type = typeSer.getAllTypebook();
+		List<SupplierDTO> supplier = supplierSer.getAllSupplier();
+		model.addAttribute("type", type);
+		model.addAttribute("supplier", supplier);
 		return "admin/addbook";
 	}
 

@@ -162,7 +162,9 @@
 	                                 </div>
 	                                 <div class="col-12 col-md-9">
 	                                     <select name="idType" id="idType" class="form-control">
-	                                         
+	                                         <c:forEach items="${type}" var="type">
+	                                     		<option value="${type.getIdType()}">${type.getNameType()}</option>
+	                                     	</c:forEach>
 	                                     </select>
 	                                 </div>
 	                             </div>
@@ -172,6 +174,9 @@
 	                                 </div>
 	                                 <div class="col-12 col-md-9">
 	                                     <select name="idSupplier" id="idSupplier" class="form-control">
+	                                     	<c:forEach items="${supplier}" var="supplier">
+	                                     		<option data-id="${supplier.getIdSupplier()}">${supplier.getNameSupplier()}</option>
+	                                     	</c:forEach>
 	                                     </select>
 	                                 </div>
 	                             </div>
@@ -181,7 +186,6 @@
 	                                 </div>
 	                                 <div class="col col-md-3">
 	                                     <select name="idAuthor" id="idAuthor" class="form-control " >
-	                                        
 	                                     </select>
 	                                 </div>
 	                                 <div  class="col col-md-6">

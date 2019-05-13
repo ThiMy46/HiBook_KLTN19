@@ -67,7 +67,7 @@ $(document).ready(function getlistbook() {
     $('#table-book tbody ').on( 'click', 'a.edit-book', function () {
 		//get data row clicked
         var id=$(this).closest("tr").find('.idBook').text();
-        window.location = '/HiBook_KLTN/add-book/'+id;
+        window.location = '/HiBook_KLTN19/add-book/'+id;
     });
     
     /*click delete*/ 

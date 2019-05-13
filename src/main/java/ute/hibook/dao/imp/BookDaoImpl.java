@@ -45,7 +45,10 @@ public class BookDaoImpl implements BookDao{
 	}
 
 	public void deleteBook(int idBook) {
-		sessionFactory.getCurrentSession().delete(getBookById(idBook));
+		Book book = getBookById(idBook);
+		book.setAuthors(null);
+		sessionFactory.getCurrentSession().save(book);
+		sessionFactory.getCurrentSession().delete(book);
 	}
 
 	public Book getBookById(int idBook) {
