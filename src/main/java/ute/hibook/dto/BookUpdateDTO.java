@@ -21,10 +21,11 @@ public class BookUpdateDTO {
 	private int idSupplier;
 	private List<Integer> arr_author;
 	private List<String> arr_nameauthor;
+	private String tags;
 	
 	public BookUpdateDTO(String publisher, String nameBook, int price, int discount, String size, int numberPage,
 			String publicationDate, int quantity, String cover, String intro, String fileimg, String fileproofread,
-			int idType, int idSupplier, List<Integer> arr_author) {
+			int idType, int idSupplier, List<Integer> arr_author, String tags) {
 		super();
 		this.publisher = publisher;
 		this.nameBook = nameBook;
@@ -41,6 +42,7 @@ public class BookUpdateDTO {
 		this.idType = idType;
 		this.idSupplier = idSupplier;
 		this.arr_author = arr_author;
+		this.tags = tags;
 	}
 	public BookUpdateDTO() {
 		super();
@@ -148,6 +150,11 @@ public class BookUpdateDTO {
 	public void setArr_author(List<Integer> arr_author) {
 		this.arr_author = arr_author;
 	}
-
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 }
 

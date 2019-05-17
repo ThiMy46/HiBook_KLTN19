@@ -192,6 +192,17 @@
 	                                     <div id="arr_author"> </div>
 	                                 </div>
 	                             </div>
+	                             <div class="row form-group">
+	                                 <div class="col col-md-3">
+	                                     <label for="multiple-select" class=" form-control-label">Tag</label>
+	                                 </div>
+	                                 <div class="col col-md-3">
+	                                     <input type="text" name="tagsearch" id="tagSearch" class="form-control" placeholder="+tag"/>
+	                                 </div>
+	                                 <div  class="col col-md-6">
+	                                     <div id="arr_tag"> </div>
+	                                 </div>
+	                             </div>
 	                     </div>
 	                     <div class="card-footer">
 	                         <button id="submit_book" class="btn btn-primary btn-sm">
@@ -210,17 +221,6 @@
 <script src="<%=request.getContextPath() %>/resources/js/out-js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/out-js/bootadmin.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/admin-api/add_book.js"></script>
-
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-118868344-1');
-</script>
-
-<!-- CUSTOM JS AJAX  -->
-<!-- <script src="<%=request.getContextPath() %>/resources/js/user-custom/getListbook.js"></script> -->
 
 </body>
 </html>

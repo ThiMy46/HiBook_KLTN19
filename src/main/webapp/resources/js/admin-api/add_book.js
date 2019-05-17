@@ -6,6 +6,7 @@ $(document).ready(function getlistaddbook() {
 	var them=true;
 	var hinh;
 	var docthu;
+	var tagsubmit = [];
 
 	/* Get Author Book*/
 	$.ajax({
@@ -45,6 +46,7 @@ $(document).ready(function getlistaddbook() {
 			docthu=data.proofread;
 			$("#idType option[value='" + data.typebook.idType +"']").attr("selected","selected");
 			$("#idSupplier option[data-id='" + data.supplier.idSupplier +"']").attr("selected","selected");
+			//author
 			var arr1=data.authors;
 			var add='';
 			$.each(arr1, function (i, item) {
@@ -55,6 +57,17 @@ $(document).ready(function getlistaddbook() {
 				arr[arr.length]=item.idAuthor;
 			});
 			$('#arr_author').append(add);
+			//tagsearch
+			var arr2 = data.tagList.split(",");
+			var add1 = '';
+			$.each(arr2, function (i, item) {
+				/*var name=$('#idAuthor > option[data-id='+arr1[i]+']').text();*/
+				add1+='<div class="alert alert-info alert-dismissible fade show" style="width:max-content; margin-right: 4px; display: -webkit-inline-box;">'+
+				'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+				'<strong>'+item+'</strong></div>';
+				tagsubmit[tagsubmit.length] = item;
+			});
+			$('#arr_tag').append(add1);
 		});
 		them=false;
 	}
@@ -127,6 +140,8 @@ $(document).ready(function getlistaddbook() {
 		$('#progressBarImg').text('0%');
 		$('#progressBarImg').css('width','0%');
 	});
+	
+	/* Event selected author*/
 	var arr=[];
 	$('#idAuthor').change(function(){
 		var optionSelected = $("option:selected", this);
@@ -170,6 +185,30 @@ $(document).ready(function getlistaddbook() {
 			}
 		})
 	});
+	
+	/*Event enter in input Tagsearch*/
+	$("#tagSearch").keypress(function(event){
+	    var keycode = (event.keyCode ? event.keyCode : event.which);
+	    var tag = $('#tagSearch').val().trim();
+	    if(keycode == '13' && tag !== ""){
+	        var listTag = '<div class="alert alert-info alert-dismissible fade show" style="width:max-content; margin-right: 4px; display: -webkit-inline-box;">'+
+			'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+			'<strong>'+tag+'</strong></div>';
+	        $('#arr_tag').append(listTag);
+	        tagsubmit[tagsubmit.length] = tag;
+	        $('#tagSearch').val('');
+	    }
+	});
+	$('#arr_tag').on('click', 'a.close',function(){
+		var name = $(this).parent('div').find('strong').html();
+		$.each(tagsubmit, function(i,item){
+			if(item==name){
+				tagsubmit[i]=tagsubmit[tagsubmit.length-1];
+				tagsubmit.length--;
+			}
+		});
+	});
+	
 	$('#submit_book').click(function(){
 		var nameBook=$('#nameBook').val();
 		var price=$('#price').val();
@@ -187,7 +226,6 @@ $(document).ready(function getlistaddbook() {
 		var file_proofread=$('#file-multiple-proofread').text();
 
 		if(them){
-
 			$.ajax({
 				url : "/HiBook_KLTN19/api/v1/books",
 				type : "POST",
@@ -206,7 +244,8 @@ $(document).ready(function getlistaddbook() {
 					fileproofread:file_proofread,
 					idType:idType,
 					idSupplier:idSup,
-					arr_author:arr
+					arr_author:arr,
+					tags : tagsubmit.toString()
 				},
 				success : function(data) {
 					alert('thêm thành công!');
@@ -249,7 +288,8 @@ $(document).ready(function getlistaddbook() {
 					fileproofread:file_proofread,
 					idType:idType,
 					idSupplier:idSup,
-					arr_author:arr
+					arr_author:arr,
+					tags : tagsubmit.toString()
 				}),
 				headers: {
 					'Accept': 'application/json',
@@ -271,6 +311,8 @@ $(document).ready(function getlistaddbook() {
 			});
 		}
 	});
+	
+	
 });
 
 

@@ -58,6 +58,7 @@ $(document).ready(function getlistbook() {
 			'<tr><td >Số lượng</td><td>'+quantity+'</td></tr>'+
 			'<tr><td >Loại bìa</td><td>'+mydata[row].cover+'</td></tr>'+
 			'<tr><td >Nhà cung cấp</td><td>'+supplier+'</td></tr>'+
+			'<tr><td >tag tìm kiếm</td><td>'+tagList+'</td></tr>'+
 			'<tr><td >Loại sách</td><td>'+type+'</td></tr>';
 		$('#chitiet_body').append(chitiet);
 		$('#gioithieu').text(mydata[row].introBook);

@@ -18,8 +18,17 @@ public class TagsearchServiceImpl implements TagsearchService{
 	TagsearchDaoImpl tagDao;
 	
 	public void addTag(TagsearchDTO tagDTO) {
+		//check tag exists, if exists num++, not exists add new tag 
+		List<Tagsearch> tags = tagDao.getAllTag();
+		for (Tagsearch tagsearch : tags) {
+			//exists not add
+			if(tagsearch.getNameTag().trim().equals(tagDTO.getNameTag().trim())) {
+				return;
+			}
+		}
+		//not exists, add into table tag
 		Tagsearch tag=new Tagsearch();
-		tag.setNameTag(tagDTO.getNameTag());
+		tag.setNameTag(tagDTO.getNameTag().trim());
 		tag.setNumOfSearch(tagDTO.getNumOfSearch());
 		tagDao.addTag(tag);
 		System.out.println("add Tagseach successful!");
@@ -28,11 +37,15 @@ public class TagsearchServiceImpl implements TagsearchService{
 	public void updateTag(TagsearchDTO tagDTO) {
 		Tagsearch tag= tagDao.getTagById(tagDTO.getIdTag());
 		if(tag!=null) {
-			tag.setNameTag(tagDTO.getNameTag());
+			tag.setNameTag(tagDTO.getNameTag().trim());
 			tag.setNumOfSearch(tagDTO.getNumOfSearch());
 			tagDao.updateTag(tag);
 			System.out.println("update Tagseach successful!");
 		}
+//		Tagsearch tag = tagDao.getTagById(tagsearch.getIdTag());
+//		tag.setNumOfSearch(tag.getNumOfSearch()+1);
+//		tagDao.updateTag(tag);
+//		System.out.println("update Tagseach successful!");
 	}
 
 	public void deleteTag(int idTag) {

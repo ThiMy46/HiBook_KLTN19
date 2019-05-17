@@ -14,6 +14,7 @@ import ute.hibook.dto.AuthorDTO;
 import ute.hibook.dto.BookDTO;
 import ute.hibook.dto.BookUpdateDTO;
 import ute.hibook.dto.SupplierDTO;
+import ute.hibook.dto.TagsearchDTO;
 import ute.hibook.dto.TypebookDTO;
 import ute.hibook.dto.UserDTO;
 import ute.hibook.dto.UserreviewDTO;
@@ -35,6 +36,8 @@ public class BookServiceImpl implements BookService{
 	SupplierDaoImpl supplierDao;
 	@Autowired
 	AuthorDaoImpl authorDao;
+	@Autowired
+	TagsearchServiceImpl tagSearchSer;
 	
 	public void addBook(Book book) {
 		bookDao.addBook(book);		
@@ -57,7 +60,21 @@ public class BookServiceImpl implements BookService{
 			book.setQuantity(bookDTO.getQuantity());
 			book.setSize(bookDTO.getSize());
 			//book.setStatus(bookDTO.getStatus());
-			//book.setTagList(bookDTO.getTagList());
+			book.setTagList(bookDTO.getTags());
+			
+			//if have tag difference, add them in table tagsearch
+			//cut String by ','
+			String[] arr_tags = bookDTO.getTags().split(",");
+			for (String tag : arr_tags) {
+				if(tag.trim().equals("")||tag.trim() == "") {
+					continue;
+				}
+				TagsearchDTO tagDTO = new TagsearchDTO();
+				tagDTO.setNameTag(tag);
+				tagDTO.setNumOfSearch(0);
+				tagSearchSer.addTag(tagDTO);
+			}
+			
 			Typebook type = typeDao.getTypebookById(bookDTO.getIdType());
 			book.setTypebook(type);
 			

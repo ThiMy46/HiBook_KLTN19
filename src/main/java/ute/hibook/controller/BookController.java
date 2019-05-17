@@ -18,17 +18,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ute.hibook.dto.BookDTO;
 import ute.hibook.dto.BookUpdateDTO;
+import ute.hibook.dto.TagsearchDTO;
 import ute.hibook.entity.Author;
 import ute.hibook.entity.Book;
 import ute.hibook.entity.Supplier;
 import ute.hibook.entity.Typebook;
 import ute.hibook.service.impl.BookServiceImpl;
+import ute.hibook.service.impl.TagsearchServiceImpl;
 @RestController
 @RequestMapping(value = "/api/v1")
 public class BookController {
 	
 	@Autowired
 	BookServiceImpl bookSer;
+	@Autowired
+	TagsearchServiceImpl tagsearchSer;
 	
 	@GetMapping(value="/books")
 	public ResponseEntity<List<BookDTO>> getAllBook(){
@@ -55,8 +59,9 @@ public class BookController {
 	public ResponseEntity<?> addBook(@RequestParam String publisher,@RequestParam String nameBook, @RequestParam int price, @RequestParam int discount, 
 			@RequestParam String size, @RequestParam int numberPage, @RequestParam String publicationDate,
 			@RequestParam int quantity, @RequestParam String cover, @RequestParam String intro, @RequestParam String fileimg,
-			@RequestParam String fileproofread, @RequestParam int idType, @RequestParam int idSupplier, @RequestParam(value="arr_author[]") List<Integer> arr_author){
-	
+			@RequestParam String fileproofread, @RequestParam int idType, @RequestParam int idSupplier, 
+			@RequestParam(value="arr_author[]") List<Integer> arr_author, @RequestParam(value="tags") String tags){
+		
 		Book book=new Book();
 		book.setNameBook(nameBook);
 		book.setCover(cover);
@@ -73,7 +78,7 @@ public class BookController {
 		//set status 0: new add, haven't bill
 		book.setStatus(0);
 		//list tag using search
-		//book.setTagList(bookDTO.getTagList());
+		book.setTagList(tags);
 		
 		Typebook type = new Typebook();
 		type.setIdType(idType);
@@ -92,8 +97,19 @@ public class BookController {
 		book.setAuthors(authors);
 		
 		bookSer.addBook(book);
+		
+		//cut String taglist in book, save into tagsearch table
+		//cut String by ','
+		String[] arr_tags = tags.split(",");
+		for (String tag : arr_tags) {
+			TagsearchDTO tagDTO = new TagsearchDTO();
+			tagDTO.setNameTag(tag);
+			tagDTO.setNumOfSearch(0);
+			tagsearchSer.addTag(tagDTO);
+		}
 		return new ResponseEntity<Integer>(1, HttpStatus.OK);
 	}
+	
 	/*======================UPDATE Book================= */
 	@PutMapping(value="/books/{idBook}")
 	public ResponseEntity<?> updateBook(@PathVariable int idBook, @RequestBody BookUpdateDTO bookdto){
