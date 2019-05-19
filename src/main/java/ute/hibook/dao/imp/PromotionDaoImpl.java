@@ -1,7 +1,12 @@
 package ute.hibook.dao.imp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Query;
+
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -39,5 +44,16 @@ public class PromotionDaoImpl implements PromotionDao{
 	public List<Promotion> getAllPromotion() {
 		return sessionFactory.getCurrentSession().createQuery("from promotion").getResultList();
 	}
+
+	public List<Promotion> getAllPromotionDate() {
+		Session session=sessionFactory.getCurrentSession();
+		Query q = session.createQuery("from promotion where timeEnd > now()");
+		
+		List<Promotion> listPromotiondate=q.getResultList();
+		return listPromotiondate;
+	}
+	
+	
+	
 
 }

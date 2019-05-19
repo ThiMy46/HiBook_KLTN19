@@ -1,6 +1,7 @@
 package ute.hibook.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -34,9 +35,9 @@ public class Promotion implements Serializable {
 
 	private int saleOff;
 
-	private String timeEnd;
+	private Date timeEnd;
 
-	private String timeStart;
+	private Date timeStart;
 
 	private String titlePromotion;
 
@@ -84,19 +85,19 @@ public class Promotion implements Serializable {
 		this.saleOff = saleOff;
 	}
 
-	public String getTimeEnd() {
+	public Date getTimeEnd() {
 		return this.timeEnd;
 	}
 
-	public void setTimeEnd(String timeEnd) {
+	public void setTimeEnd(Date timeEnd) {
 		this.timeEnd = timeEnd;
 	}
 
-	public String getTimeStart() {
+	public Date getTimeStart() {
 		return this.timeStart;
 	}
 
-	public void setTimeStart(String timeStart) {
+	public void setTimeStart(Date timeStart) {
 		this.timeStart = timeStart;
 	}
 

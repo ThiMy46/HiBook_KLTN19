@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ute.hibook.dto.CartDTO;
 import ute.hibook.dto.PaymentDTO;
+import ute.hibook.dto.PromotionDTO;
 import ute.hibook.dto.RoleDTO;
 import ute.hibook.dto.SupplierDTO;
 import ute.hibook.dto.TransportDTO;
@@ -34,6 +35,7 @@ import ute.hibook.dto.TypebookDTO;
 import ute.hibook.dto.UserDTO;
 import ute.hibook.service.impl.CartServiceImpl;
 import ute.hibook.service.impl.PaymentServiceImpl;
+import ute.hibook.service.impl.PromotionServiceImpl;
 import ute.hibook.service.impl.SupplierServiceImpl;
 import ute.hibook.service.impl.TransportServiceImpl;
 import ute.hibook.service.impl.TypebookServiceImpl;
@@ -44,6 +46,8 @@ import ute.hibook.service.impl.UserServiceImpl;
  * */
 @Controller
 public class PageController {
+	@Autowired
+	PromotionServiceImpl promotionServiceImpl;
 
 	@Autowired
 	UserServiceImpl userSer;
@@ -60,7 +64,9 @@ public class PageController {
 
 	/* ====PAGE BOOK===== */
 	@GetMapping({ "/", "/login" })
-	public String homePage(ModelMap model) {		 
+	public String homePage(ModelMap model) {	
+		List<PromotionDTO> lPromotionDTOs=promotionServiceImpl.getAllPromotiondate();
+		model.addAttribute("listPromotion", lPromotionDTOs);
 		return "home";
 	}
 
@@ -322,6 +328,13 @@ public class PageController {
 	@GetMapping({ "/manage-userreview" })
 	public String userreviewManageAdmin() {
 		return "admin/userreview";
+	}
+	
+	@GetMapping({ "/promotion" })
+	public String promotion() {
+		
+		
+		return "admin/promotion";
 	}
 
 }

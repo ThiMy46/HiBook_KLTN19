@@ -1,6 +1,8 @@
 package ute.hibook.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,5 +91,27 @@ public class PromotionServiceImpl implements PromotionService{
 		}
 		return lstPromotionDTO;
 	}
+
+	public List<PromotionDTO> getAllPromotiondate() {
+		List<Promotion> lstPromotionDate= promotionDao.getAllPromotionDate();
+		
+		List<PromotionDTO> lstPromotionDTOdate= new ArrayList<PromotionDTO>();
+		for (Promotion promotion : lstPromotionDate) {
+			
+			PromotionDTO promotionDTO= new PromotionDTO();
+			promotionDTO.setIdPromotion(promotion.getIdPromotion());
+			promotionDTO.setContentPromotion(promotion.getContentPromotion());
+			promotionDTO.setPicPromotion(promotion.getPicPromotion());
+			promotionDTO.setSaleOff(promotion.getSaleOff());
+			promotionDTO.setTimeEnd(promotion.getTimeEnd());
+			promotionDTO.setTimeStart(promotion.getTimeStart());
+			promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
+		
+			lstPromotionDTOdate.add(promotionDTO);
+		}
+		return lstPromotionDTOdate;
+	}
+
+	
 
 }

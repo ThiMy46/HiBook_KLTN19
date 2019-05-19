@@ -1,5 +1,6 @@
 package ute.hibook.dto;
 
+import java.util.Date;
 import java.util.List;
 
 public class PromotionDTO {
@@ -8,8 +9,8 @@ public class PromotionDTO {
 	private String contentPromotion;
 	private String picPromotion;
 	private int saleOff;
-	private String timeEnd;
-	private String timeStart;
+	private Date timeEnd;
+	private Date timeStart;
 	private String titlePromotion;
 	private List<BookDTO> books;
 	
@@ -45,19 +46,19 @@ public class PromotionDTO {
 		this.saleOff = saleOff;
 	}
 
-	public String getTimeEnd() {
+	public Date getTimeEnd() {
 		return this.timeEnd;
 	}
 
-	public void setTimeEnd(String timeEnd) {
-		this.timeEnd = timeEnd;
+	public void setTimeEnd(Date date) {
+		this.timeEnd = date;
 	}
 
-	public String getTimeStart() {
+	public Date getTimeStart() {
 		return this.timeStart;
 	}
 
-	public void setTimeStart(String timeStart) {
+	public void setTimeStart(Date timeStart) {
 		this.timeStart = timeStart;
 	}
 

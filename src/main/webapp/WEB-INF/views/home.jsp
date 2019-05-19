@@ -139,19 +139,25 @@
 	</div>
 	
 	<!-- Banner Ads -->
+	
 	<div class="container" style="margin-top: 20px">
+	
 		<div class="row">
 			<div class="col-lg-12">
+			<c:forEach var="list" items="${listPromotion}">
 				<div class="banner-img-2">
-					<a href="#"><img src="<%=request.getContextPath()%>/resources/images/banner/5.jpg" alt="banner"></a>
+					<a href="promotion"><img src="<%=request.getContextPath()%>/resources/images/banner/${list.getPicPromotion()}" alt="banner"></a>
 					<div class="banner-text">
 						<h3>Sách G. Meyer &amp; Spiritual Traveler Press</h3>
-						<h2>Giảm đến 30%</h2>
+						<h2>Giảm đến ${list.getSaleOff()}%</h2>
 					</div>
 				</div>
+				</c:forEach>
 			</div>
 		</div>
+		
 	</div>
+	
 	<!--
 	========================SÁCHBÁN CHẠY NHẤT================
 	-->
