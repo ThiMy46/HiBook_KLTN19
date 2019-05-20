@@ -18,16 +18,16 @@ $(document).ready(function() {
 		page=searchParams.get('page');
 	}
 	
-	$.ajax({
+	/*$.ajax({
     	type : "GET",
-    	url : "api/typebook"
+    	url : "api/v1/typebooks"
     }).then(function(data) {
     	var type = '';    	
     	$.each(data, function (i, item) {	 	
-    		type+='<div class="chiller_cb"><a href="/HiBookTLCN/search?q='+key+'&type='+item.idType+'"><label >'+item.nameType+'</label></a></div>';
+    		type+='<div class="chiller_cb"><a href="/HiBook_KLTN19/search?q='+key+'&type='+item.idType+'"><label >'+item.nameType+'</label></a></div>';
         });
     	$('.bg').append(type); 
-	});
+	});*/
 	var list_data;
 	if(window.location.href.indexOf("search") > -1){
 		 $.ajax({
