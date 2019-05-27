@@ -58,5 +58,9 @@ public class BookDaoImpl implements BookDao{
 	public List<Book> getAllBook() {
 		return sessionFactory.getCurrentSession().createQuery("from book").getResultList();
 	}
+	
+	public List<Book> getBookLimit(int start, int limit) {
+		return sessionFactory.getCurrentSession().createQuery("from book").setFirstResult(start).setMaxResults(limit).getResultList();
+	}
 
 }

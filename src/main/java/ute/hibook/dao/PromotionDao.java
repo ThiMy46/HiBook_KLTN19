@@ -1,7 +1,5 @@
 package ute.hibook.dao;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import ute.hibook.entity.Promotion;

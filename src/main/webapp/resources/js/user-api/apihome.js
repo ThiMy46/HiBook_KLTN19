@@ -36,7 +36,7 @@ $(document).ready(function() {
     /*======Sách mới xuất bản========= */
     $.ajax({
     	type : "GET",
-    	url : "/HiBook_KLTN19/api/v1/booklimit"
+    	url : "/HiBook_KLTN19/api/v1/newbook"
     }).then(function(data) {
     	var row3 = '';
     	var row4 = '';

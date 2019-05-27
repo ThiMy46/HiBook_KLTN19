@@ -1,11 +1,5 @@
 $(document).ready(function() {
-	$('input.gtm_search_bar').keyup(function(e){
-	    if(e.keyCode == 13)
-	    {
-	    	var key=$(this).val();
-	    	window.location="/HiBookTLCN/search?q="+key;
-	    }
-	});
+		
 	let searchParams = new URLSearchParams(window.location.search)
 	var type='';
 	var key='';
@@ -18,16 +12,6 @@ $(document).ready(function() {
 		page=searchParams.get('page');
 	}
 	
-	/*$.ajax({
-    	type : "GET",
-    	url : "api/v1/typebooks"
-    }).then(function(data) {
-    	var type = '';    	
-    	$.each(data, function (i, item) {	 	
-    		type+='<div class="chiller_cb"><a href="/HiBook_KLTN19/search?q='+key+'&type='+item.idType+'"><label >'+item.nameType+'</label></a></div>';
-        });
-    	$('.bg').append(type); 
-	});*/
 	var list_data;
 	if(window.location.href.indexOf("search") > -1){
 		 $.ajax({
@@ -78,18 +62,18 @@ $(document).ready(function() {
 		var sp_search='';
 				
 		/* div page*/
-		var page_button='<li class="disabled"><a href="#">«</a></li>';
-		var number_page=data.length/8;
-		for(var i=0;i<number_page;i++){
-			var newurl=linkHref.replace("page="+page, "page="+(i+1));
-			if(page==(i+1)){
-				page_button+='<li class="active"><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
-			}else{
-				page_button+='<li><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
-			}
-		}
-		page_button+='<li><a href="#">»</a></li>';
-		$('.pagination').append(page_button);
+//		var page_button='<li class="disabled"><a href="#">«</a></li>';
+//		var number_page=data.length/8;
+//		for(var i=0;i<number_page;i++){
+//			var newurl=linkHref.replace("page="+page, "page="+(i+1));
+//			if(page==(i+1)){
+//				page_button+='<li class="active"><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+//			}else{
+//				page_button+='<li><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+//			}
+//		}
+//		page_button+='<li><a href="#">»</a></li>';
+//		$('.pagination').append(page_button);
 		
 		$.each(data, function (i, item) {
 			

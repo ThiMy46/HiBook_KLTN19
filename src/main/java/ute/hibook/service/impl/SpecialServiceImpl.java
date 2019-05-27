@@ -17,6 +17,9 @@ public class SpecialServiceImpl {
 	@Autowired
 	SpecialDao specialDao;
 	
+	@Autowired
+	BookServiceImpl bookSer;
+	
 	public List<BookDTO> getBookLimit(int begin, int num) {
 		List<Book> lstBookLimit= specialDao.getBookLimit(begin, num);
 		
@@ -73,26 +76,22 @@ public class SpecialServiceImpl {
 		return lstBookDTO;
 	}
 	
-	public List<BookDTO> searchBook(String key, String type) {
-		List<Book> lstSearch= specialDao.searchNameBook(key, type);
+	public List<BookDTO> getBestSellBooksLimit(int offsets, int limits) {
+		List<Book> lstBookBestSell= specialDao.getBestSellBooksLimit(offsets, limits);
 		
 		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
-		for (Book book : lstSearch) {
+		for (Book book : lstBookBestSell) {
+			
 			BookDTO bookDTO=new BookDTO();
 			
 			bookDTO.setIdBook(book.getIdBook());
 			bookDTO.setNameBook(book.getNameBook());
-			bookDTO.setCover(book.getCover());
 			bookDTO.setDiscount(book.getDiscount());
-			bookDTO.setIntroBook(book.getIntroBook());
-			bookDTO.setNumberPage(book.getNumberPage());
 			bookDTO.setPicBook(book.getPicBook());
 			bookDTO.setPrice(book.getPrice());
 			bookDTO.setProofread(book.getProofread());
-			bookDTO.setPublicationDate(book.getPublicationDate());
 			bookDTO.setPublisher(book.getPublisher());
 			bookDTO.setQuantity(book.getQuantity());
-			bookDTO.setSize(book.getSize());
 			bookDTO.setStatus(book.getStatus());
 			bookDTO.setTagList(book.getTagList());
 			
@@ -100,4 +99,31 @@ public class SpecialServiceImpl {
 		}
 		return lstBookDTO;
 	}
+	
+	public List<BookDTO> getNewBooks() {
+		List<Book> lstNewBooks= specialDao.getNewBooks();
+		
+		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
+		for (Book book : lstNewBooks) {
+			
+			BookDTO bookDTO=bookSer.getBookById(book.getIdBook());
+			
+			lstBookDTO.add(bookDTO);
+		}
+		return lstBookDTO;
+	}
+	public List<BookDTO> getNewBooksLimit(int offsets, int limits) {
+		List<Book> lstNewBooks= specialDao.getNewBooksLimit(offsets, limits);
+		
+		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
+		for (Book book : lstNewBooks) {
+			
+			BookDTO bookDTO=bookSer.getBookById(book.getIdBook());
+			
+			lstBookDTO.add(bookDTO);
+		}
+		return lstBookDTO;
+	}
+	
+	
 }

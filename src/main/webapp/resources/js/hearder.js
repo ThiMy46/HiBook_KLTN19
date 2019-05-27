@@ -4,7 +4,7 @@ $(document).ready(function() {
 		if(e.keyCode == 13)
 		{
 			var key=$(this).val();
-			window.location="/HiBook_KLTN19/search?q="+key;
+			window.location="/HiBook_KLTN19/search-key?q="+key;
 		}
 	});
 	$.ajax({
@@ -13,7 +13,7 @@ $(document).ready(function() {
 	}).then(function(data) {
 		var type = '';    	
 		$.each(data, function (i, item) {	 	
-			type+='<li><a href="/HiBook_KLTN19/search?type='+item.idType+'"><i class="fas fa-book"></i> '+item.nameType+'</a></li>';
+			type+='<li><a href="/HiBook_KLTN19/search-type/'+item.idType+'">'+item.nameType+'</a></li>';
 		});
 		$('#typeBook').append(type); 
 	});
@@ -25,7 +25,6 @@ $(document).ready(function() {
 					success : function(data) {
 						if (data != null) {
 							// alert(data);
-							// $(".getthongbao").html(data);
 							$("#giohanghome").find("span")
 							.text(data);
 						}

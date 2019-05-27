@@ -3,6 +3,7 @@ package ute.hibook.service;
 import java.util.List;
 
 import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.SearchDTO;
 
 public interface SearchBookService {
 

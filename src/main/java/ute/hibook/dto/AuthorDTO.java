@@ -7,7 +7,7 @@ public class AuthorDTO {
 	private int idAuthor;
 	private String nameAuthor;
 	private List<BookDTO> books;
-
+	private int numBookSearch;
 	
 	public AuthorDTO() {
 		super();
@@ -42,4 +42,13 @@ public class AuthorDTO {
 	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
+
+	public int getNumBookSearch() {
+		return numBookSearch;
+	}
+
+	public void setNumBookSearch(int numBookSearch) {
+		this.numBookSearch = numBookSearch;
+	}
+	
 }

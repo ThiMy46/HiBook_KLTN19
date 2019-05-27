@@ -17,7 +17,7 @@ import ute.hibook.service.SearchBookService;
 public class SearchBookServiceImpl implements SearchBookService{
 	@Autowired
 	SearchBookDaoImpl searchDao;
-
+	
 	public List<BookDTO> searchIndex(String key) {
 		List<Book> books = searchDao.searchIndex(key);
 		

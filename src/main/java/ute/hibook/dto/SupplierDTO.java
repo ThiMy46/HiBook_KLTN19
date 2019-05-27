@@ -7,7 +7,7 @@ public class SupplierDTO {
 	private int idSupplier;
 	private String nameSupplier;
 	private List<BookDTO> books;
-
+	private int numBookSearch;
 	
 	public SupplierDTO() {
 		super();
@@ -42,4 +42,13 @@ public class SupplierDTO {
 	public void setBooks(List<BookDTO> books) {
 		this.books = books;
 	}
+
+	public int getNumBookSearch() {
+		return numBookSearch;
+	}
+
+	public void setNumBookSearch(int numBookSearch) {
+		this.numBookSearch = numBookSearch;
+	}
+	
 }

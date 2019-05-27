@@ -26,7 +26,7 @@
 		==============================content===================================
 	-->
 	
-	<div class="container" style="margin-top: 100px;margin-bottom: 50px;">
+	<div class="container" style="margin-top: 10px;margin-bottom: 50px;">
 		<div class="row">
 			<div class="col-sm-3">
 				<div class="card" style="border: 1px solid #99ca8d; padding: 15px; border-radius: 5px;">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="col-sm-9">
 				<p style="font-size: 25px; padding: 4px;"><strong>DANH SÁCH TÌM KIẾM</strong></p>
-				 <!-- <div class="form-group" style="width: 20%; text-align: right;display: -webkit-box;">
+				 <div class="form-group" style="width: 20%; text-align: right;display: -webkit-box;">
 				      <select class="form-control">
 				        <option>Sắp xếp</option>
 				        <option>Bán chạy nhất</option>
@@ -55,12 +55,55 @@
 				        <option>24 sản phẩm</option>
 				        <option>48 sản phẩm</option>
 				      </select>
-				  </div> -->
+				  </div>
 				<div id="list_search" class="row wow slideInUp" style="padding-top: 20px">
-				
+					<c:forEach var="item" items="${lstBookSearch}">
+						<div class="col-sm-6 col-md-4 " style="margin-bottom: 20px;">
+							<div class="sanpham">
+								<div class="thumbnail entry">
+									<a href="/HiBook_KLTN19/detail-book/${item.idBook}" class="non-textdecoration" target="_blank">
+									<div id="hinh" class="img_center">
+										<img src="/HiBook_KLTN19/resources/images/book/${item.picBook}" alt="Nature">
+									</div>
+									</a>
+								</div>
+								<div class="h">
+									<span id="NameSP">${item.nameBook}</span><br />
+									<span style="color: #8a8787; padding: 10px; font-size: 14px;">
+										<c:forEach var="author" items="${item.authors}">
+											${author.nameAuthor} 
+										</c:forEach>
+									</span><br/> 
+									<span style="color: black; padding: 10px; font-size: 14px;">${Math.round(item.price*(1-item.discount/100))}đ</span>
+									<span style="color: grey; padding: 15px; font-size: 12px; text-align: center;"><del>${item.price}đ</del></span>
+									<span style="color: red; padding: 16px; font-size: 12px; text-align: right !important;">-${item.discount}%</span><br />
+								</div>
+							</div>
+						</div>
+					</c:forEach>
 				</div>
 				<div id="right_pagination">
 					<ul class="pagination">
+						<c:if test="${search.currentpage==1}">
+							<li class='disabled'><a href="#">«</a></li>
+						</c:if>
+						<c:if test="${search.currentpage!=1}">
+							<li><a href="#">«</a></li>
+						</c:if>
+						<c:forEach var = "i" begin = "1" end = "${search.totalpage}">
+							<c:if test="${search.currentpage == i}">
+								<li class="active"><a data-page="${i}" href="#">${i} <span class="sr-only">(current)</span></a></li>
+							</c:if>
+							<c:if test="${search.currentpage != i}">
+								<li><a data-page="${i}" href="#">${i} <span class="sr-only">(current)</span></a></li>
+							</c:if>
+					    </c:forEach>
+					    <c:if test="${search.currentpage == search.totalpage}">
+							<li class='disabled'><a href="#">»</a></li>
+						</c:if>
+						<c:if test="${search.currentpage != search.totalpage}">
+							<li><a href="#">»</a></li>
+						</c:if>
 						
 					</ul>
 				</div>
@@ -78,7 +121,6 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
 
-	<script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/search.js"></script>
 	<script>
 		new WOW().init();
