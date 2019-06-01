@@ -132,8 +132,7 @@
 				id="booknew1"></div>
 			<div style="margin-top: 10px;">
 				<button class="btn btn-success btn_xemthem"
-					onclick="window.location.href='/HiBook_KLTN19/search-newbook'">Xem
-					thêm</button>
+					onclick="window.location.href='/HiBook_KLTN19/search-newbook?page=1'">Xem thêm</button>
 			</div>
 		</div>
 	</div>
@@ -179,8 +178,7 @@
 				style="padding-top: 20px"></div>
 			<div class="text-center" style="margin-top: 10px;">
 				<button class="btn btn-success btn_xemthem"
-					onclick="window.location.href='/HiBook_KLTN19/search-bestsells'">Xem
-					thêm</button>
+					onclick="window.location.href='/HiBook_KLTN19/search-bestsells?page=1'">Xem thêm</button>
 			</div>
 
 		</div>

@@ -34,9 +34,27 @@
 						<h5><strong>LỌC THEO</strong></h5><hr/>
 					</div>
 					<div class="card-body text-success">
-					    <h5 class="card-title" style="color: black;"><strong>THỂ LOẠI</strong></h5>
+					    <h5 class="card-title" style="color: black;"><strong>TÁC GIẢ</strong></h5>
 					    <div class="bg">
-							  
+					    	<c:forEach var="item" items="${search.lstAuthor}">
+					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.nameAuthor} (${item.numBookSearch})</label></a></div>
+					    	</c:forEach>
+						</div>
+					</div>
+					<div class="card-body text-success">
+					    <h5 class="card-title" style="color: black;"><strong>NHÀ CUNG CẤP</strong></h5>
+					    <div class="bg">
+					    	<c:forEach var="item" items="${search.lstSupplier}">
+					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.nameSupplier} (${item.numBookSearch})</label></a></div>
+					    	</c:forEach>
+						</div>
+					</div>
+					<div class="card-body text-success">
+					    <h5 class="card-title" style="color: black;"><strong>NHÀ XUẤT BẢN</strong></h5>
+					    <div class="bg">
+					    	<c:forEach var="item" items="${search.lstPublisher}">
+					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.namePublisher} (${item.numBookSearch})</label></a></div>
+					    	</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -51,13 +69,13 @@
 				        <option>Mới nhất</option>
 				      </select>
 				      <select class="form-control" style="margin-left: 20px;">
+				        <option>6 sản phẩm</option>
 				        <option>12 sản phẩm</option>
 				        <option>24 sản phẩm</option>
-				        <option>48 sản phẩm</option>
 				      </select>
 				  </div>
 				<div id="list_search" class="row wow slideInUp" style="padding-top: 20px">
-					<c:forEach var="item" items="${lstBookSearch}">
+					<c:forEach var="item" items="${search.currentBooks}">
 						<div class="col-sm-6 col-md-4 " style="margin-bottom: 20px;">
 							<div class="sanpham">
 								<div class="thumbnail entry">
@@ -82,27 +100,28 @@
 						</div>
 					</c:forEach>
 				</div>
+				
 				<div id="right_pagination">
 					<ul class="pagination">
 						<c:if test="${search.currentpage==1}">
 							<li class='disabled'><a href="#">«</a></li>
 						</c:if>
 						<c:if test="${search.currentpage!=1}">
-							<li><a href="#">«</a></li>
+							<li><a href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${search.currentpage-1}"/> >«</a></li>
 						</c:if>
 						<c:forEach var = "i" begin = "1" end = "${search.totalpage}">
 							<c:if test="${search.currentpage == i}">
-								<li class="active"><a data-page="${i}" href="#">${i} <span class="sr-only">(current)</span></a></li>
+								<li class="active"><a data-page="${i}" href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${i}"/>>${i} <span class="sr-only">(current)</span></a></li>
 							</c:if>
 							<c:if test="${search.currentpage != i}">
-								<li><a data-page="${i}" href="#">${i} <span class="sr-only">(current)</span></a></li>
+								<li><a data-page="${i}" href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${i}"/> >${i} <span class="sr-only">(current)</span></a></li>
 							</c:if>
 					    </c:forEach>
 					    <c:if test="${search.currentpage == search.totalpage}">
 							<li class='disabled'><a href="#">»</a></li>
 						</c:if>
 						<c:if test="${search.currentpage != search.totalpage}">
-							<li><a href="#">»</a></li>
+							<li><a href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${search.currentpage+1}"/>>»</a></li>
 						</c:if>
 						
 					</ul>

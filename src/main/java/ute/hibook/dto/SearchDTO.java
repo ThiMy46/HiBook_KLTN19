@@ -9,6 +9,7 @@ public class SearchDTO {
 	private List<AuthorDTO> lstAuthor;
 	private List<SupplierDTO> lstSupplier;
 	private List<PublisherDTO> lstPublisher;
+	private List<BookDTO> currentBooks;
 	
 	public int getTotalpage() {
 		return totalpage;
@@ -39,6 +40,12 @@ public class SearchDTO {
 	}
 	public void setLstPublisher(List<PublisherDTO> lstPublisher) {
 		this.lstPublisher = lstPublisher;
+	}
+	public List<BookDTO> getCurrentBooks() {
+		return currentBooks;
+	}
+	public void setCurrentBooks(List<BookDTO> currentBooks) {
+		this.currentBooks = currentBooks;
 	}
 	
 }

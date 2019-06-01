@@ -3,6 +3,7 @@ package ute.hibook.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -70,24 +71,36 @@ public class Page1Controller {
 	}
 	
 	@GetMapping({"/search-bestsells"})
-	public String searchBestsells(Model model) {
-		List<BookDTO> books = specialSer.getBestSellBooksLimit(0, 9);
-		if(books.isEmpty()) {
-			model.addAttribute("lstBookSearch", null);
+	public String searchBestsells(@RequestParam(value = "page") int numPage, Model model) {
+		List<BookDTO> bookall = specialSer.getBestSellBooksLimit(-1, 6);
+		SearchDTO searchDTO = paginationListBook(bookall, (numPage-1)*6, 6);
+		
+		if(searchDTO == null) {
+			model.addAttribute("search", null);
 		}else {
-			model.addAttribute("lstBookSearch", books);
+			model.addAttribute("search", searchDTO);
 		}
 		return "listbook";
 	}
 	
 	@GetMapping({"/search-newbook"})
-	public String searchBooklimit(Model model) {
-		int offsets = 6;
-		int limit = 6;//>=6
+	public String searchBookPage(@RequestParam(value = "page") int numPage, Model model) {
 		
 		List<BookDTO> bookall = specialSer.getNewBooksLimit(-1, 6);
+		SearchDTO searchDTO = paginationListBook(bookall, (numPage-1)*6, 6);
+		
+		if(searchDTO == null) {
+			model.addAttribute("search", null);
+		}else {
+			model.addAttribute("search", searchDTO);
+		}
+		return "listbook";
+	}
+	
+	public SearchDTO paginationListBook(List<BookDTO> bookall, int offsets, int limit) {
 		SearchDTO searchDTO = new SearchDTO();
-		//currentpage
+		
+		//get currentpage
 		if(offsets == -1) {
 			searchDTO.setCurrentpage(1);
 		}else {
@@ -138,17 +151,28 @@ public class Page1Controller {
 			}
 			//book have author object
 			BookDTO bookFull = bookSer.getBookById(bookDTO.getIdBook());
+			
 			//author
-			flag = false;
-			for (int i=0; i < lstAuthor.size(); i++) {
-				for (int j=0; j < bookDTO.getAuthors().size(); j++) {
-					if(lstAuthor.get(i).getIdAuthor() ==  bookDTO.getAuthors().get(j).getIdAuthor())
-					{
-						lstAuthor.get(i).setNumBookSearch(lstAuthor.get(i).getNumBookSearch()+1);
-						flag = true;
-					}else {
-						bookDTO.getAuthors().get(j).setNumBookSearch(1);
-						lstAuthor.add(bookDTO.getAuthors().get(j));
+			for (int j=0; j < bookFull.getAuthors().size(); j++) {
+				
+				if(lstAuthor.size() == 0) {
+					lstAuthor.add(bookFull.getAuthors().get(j));
+					lstAuthor.get(0).setNumBookSearch(1);
+				}else {
+					flag=false;
+					for (int i=0; i < lstAuthor.size(); i++) {
+						if(bookFull.getAuthors().get(j).getIdAuthor() == lstAuthor.get(i).getIdAuthor())
+						{
+							lstAuthor.get(i).setNumBookSearch(lstAuthor.get(i).getNumBookSearch()+1);
+							flag = true;
+							break;
+						}else {
+							flag = false;
+						}
+					}
+					if(flag == false) {
+						lstAuthor.add(bookFull.getAuthors().get(j));
+						lstAuthor.get(lstAuthor.size()-1).setNumBookSearch(1);
 					}
 				}
 			}
@@ -159,15 +183,10 @@ public class Page1Controller {
 			}
 			
 		}
+		searchDTO.setLstAuthor(lstAuthor);
 		searchDTO.setLstSupplier(lstSupplier);
 		searchDTO.setLstPublisher(lstPublisher);
-		
-		if(books.isEmpty()) {
-			model.addAttribute("lstBookSearch", null);
-		}else {
-			model.addAttribute("lstBookSearch", books);
-			model.addAttribute("search", searchDTO);
-		}
-		return "listbook";
+		searchDTO.setCurrentBooks(books);
+		return searchDTO;
 	}
 }

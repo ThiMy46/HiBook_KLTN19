@@ -82,18 +82,7 @@ public class SpecialServiceImpl {
 		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
 		for (Book book : lstBookBestSell) {
 			
-			BookDTO bookDTO=new BookDTO();
-			
-			bookDTO.setIdBook(book.getIdBook());
-			bookDTO.setNameBook(book.getNameBook());
-			bookDTO.setDiscount(book.getDiscount());
-			bookDTO.setPicBook(book.getPicBook());
-			bookDTO.setPrice(book.getPrice());
-			bookDTO.setProofread(book.getProofread());
-			bookDTO.setPublisher(book.getPublisher());
-			bookDTO.setQuantity(book.getQuantity());
-			bookDTO.setStatus(book.getStatus());
-			bookDTO.setTagList(book.getTagList());
+			BookDTO bookDTO=bookSer.getBookById(book.getIdBook());
 			
 			lstBookDTO.add(bookDTO);
 		}
@@ -124,6 +113,5 @@ public class SpecialServiceImpl {
 		}
 		return lstBookDTO;
 	}
-	
 	
 }
