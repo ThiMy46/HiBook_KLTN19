@@ -17,6 +17,8 @@ import ute.hibook.service.SearchBookService;
 public class SearchBookServiceImpl implements SearchBookService{
 	@Autowired
 	SearchBookDaoImpl searchDao;
+	@Autowired
+	BookServiceImpl bookSer;
 	
 	public List<BookDTO> searchIndex(String key) {
 		List<Book> books = searchDao.searchIndex(key);
@@ -178,33 +180,26 @@ public class SearchBookServiceImpl implements SearchBookService{
 		return lstBookDTO;
 	}
 
-	public List<BookDTO> searchType(int idType) {
-		List<Book> books = searchDao.searchType(idType);
+	//
+	public List<BookDTO> searchType(int idType, int offsets, int limits) {
+		List<Book> books = searchDao.searchType(idType, offsets, limits);
 		
 		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
 		for (Book book : books) {
-			BookDTO bookDTO=new BookDTO();
 			
-			bookDTO.setIdBook(book.getIdBook());
-			bookDTO.setNameBook(book.getNameBook());
-			bookDTO.setDiscount(book.getDiscount());
-			bookDTO.setPicBook(book.getPicBook());
-			bookDTO.setPrice(book.getPrice());
-			bookDTO.setProofread(book.getProofread());
-			bookDTO.setPublisher(book.getPublisher());
-			bookDTO.setQuantity(book.getQuantity());
-			bookDTO.setStatus(book.getStatus());
-			bookDTO.setTagList(book.getTagList());
+			BookDTO bookDTO=bookSer.getBookById(book.getIdBook());
+			lstBookDTO.add(bookDTO);
+		}
+		return lstBookDTO;
+	}
+
+	public List<BookDTO> searchByKey(String key, int offsets, int limits) {
+		List<Book> books = searchDao.searchByKey(key, offsets, limits);
+		
+		List<BookDTO> lstBookDTO= new ArrayList<BookDTO>();
+		for (Book book : books) {
 			
-			List<AuthorDTO> lstAuthor=new ArrayList<AuthorDTO>();
-			for (Author author : book.getAuthors()) {
-				AuthorDTO authorDTO=new AuthorDTO();
-				authorDTO.setIdAuthor(author.getIdAuthor());
-				authorDTO.setNameAuthor(author.getNameAuthor());
-				lstAuthor.add(authorDTO);
-			}
-			bookDTO.setAuthors(lstAuthor);
-			
+			BookDTO bookDTO=bookSer.getBookById(book.getIdBook());
 			lstBookDTO.add(bookDTO);
 		}
 		return lstBookDTO;

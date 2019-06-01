@@ -3,7 +3,6 @@ package ute.hibook.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +38,7 @@ public class Page1Controller {
 		}
 		return "listbook";
 	}
+	
 	@GetMapping({"/search-supplier/{idSupplier}"})
 	public String searchSupplier(@PathVariable int idSupplier, Model model) {
 		List<BookDTO> books = searchSer.searchSupplier(idSupplier);
@@ -49,23 +49,27 @@ public class Page1Controller {
 		}
 		return "listbook";
 	}
-	@GetMapping({"/search-type/{idType}"})
-	public String searchType(@PathVariable int idType, Model model) {
-		List<BookDTO> books = searchSer.searchType(idType);
-		if(books.isEmpty()) {
-			model.addAttribute("lstBookSearch", null);
+	
+	@GetMapping({"/search-key"})
+	public String searchKey(@RequestParam(value = "q") String keyword, @RequestParam(value = "page") int numPage, Model model) {
+		List<BookDTO> books = searchSer.searchByKey(keyword, -1, 6);
+		SearchDTO searchDTO = paginationListBook(books, (numPage-1)*6, 6);
+		if(searchDTO == null) {
+			model.addAttribute("search", null);
 		}else {
-			model.addAttribute("lstBookSearch", books);
+			model.addAttribute("search", searchDTO);
 		}
 		return "listbook";
 	}
-	@GetMapping({"/search-key"})
-	public String searchKey(@RequestParam(value = "q") String keyword, Model model) {
-		List<BookDTO> books = searchSer.searchIndex(keyword);
-		if(books.isEmpty()) {
-			model.addAttribute("lstBookSearch", null);
+	
+	@GetMapping({"/search-type/{idType}"})
+	public String searchType(@PathVariable int idType, @RequestParam(value = "page") int numPage, Model model) {
+		List<BookDTO> books = searchSer.searchType(idType, -1, 6);
+		SearchDTO searchDTO = paginationListBook(books, (numPage-1)*6, 6);
+		if(searchDTO == null) {
+			model.addAttribute("search", null);
 		}else {
-			model.addAttribute("lstBookSearch", books);
+			model.addAttribute("search", searchDTO);
 		}
 		return "listbook";
 	}

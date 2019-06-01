@@ -3,7 +3,6 @@ package ute.hibook.service;
 import java.util.List;
 
 import ute.hibook.dto.BookDTO;
-import ute.hibook.dto.SearchDTO;
 
 public interface SearchBookService {
 
@@ -12,5 +11,6 @@ public interface SearchBookService {
 	public List<BookDTO> searchFirstKey(String firstKey);
 	public List<BookDTO> searchAuthor(int idAuthor);
 	public List<BookDTO> searchSupplier(int idSupplier);
-	public List<BookDTO> searchType(int idType);
+	public List<BookDTO> searchType(int idType, int offsets, int limits);
+	public List<BookDTO> searchByKey(String key, int offsets, int limits);
 }

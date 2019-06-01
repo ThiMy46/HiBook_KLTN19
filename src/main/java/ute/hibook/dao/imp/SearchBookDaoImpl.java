@@ -2,10 +2,13 @@ package ute.hibook.dao.imp;
 
 import java.util.List;
 
+import javax.persistence.ParameterMode;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.result.ResultSetOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -85,16 +88,30 @@ public class SearchBookDaoImpl implements SearchBookDao{
 			return null;
 		}
 	}
-	public List<Book> searchType(int idType) {
+	public List<Book> searchType(int idType, int offsets, int limits) {
 		Session session=sessionFactory.getCurrentSession();
 		Query de= session.createQuery("from book where idType = :idType");
 		de.setParameter("idType", idType);
+		if(offsets != -1) {
+			de.setFirstResult(offsets);
+			de.setMaxResults(limits);
+		}
 		try{
 			List<Book> books=de.getResultList();
 			return books;
 		}catch (Exception e) {
 			return null;
 		}
+	}
+	public List<Book> searchByKey(String key, int offsets, int limits) {
+		Session session=sessionFactory.getCurrentSession();
+		ProcedureCall query= session.createStoredProcedureCall("searchByKey",Book.class);
+		query.registerParameter(1, String.class, ParameterMode.IN).bindValue(key);
+		query.registerParameter(2, Integer.class, ParameterMode.IN).bindValue(offsets);
+		query.registerParameter(3, Integer.class, ParameterMode.IN).bindValue(limits);
+		ResultSetOutput resultSetOutput = (ResultSetOutput) query.getOutputs().getCurrent();
+		List<Book> lstBook=resultSetOutput.getResultList();
+		return lstBook;
 	}
 
 }
