@@ -36,6 +36,7 @@ $(document).ready(function() {
 			});
 		}
 		var search = filter_search(publishers , authors, supliers, data_all);
+		edit_listbook(search);
 		console.log(search);
 		
 	});
@@ -50,6 +51,7 @@ $(document).ready(function() {
 			});
 		}
 		var search = filter_search(publishers , authors, supliers, data_all);
+		edit_listbook(search);
 		console.log(search);
 		
 	});
@@ -91,48 +93,44 @@ $(document).ready(function() {
 	}
 	
 	function edit_listbook(filter_search){
-		
-	}
-	
-	/*function filterSelection(c) {
-	  var x, i;
-	  x = document.getElementsByClassName("chiller_cb");
-	  if (c == "all") c = "";
-	  for (i = 0; i < x.length; i++) {
-	    w3RemoveClass(x[i], "show");
-	    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
-	  }
-	}
-	function w3AddClass(element, name) {
-	  var i, arr1, arr2;
-	  arr1 = element.className.split(" ");
-	  arr2 = name.split(" ");
-	  for (i = 0; i < arr2.length; i++) {
-	    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-	  }
-	}
+		$("#list_search").empty();
+		var sp_search='';
+		$.each(filter_search, function (i, item) {
+			if(i<6)
+			{
+				sp_search+='<div class="col-sm-6 col-md-4 " style="margin-bottom: 20px;"><div class="sanpham"><div class="thumbnail entry">'
+					+'<a href="/HiBook_KLTN19/detail-book/'+item.idBook+'" class="non-textdecoration" target="_blank"><div id="hinh" class="img_center">'
+					+'<img src="/HiBook_KLTN19/resources/images/book/'+item.picBook+'" alt="Nature"></div></a>'
+					+'</div><div class="h"><span id="NameSP">'+item.nameBook+'</span><br /><span style="color: #8a8787; padding: 10px; font-size: 14px;">';
+				$.each(item.authors, function (i, author) {
+					sp_search += author.nameAuthor+" ";
+				});
+				sp_search+='</span><br/><span style="color: black; padding: 10px; font-size: 14px;">'+Math.round(item.price*(1-item.discount/100))+'đ</span>'
+					+'<span style="color: grey; padding: 15px; font-size: 12px; text-align: center;"><del>'+item.price+'đ</del></span>'
+					+'<span style="color: red; padding: 16px; font-size: 12px; text-align: right !important;">-'+item.discount+'%</span><br /></div></div></div>';
+			}
 
-	function w3RemoveClass(element, name) {
-	  var i, arr1, arr2;
-	  arr1 = element.className.split(" ");
-	  arr2 = name.split(" ");
-	  for (i = 0; i < arr2.length; i++) {
-	    while (arr1.indexOf(arr2[i]) > -1) {
-	      arr1.splice(arr1.indexOf(arr2[i]), 1);     
-	    }
-	  }
-	  element.className = arr1.join(" ");
+	    });
+		$("#list_search").append(sp_search);
+		
+		
+		$(".pagination").empty();
+		
+		var page_button='<li class="disabled"><a href="#">«</a></li>';
+		var number_page = 1;
+		if(filter_search.length>5){
+			number_page = filter_search.length/6;
+		}
+		for(var i=0 ; i<number_page ; i++){
+			var newurl = window.location.href.replace("page=1", "page="+(i+1));
+			if((i+1)==1){
+				page_button+='<li class="active"><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+			}else{
+				page_button+='<li ><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+			}
+		}
+		page_button+='<li><a href="#">»</a></li>';
+		$('.pagination').append(page_button);
 	}
-	
-	// Add active class to the current button (highlight it)
-	var btnContainer = document.getElementById("myBtnContainer");
-	var btns = btnContainer.getElementsByClassName("btn");
-	for (var i = 0; i < btns.length; i++) {
-	  btns[i].addEventListener("click", function(){
-	    var current = document.getElementsByClassName("active");
-	    current[0].className = current[0].className.replace(" active", "");
-	    this.className += " active";
-	  });
-	}*/
 
 });
