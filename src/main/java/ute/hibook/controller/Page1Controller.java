@@ -153,19 +153,17 @@ public class Page1Controller {
 				PublisherDTO publisher = new PublisherDTO(bookDTO.getPublisher(), 1);
 				lstPublisher.add(publisher);
 			}
-			//book have author object
-			BookDTO bookFull = bookSer.getBookById(bookDTO.getIdBook());
 			
 			//author
-			for (int j=0; j < bookFull.getAuthors().size(); j++) {
+			for (int j=0; j < bookDTO.getAuthors().size(); j++) {
 				
 				if(lstAuthor.size() == 0) {
-					lstAuthor.add(bookFull.getAuthors().get(j));
+					lstAuthor.add(bookDTO.getAuthors().get(j));
 					lstAuthor.get(0).setNumBookSearch(1);
 				}else {
 					flag=false;
 					for (int i=0; i < lstAuthor.size(); i++) {
-						if(bookFull.getAuthors().get(j).getIdAuthor() == lstAuthor.get(i).getIdAuthor())
+						if(bookDTO.getAuthors().get(j).getIdAuthor() == lstAuthor.get(i).getIdAuthor())
 						{
 							lstAuthor.get(i).setNumBookSearch(lstAuthor.get(i).getNumBookSearch()+1);
 							flag = true;
@@ -175,7 +173,7 @@ public class Page1Controller {
 						}
 					}
 					if(flag == false) {
-						lstAuthor.add(bookFull.getAuthors().get(j));
+						lstAuthor.add(bookDTO.getAuthors().get(j));
 						lstAuthor.get(lstAuthor.size()-1).setNumBookSearch(1);
 					}
 				}
@@ -183,7 +181,7 @@ public class Page1Controller {
 			//list books - display 
 			//6 <= 
 			if(offsets <= t && books.size() < limit) {
-				books.add(bookFull);
+				books.add(bookDTO);
 			}
 			
 		}
@@ -191,6 +189,7 @@ public class Page1Controller {
 		searchDTO.setLstSupplier(lstSupplier);
 		searchDTO.setLstPublisher(lstPublisher);
 		searchDTO.setCurrentBooks(books);
+		searchDTO.setAllBooks(bookall);//// add 09-06-19 to using multi filter
 		return searchDTO;
 	}
 }

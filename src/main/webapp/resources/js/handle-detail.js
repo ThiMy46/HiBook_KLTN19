@@ -7,9 +7,7 @@ $(document).ready(function() {
 	$.ajax({
 		type : "GET",
 		url : "/HiBook_KLTN19/api/v1/books/" + idSach
-	}).then(
-			function(data) {
-
+	}).then(function(data) { 
 				if(data.quantity < 1){
 					$('#btn-purchase').html('<i class="fas fa-ban"></i> Hết sách');
 				}
@@ -76,6 +74,29 @@ $(document).ready(function() {
 						$('.rating-block').append('<span class="glyphicon glyphicon-star"></span>');
 					}
 				}
+				/*Get book same type */
+				var idType=$('#tensach').data('type');
+				$.ajax({
+					type : "GET",
+					url : "/HiBook_KLTN19/api/v1/searchs",
+					data:{
+						type:idType
+					}
+				}).then(function(data) {
+					var sp1='';
+					var sp2='';
+					$.each(data,function(i, item) {
+						if(i<4){
+							sp1+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
+								+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
+						}else if(i>3&&i<8){
+							sp2+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
+								+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
+						}
+					});
+					$('#sp_type1').append(sp1);
+					$('#sp_type2').append(sp2);
+				});
 			});
 
 	$("#TryRead").click(function () { 
@@ -104,35 +125,9 @@ $(document).ready(function() {
 					$(".giohang_circle").find("span").text(data);
 				}
 				else{
-					alert("Lỗi!!!");
+					alert("Bạn vui lòng đăng nhập trước để mua hàng!!!");
 				}
 			}
 		});
 	});
-	
-	/*Get book same type */
-	var idType=$('#tensach').data('type');
-	$.ajax({
-		type : "GET",
-		url : "/HiBook_KLTN19/api/v1/searchs",
-		data:{
-			q:'',
-			type:idType
-		}
-	}).then(function(data) {
-		var sp1='';
-		var sp2='';
-		$.each(data,function(i, item) {
-			if(i<4){
-				sp1+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
-					+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
-			}else if(i>3&&i<8){
-				sp2+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
-					+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
-			}
-		});
-		$('#sp_type1').append(sp1);
-		$('#sp_type2').append(sp2);
-	});
-
 });
