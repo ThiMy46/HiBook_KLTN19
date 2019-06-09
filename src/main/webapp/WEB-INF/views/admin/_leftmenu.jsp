@@ -19,7 +19,7 @@
 		<li><a href="manage-book"><i class="fas fa-fw fa-book"></i> Sách</a></li>
 		<li><a href="manage-bill"><i class="fa fa-fw fa-edit"></i> Hóa đơn</a></li>
 		<li><a href="manage-user"><i class="fa fa-fw fa-users"></i> Tài khoản</a></li>
-		<li><a href="#"><i class="fas fa-gift"></i> Khuyến mãi</a></li>
+		<li><a href="promotion"><i class="fas fa-gift"></i> Khuyến mãi</a></li>
 	</ul>
 </div>
 
