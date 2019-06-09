@@ -13,6 +13,7 @@ import ute.hibook.dao.imp.TypebookDaoImpl;
 import ute.hibook.dto.AuthorDTO;
 import ute.hibook.dto.BookDTO;
 import ute.hibook.dto.BookUpdateDTO;
+import ute.hibook.dto.PromotionDTO;
 import ute.hibook.dto.SupplierDTO;
 import ute.hibook.dto.TagsearchDTO;
 import ute.hibook.dto.TypebookDTO;
@@ -20,6 +21,7 @@ import ute.hibook.dto.UserDTO;
 import ute.hibook.dto.UserreviewDTO;
 import ute.hibook.entity.Author;
 import ute.hibook.entity.Book;
+import ute.hibook.entity.Promotion;
 import ute.hibook.entity.Supplier;
 import ute.hibook.entity.Typebook;
 import ute.hibook.entity.Userreview;
@@ -193,6 +195,14 @@ public class BookServiceImpl implements BookService{
 				authDTO.setNameAuthor(author.getNameAuthor());
 				authors.add(authDTO);
 			}
+			List<PromotionDTO> promotionDTOs=new ArrayList<PromotionDTO>();
+			for(Promotion promotion:book.getPromotions()) {
+				PromotionDTO pDto=new PromotionDTO();
+				pDto.setIdPromotion(promotion.getIdPromotion());
+				pDto.setContentPromotion(promotion.getContentPromotion());
+				promotionDTOs.add(pDto);
+			}
+			bookDTO.setPromotions(promotionDTOs);
 			bookDTO.setAuthors(authors);
 		
 			lstBookDTO.add(bookDTO);

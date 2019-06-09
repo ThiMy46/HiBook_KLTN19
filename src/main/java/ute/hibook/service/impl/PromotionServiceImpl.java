@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ute.hibook.dao.imp.PromotionDaoImpl;
+import ute.hibook.dto.BookDTO;
 import ute.hibook.dto.PromotionDTO;
+import ute.hibook.entity.Book;
 import ute.hibook.entity.Promotion;
 import ute.hibook.service.PromotionService;
 
@@ -106,6 +108,15 @@ public class PromotionServiceImpl implements PromotionService{
 			promotionDTO.setTimeEnd(promotion.getTimeEnd());
 			promotionDTO.setTimeStart(promotion.getTimeStart());
 			promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
+			
+			List<BookDTO> bookDTOs=new ArrayList<BookDTO>();
+			for(Book book : promotion.getBooks()) {
+				BookDTO bookDto=new BookDTO();
+				bookDto.setIdBook(book.getIdBook());
+				bookDto.setNameBook(book.getNameBook());
+				bookDTOs.add(bookDto);
+			}
+			promotionDTO.setBooks(bookDTOs);
 		
 			lstPromotionDTOdate.add(promotionDTO);
 		}
