@@ -33,28 +33,37 @@
 					<div class="card-header">
 						<h5><strong>LỌC THEO</strong></h5><hr/>
 					</div>
-					<div class="card-body text-success">
+					<div class="card-body">
 					    <h5 class="card-title" style="color: black;"><strong>TÁC GIẢ</strong></h5>
-					    <div class="bg">
+					    <div class="bg" id="filter_author">
 					    	<c:forEach var="item" items="${search.lstAuthor}">
-					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.nameAuthor} (${item.numBookSearch})</label></a></div>
-					    	</c:forEach>
+					    		<label class="chiller_cb">${item.nameAuthor} (${item.numBookSearch})
+								  <input type="checkbox" data-author="${item.nameAuthor}">
+								  <span class="checkmark"></span>
+								</label>
+							</c:forEach>
 						</div>
 					</div>
-					<div class="card-body text-success">
+					<div class="card-body">
 					    <h5 class="card-title" style="color: black;"><strong>NHÀ CUNG CẤP</strong></h5>
-					    <div class="bg">
+					    <div class="bg" id="filter_supplier">
 					    	<c:forEach var="item" items="${search.lstSupplier}">
-					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.nameSupplier} (${item.numBookSearch})</label></a></div>
-					    	</c:forEach>
+					    		<label class="chiller_cb">${item.nameSupplier} (${item.numBookSearch})
+								  <input type="checkbox" data-supplier="${item.idSupplier}">
+								  <span class="checkmark"></span>
+								</label>
+							</c:forEach>
 						</div>
 					</div>
-					<div class="card-body text-success">
+					<div class="card-body">
 					    <h5 class="card-title" style="color: black;"><strong>NHÀ XUẤT BẢN</strong></h5>
-					    <div class="bg">
+					    <div class="bg" id="filter_publisher">
 					    	<c:forEach var="item" items="${search.lstPublisher}">
-					    		<div class="chiller_cb"><a href="#"><label>&nbsp; ${item.namePublisher} (${item.numBookSearch})</label></a></div>
-					    	</c:forEach>
+					    		<label class="chiller_cb">${item.namePublisher} (${item.numBookSearch})
+								  <input type="checkbox" data-publisher="${item.namePublisher}">
+								  <span class="checkmark"></span>
+								</label>
+							</c:forEach>
 						</div>
 					</div>
 				</div>
@@ -75,7 +84,7 @@
 				      </select>
 				  </div>
 				<div id="list_search" class="row wow slideInUp" style="padding-top: 20px">
-					<c:forEach var="item" items="${search.currentBooks}">
+					<%-- <c:forEach var="item" items="${search.currentBooks}">
 						<div class="col-sm-6 col-md-4 " style="margin-bottom: 20px;">
 							<div class="sanpham">
 								<div class="thumbnail entry">
@@ -98,12 +107,12 @@
 								</div>
 							</div>
 						</div>
-					</c:forEach>
+					</c:forEach> --%>
 				</div>
 				
 				<div id="right_pagination">
 					<ul class="pagination">
-						<c:if test="${search.currentpage==1}">
+						<%-- <c:if test="${search.currentpage==1}">
 							<li class='disabled'><a href="#">«</a></li>
 						</c:if>
 						<c:if test="${search.currentpage!=1}">
@@ -122,7 +131,7 @@
 						</c:if>
 						<c:if test="${search.currentpage != search.totalpage}">
 							<li><a href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${search.currentpage+1}"/>>»</a></li>
-						</c:if>
+						</c:if> --%>
 						
 					</ul>
 				</div>
@@ -141,6 +150,8 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
 
 	<script src="<%=request.getContextPath()%>/resources/js/search.js"></script>
+
+	<script src="<%=request.getContextPath()%>/resources/js/filter_search.js"></script>
 	<script>
 		new WOW().init();
 	</script>

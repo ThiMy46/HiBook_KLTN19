@@ -193,6 +193,7 @@ public class SearchBookServiceImpl implements SearchBookService{
 		return lstBookDTO;
 	}
 
+	//
 	public List<BookDTO> searchByKey(String key, int offsets, int limits) {
 		List<Book> books = searchDao.searchByKey(key, offsets, limits);
 		
