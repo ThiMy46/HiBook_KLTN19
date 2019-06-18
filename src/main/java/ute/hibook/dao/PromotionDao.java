@@ -17,4 +17,5 @@ public interface PromotionDao {
 	public List<Promotion> getAllPromotion();
 
 	public List<Promotion> getAllPromotionDate();
+	
 }

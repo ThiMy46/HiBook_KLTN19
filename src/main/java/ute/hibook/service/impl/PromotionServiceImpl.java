@@ -69,6 +69,14 @@ public class PromotionServiceImpl implements PromotionService{
 		promotionDTO.setTimeEnd(promotion.getTimeEnd());
 		promotionDTO.setTimeStart(promotion.getTimeStart());
 		promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
+		List<BookDTO> bookDTOs=new ArrayList<BookDTO>();
+		for(Book book : promotion.getBooks()) {
+			BookDTO bookDto=new BookDTO();
+			bookDto.setIdBook(book.getIdBook());
+			bookDto.setNameBook(book.getNameBook());
+			bookDTOs.add(bookDto);
+		}
+		promotionDTO.setBooks(bookDTOs);
 		//System.out.println(promotion.getBooks().get(0).getNameBook());
 		
 		return promotionDTO;

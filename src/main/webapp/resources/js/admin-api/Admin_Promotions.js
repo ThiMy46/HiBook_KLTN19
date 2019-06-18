@@ -21,7 +21,7 @@ $(document).ready(function getlistbook() {
                 '<td class="quantity">'+item.timeEnd+'</td>'+
                 '<td class="price">'+item.picPromotion+'</td>'+
                 '<td class="discount">'+item.saleOff+'%'+'</td>'+
-                '<td><a href="#" class="edit-book btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
+                '<td><a href="promotions/'+item.idBook+'" class="edit-book btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
                 '<a href="#" class="btn btn-icon btn-pill btn-danger delete-book" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>'+
                 '</td></tr>';
     		
