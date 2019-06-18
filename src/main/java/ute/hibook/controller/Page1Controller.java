@@ -88,10 +88,10 @@ public class Page1Controller {
 	}
 	
 	@GetMapping({"/search-newbook"})
-	public String searchBookPage(@RequestParam(value = "page") int numPage, Model model) {
+	public String searchBookPage(Model model) {
 		
 		List<BookDTO> bookall = specialSer.getNewBooksLimit(-1, 6);
-		SearchDTO searchDTO = paginationListBook(bookall, (numPage-1)*6, 6);
+		SearchDTO searchDTO = paginationListBook(bookall, (1-1)*6, 6);
 		
 		if(searchDTO == null) {
 			model.addAttribute("search", null);
@@ -104,25 +104,30 @@ public class Page1Controller {
 	public SearchDTO paginationListBook(List<BookDTO> bookall, int offsets, int limit) {
 		SearchDTO searchDTO = new SearchDTO();
 		
-		//get currentpage
-		if(offsets == -1) {
-			searchDTO.setCurrentpage(1);
-		}else {
-			searchDTO.setCurrentpage(offsets/limit+1);
-		}
 		//total page
 		if((bookall.size() % limit)==0) {
 			searchDTO.setTotalpage(bookall.size()/limit);
 		}else {
 			searchDTO.setTotalpage(bookall.size()/limit + 1);
 		}
+		//get currentpage
+		if(offsets == -1) {
+			searchDTO.setCurrentpage(1);
+			searchDTO.setPre(-1);
+			searchDTO.setNext(1 < searchDTO.getTotalpage() ? 2 : -1);
+			
+		}else {
+			int num_current = offsets/limit+1;
+			searchDTO.setCurrentpage(num_current);
+			
+			searchDTO.setNext((num_current+1) <= searchDTO.getTotalpage() ? (num_current+1) : -1);
+			searchDTO.setPre((num_current-1) == 0 ? -1 : (num_current-1));
+		}
 		
 		List<SupplierDTO> lstSupplier = new ArrayList<SupplierDTO>();
 		List<PublisherDTO> lstPublisher = new ArrayList<PublisherDTO>();
 		//
 		List<AuthorDTO> lstAuthor = new ArrayList<AuthorDTO>();
-		List<BookDTO> books = new ArrayList<BookDTO>();
-		
 		for (int t=0; t<bookall.size(); t++) {
 			BookDTO bookDTO = bookall.get(t);
 			//Supplier
@@ -178,17 +183,11 @@ public class Page1Controller {
 					}
 				}
 			}
-			//list books - display 
-			//6 <= 
-			if(offsets <= t && books.size() < limit) {
-				books.add(bookDTO);
-			}
 			
 		}
 		searchDTO.setLstAuthor(lstAuthor);
 		searchDTO.setLstSupplier(lstSupplier);
 		searchDTO.setLstPublisher(lstPublisher);
-		searchDTO.setCurrentBooks(books);
 		searchDTO.setAllBooks(bookall);//// add 09-06-19 to using multi filter
 		return searchDTO;
 	}

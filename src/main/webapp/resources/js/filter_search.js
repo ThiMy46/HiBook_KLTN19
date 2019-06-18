@@ -1,16 +1,25 @@
 $(document).ready(function() {
+	//get element last path, to get list book corresponding to require
+	var url = window.location;
+	var pathName = url.pathname.substring(url.pathname.lastIndexOf('/') + 1, url.pathname.length);
+	var size_current = 6;
 	
+	//get all list book as required
 	var data_all = [];
 	$.ajax({
     	type : "GET",
-    	url : "/HiBook_KLTN19/api/v1/search_newbooks"
+    	url : "/HiBook_KLTN19/api/v1/"+pathName
     }).then(function(data) {
     	data_all = data;
+    	edit_listbook(data_all.allBooks, size_current, data_all.currentpage, data_all.next, data_all.pre);
     });
 	
+	//Arrays to support search
 	var publishers = [];
 	var authors = [];
 	var supliers = [];
+	
+	//Cath event change of checkbox
 	$("#filter_author input[type='checkbox']").change(function(){
 		var current_check = $(this).data('author');
 		if ($(this).is(':checked')) {
@@ -20,12 +29,13 @@ $(document).ready(function() {
 			  return value != current_check;
 			});
 		}
-		var search = filter_search(publishers , authors, supliers, data_all);
-		edit_listbook(search);
+		//filter follow change of checkbox just selected
+		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
+		//Change display list book 
+		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
 		console.log(search);
 		
 	});
-	
 	$("#filter_supplier input[type='checkbox']").change(function(){
 		var current_check1 = $(this).data('supplier');
 		if ($(this).is(':checked')) {
@@ -35,12 +45,11 @@ $(document).ready(function() {
 			  return value != current_check1;
 			});
 		}
-		var search = filter_search(publishers , authors, supliers, data_all);
-		edit_listbook(search);
+		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
+		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
 		console.log(search);
 		
 	});
-	
 	$("#filter_publisher input[type='checkbox']").change(function(){
 		var current_check2 = $(this).data('publisher');
 		if ($(this).is(':checked')) {
@@ -50,12 +59,11 @@ $(document).ready(function() {
 			  return value != current_check2;
 			});
 		}
-		var search = filter_search(publishers , authors, supliers, data_all);
-		edit_listbook(search);
+		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
+		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
 		console.log(search);
-		
 	});
-	
+	// filter
 	function filter_search(publishers , authors, supliers, data_alll){
 		var data_all_1 = data_alll;
 		if(authors.length !== 0){
@@ -91,12 +99,13 @@ $(document).ready(function() {
 		}
 		return data_all_1;
 	}
-	
-	function edit_listbook(filter_search){
+	//done change dispay listbook and pagination
+	function edit_listbook(filter_search, size, page, next, pre){
+		//show list book
 		$("#list_search").empty();
 		var sp_search='';
 		$.each(filter_search, function (i, item) {
-			if(i<6)
+			if((page-1)*6 <= i && i < (((page-1)*6)+6))
 			{
 				sp_search+='<div class="col-sm-6 col-md-4 " style="margin-bottom: 20px;"><div class="sanpham"><div class="thumbnail entry">'
 					+'<a href="/HiBook_KLTN19/detail-book/'+item.idBook+'" class="non-textdecoration" target="_blank"><div id="hinh" class="img_center">'
@@ -112,25 +121,42 @@ $(document).ready(function() {
 
 	    });
 		$("#list_search").append(sp_search);
-		
-		
+		//edit pagination
+		pagination(filter_search.length <= size ? 1 : (filter_search.length/size+1), page, next, pre)
+	}
+	//edit pagination
+	function pagination(total, page, next, pre){
+		var page_pagination = '';
 		$(".pagination").empty();
-		
-		var page_button='<li class="disabled"><a href="#">«</a></li>';
-		var number_page = 1;
-		if(filter_search.length>5){
-			number_page = filter_search.length/6;
+		if(pre < 1){
+			page_pagination += '<li class="disabled"><a>«</a></li>';
+		}else {
+			var newurl1 = window.location.href + "/" + pre;
+			page_pagination += '<li><a data-page="'+pre+'">«</a></li>';
 		}
-		for(var i=0 ; i<number_page ; i++){
-			var newurl = window.location.href.replace("page=1", "page="+(i+1));
-			if((i+1)==1){
-				page_button+='<li class="active"><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+		for(var i = 1 ; i <= total ; i++){
+			var newurl = window.location.href + "/" + i;
+			if(page == i){
+				page_pagination+='<li class="active"><a data-page="'+i+'">'+i+' <span class="sr-only">(current)</span></a></li>';
 			}else{
-				page_button+='<li ><a data-page="'+(i+1)+'" href="'+newurl+'">'+(i+1)+' <span class="sr-only">(current)</span></a></li>'
+				page_pagination+='<li ><a data-page="'+i+'">'+i+' <span class="sr-only">(current)</span></a></li>';
 			}
 		}
-		page_button+='<li><a href="#">»</a></li>';
-		$('.pagination').append(page_button);
+		if(next > total){
+			page_pagination += '<li class="disabled"><a href="#">»</a></li>';
+		}else{
+			var newurl2 = window.location.href + "/" + next;
+			page_pagination += '<li class=""><a data-page="'+next+'">»</a></li>';
+		}
+		
+		$('.pagination').append(page_pagination);
 	}
+	
+	//get event click move page
+	$('#right_pagination ul').on( 'click', 'li a', function () {
+		var page_change = $(this).data('page');
+		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
+		edit_listbook(search, size_current, page_change, page_change+1, page_change-1);
+	});
 
 });
