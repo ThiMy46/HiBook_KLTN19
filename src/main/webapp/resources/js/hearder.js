@@ -4,7 +4,7 @@ $(document).ready(function() {
 		if(e.keyCode == 13)
 		{
 			var key=$(this).val();
-			window.location="/HiBook_KLTN19/search-key?q="+key+"&page=1";
+			window.location="/HiBook_KLTN19/search-key?key="+key;
 		}
 	});
 	$.ajax({
@@ -13,7 +13,7 @@ $(document).ready(function() {
 	}).then(function(data) {
 		var type = '';    	
 		$.each(data, function (i, item) {	 	
-			type+='<li><a href="/HiBook_KLTN19/search-type/'+item.idType+'?page=1">'+item.nameType+'</a></li>';
+			type+='<li><a href="/HiBook_KLTN19/search-type/'+item.idType+'">'+item.nameType+'</a></li>';
 		});
 		$('#typeBook').append(type); 
 	});

@@ -51,9 +51,9 @@ public class Page1Controller {
 	}
 	
 	@GetMapping({"/search-key"})
-	public String searchKey(@RequestParam(value = "q") String keyword, @RequestParam(value = "page") int numPage, Model model) {
+	public String searchKey(@RequestParam(value = "key") String keyword, Model model) {
 		List<BookDTO> books = searchSer.searchByKey(keyword, -1, 6);
-		SearchDTO searchDTO = paginationListBook(books, (numPage-1)*6, 6);
+		SearchDTO searchDTO = paginationListBook(books, (1-1)*6, 6);
 		if(searchDTO == null) {
 			model.addAttribute("search", null);
 		}else {
@@ -63,9 +63,9 @@ public class Page1Controller {
 	}
 	
 	@GetMapping({"/search-type/{idType}"})
-	public String searchType(@PathVariable int idType, @RequestParam(value = "page") int numPage, Model model) {
+	public String searchType(@PathVariable int idType, Model model) {
 		List<BookDTO> books = searchSer.searchType(idType, -1, 6);
-		SearchDTO searchDTO = paginationListBook(books, (numPage-1)*6, 6);
+		SearchDTO searchDTO = paginationListBook(books, (1-1)*6, 6);
 		if(searchDTO == null) {
 			model.addAttribute("search", null);
 		}else {
@@ -75,9 +75,9 @@ public class Page1Controller {
 	}
 	
 	@GetMapping({"/search-bestsells"})
-	public String searchBestsells(@RequestParam(value = "page") int numPage, Model model) {
+	public String searchBestsells(Model model) {
 		List<BookDTO> bookall = specialSer.getBestSellBooksLimit(-1, 6);
-		SearchDTO searchDTO = paginationListBook(bookall, (numPage-1)*6, 6);
+		SearchDTO searchDTO = paginationListBook(bookall, (1-1)*6, 6);
 		
 		if(searchDTO == null) {
 			model.addAttribute("search", null);
@@ -113,15 +113,10 @@ public class Page1Controller {
 		//get currentpage
 		if(offsets == -1) {
 			searchDTO.setCurrentpage(1);
-			searchDTO.setPre(-1);
-			searchDTO.setNext(1 < searchDTO.getTotalpage() ? 2 : -1);
 			
 		}else {
 			int num_current = offsets/limit+1;
 			searchDTO.setCurrentpage(num_current);
-			
-			searchDTO.setNext((num_current+1) <= searchDTO.getTotalpage() ? (num_current+1) : -1);
-			searchDTO.setPre((num_current-1) == 0 ? -1 : (num_current-1));
 		}
 		
 		List<SupplierDTO> lstSupplier = new ArrayList<SupplierDTO>();
@@ -188,7 +183,7 @@ public class Page1Controller {
 		searchDTO.setLstAuthor(lstAuthor);
 		searchDTO.setLstSupplier(lstSupplier);
 		searchDTO.setLstPublisher(lstPublisher);
-		searchDTO.setAllBooks(bookall);//// add 09-06-19 to using multi filter
+		//searchDTO.setAllBooks(bookall);//// add 09-06-19 to using multi filter
 		return searchDTO;
 	}
 }

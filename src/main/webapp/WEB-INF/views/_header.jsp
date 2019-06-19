@@ -56,9 +56,12 @@
 						<div class="header_search">
 							<span class="glyphicon glyphicon-search"
 								style="width: 18px; height: 18px; margin-right: 9.6px"></span>
-							<input class="gtm_search_bar search-bar" name="q"
+							<input class="gtm_search_bar search-bar" name="key"
 								placeholder="Tìm kiếm sách ..." style="font-family: Open Sans;"
-								type="text">
+								type="text"	/>
+							<!-- <ul class="ul_keys">
+								
+							</ul> -->
 						</div>
 					</li>
 				</ul>
@@ -144,8 +147,7 @@
 			</p>
 
 			<input type="checkbox" checked="checked"> Ghi nhớ<br />
-			<button type="submit" id="btnDangNhap" class="submitbtn">Đăng
-				nhập</button>
+			<button type="submit" id="btnDangNhap" class="submitbtn">Đăng nhập</button>
 			<br />
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}"

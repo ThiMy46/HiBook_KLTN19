@@ -2,6 +2,13 @@ $(document).ready(function() {
 	//get element last path, to get list book corresponding to require
 	var url = window.location;
 	var pathName = url.pathname.substring(url.pathname.lastIndexOf('/') + 1, url.pathname.length);
+	if(pathName.length == 1){
+		pathName_1 = url.pathname.substring(0, url.pathname.lastIndexOf('/'));
+		pathName = pathName_1.substring(pathName_1.lastIndexOf('/') + 1, pathName_1.length)+"/"+pathName;
+	}else if(window.location.href.indexOf("?") > -1){
+		var url_full = window.location.href;
+		pathName = url_full.substring(url_full.lastIndexOf('/') + 1, url_full.length);
+	}
 	var size_current = 6;
 	
 	//get all list book as required
@@ -11,7 +18,7 @@ $(document).ready(function() {
     	url : "/HiBook_KLTN19/api/v1/"+pathName
     }).then(function(data) {
     	data_all = data;
-    	edit_listbook(data_all.allBooks, size_current, data_all.currentpage, data_all.next, data_all.pre);
+    	edit_listbook(data_all.allBooks, size_current, data_all.currentpage, data_all.currentpage+1, data_all.currentpage-1);
     });
 	
 	//Arrays to support search
@@ -32,8 +39,7 @@ $(document).ready(function() {
 		//filter follow change of checkbox just selected
 		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
 		//Change display list book 
-		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
-		console.log(search);
+		edit_listbook(search, size_current, data_all.currentpage, data_all.currentpage+1, data_all.currentpage-1);
 		
 	});
 	$("#filter_supplier input[type='checkbox']").change(function(){
@@ -46,7 +52,7 @@ $(document).ready(function() {
 			});
 		}
 		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
-		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
+		edit_listbook(search, size_current, data_all.currentpage, data_all.currentpage+1, data_all.currentpage-1);
 		console.log(search);
 		
 	});
@@ -60,7 +66,7 @@ $(document).ready(function() {
 			});
 		}
 		var search = filter_search(publishers , authors, supliers, data_all.allBooks);
-		edit_listbook(search, size_current, data_all.currentpage, data_all.next, data_all.pre);
+		edit_listbook(search, size_current, data_all.currentpage, data_all.currentpage+1, data_all.currentpage-1);
 		console.log(search);
 	});
 	// filter

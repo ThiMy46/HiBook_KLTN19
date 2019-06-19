@@ -112,27 +112,7 @@
 				
 				<div id="right_pagination">
 					<ul class="pagination">
-						<%-- <c:if test="${search.currentpage==1}">
-							<li class='disabled'><a href="#">«</a></li>
-						</c:if>
-						<c:if test="${search.currentpage!=1}">
-							<li><a href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${search.currentpage-1}"/> >«</a></li>
-						</c:if>
-						<c:forEach var = "i" begin = "1" end = "${search.totalpage}">
-							<c:if test="${search.currentpage == i}">
-								<li class="active"><a data-page="${i}" href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${i}"/>>${i} <span class="sr-only">(current)</span></a></li>
-							</c:if>
-							<c:if test="${search.currentpage != i}">
-								<li><a data-page="${i}" href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${i}"/> >${i} <span class="sr-only">(current)</span></a></li>
-							</c:if>
-					    </c:forEach>
-					    <c:if test="${search.currentpage == search.totalpage}">
-							<li class='disabled'><a href="#">»</a></li>
-						</c:if>
-						<c:if test="${search.currentpage != search.totalpage}">
-							<li><a href=<c:out value="${requestScope['javax.servlet.forward.request_uri']}?page=${search.currentpage+1}"/>>»</a></li>
-						</c:if> --%>
-						
+						<!-- li pagination  -->
 					</ul>
 				</div>
 			</div>
