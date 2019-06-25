@@ -1,5 +1,6 @@
 package ute.hibook.service.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import ute.hibook.dao.imp.PromotionDaoImpl;
 import ute.hibook.dto.BookDTO;
+import ute.hibook.dto.ConvertPromotionDTO;
 import ute.hibook.dto.PromotionDTO;
 import ute.hibook.entity.Book;
 import ute.hibook.entity.Promotion;
@@ -58,16 +60,36 @@ public class PromotionServiceImpl implements PromotionService{
 		}
 	}
 
-	public PromotionDTO getPromotionById(int idPromotion) {
+	public ConvertPromotionDTO getPromotionById(int idPromotion) {
 		Promotion promotion= promotionDao.getPromotionById(idPromotion);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		PromotionDTO promotionDTO= new PromotionDTO();
+		ConvertPromotionDTO promotionDTO= new ConvertPromotionDTO();
 		promotionDTO.setIdPromotion(promotion.getIdPromotion());
 		promotionDTO.setContentPromotion(promotion.getContentPromotion());
 		promotionDTO.setPicPromotion(promotion.getPicPromotion());
 		promotionDTO.setSaleOff(promotion.getSaleOff());
-		promotionDTO.setTimeEnd(promotion.getTimeEnd());
-		promotionDTO.setTimeStart(promotion.getTimeStart());
+		String dateStart;
+		String dateEnd;
+		Date convertedCurrentDateStart;
+		Date convertedCurrentDateEnd;
+		try {
+			convertedCurrentDateStart = sdf.parse(promotion.getTimeStart().toString());
+			convertedCurrentDateEnd = sdf.parse(promotion.getTimeEnd().toString());
+			String date1=sdf.format(convertedCurrentDateStart );
+			String date2=sdf.format(convertedCurrentDateEnd);
+			dateStart=date1;
+			dateEnd=date2;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			dateStart="";
+			dateEnd="";
+
+			e.printStackTrace();
+		}
+		promotionDTO.setTimeEnd(dateEnd);
+		promotionDTO.setTimeStart(dateStart);
 		promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
 		List<BookDTO> bookDTOs=new ArrayList<BookDTO>();
 		for(Book book : promotion.getBooks()) {
@@ -82,20 +104,41 @@ public class PromotionServiceImpl implements PromotionService{
 		return promotionDTO;
 	}
 
-	public List<PromotionDTO> getAllPromotion() {
+	public List<ConvertPromotionDTO> getAllPromotion() {
 		List<Promotion> lstPromotion= promotionDao.getAllPromotion();
 		
-		List<PromotionDTO> lstPromotionDTO= new ArrayList<PromotionDTO>();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		List<ConvertPromotionDTO> lstPromotionDTO= new ArrayList<ConvertPromotionDTO>();
 		for (Promotion promotion : lstPromotion) {
 			
 			
-			PromotionDTO promotionDTO= new PromotionDTO();
+			ConvertPromotionDTO promotionDTO= new ConvertPromotionDTO();
 			promotionDTO.setIdPromotion(promotion.getIdPromotion());
 			promotionDTO.setContentPromotion(promotion.getContentPromotion());
 			promotionDTO.setPicPromotion(promotion.getPicPromotion());
 			promotionDTO.setSaleOff(promotion.getSaleOff());
-			promotionDTO.setTimeEnd(promotion.getTimeEnd());
-			promotionDTO.setTimeStart(promotion.getTimeStart());
+			String dateStart;
+			String dateEnd;
+			Date convertedCurrentDateStart;
+			Date convertedCurrentDateEnd;
+			try {
+				convertedCurrentDateStart = sdf.parse(promotion.getTimeStart().toString());
+				convertedCurrentDateEnd = sdf.parse(promotion.getTimeEnd().toString());
+				String date1=sdf.format(convertedCurrentDateStart );
+				String date2=sdf.format(convertedCurrentDateEnd);
+				dateStart=date1;
+				dateEnd=date2;
+				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				dateStart="";
+				dateEnd="";
+
+				e.printStackTrace();
+			}
+			promotionDTO.setTimeEnd(dateEnd);
+			promotionDTO.setTimeStart(dateStart);
 			promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
 			List<BookDTO> bookDTOs=new ArrayList<BookDTO>();
 			for(Book book : promotion.getBooks()) {
@@ -114,6 +157,8 @@ public class PromotionServiceImpl implements PromotionService{
 
 	public List<PromotionDTO> getAllPromotiondate() {
 		List<Promotion> lstPromotionDate= promotionDao.getAllPromotionDate();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
 		
 		List<PromotionDTO> lstPromotionDTOdate= new ArrayList<PromotionDTO>();
 		for (Promotion promotion : lstPromotionDate) {
@@ -123,6 +168,19 @@ public class PromotionServiceImpl implements PromotionService{
 			promotionDTO.setContentPromotion(promotion.getContentPromotion());
 			promotionDTO.setPicPromotion(promotion.getPicPromotion());
 			promotionDTO.setSaleOff(promotion.getSaleOff());
+			String a;
+			Date convertedCurrentDate;
+			try {
+				convertedCurrentDate = sdf.parse(promotion.getTimeEnd().toString());
+				String date=sdf.format(convertedCurrentDate );
+				a=date;
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				a="0";
+				e.printStackTrace();
+			}
+			System.out.println("nguyenvietthanh1197"+a);
+			
 			promotionDTO.setTimeEnd(promotion.getTimeEnd());
 			promotionDTO.setTimeStart(promotion.getTimeStart());
 			promotionDTO.setTitlePromotion(promotion.getTitlePromotion());

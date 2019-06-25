@@ -30,5 +30,46 @@ $(document).ready(function getlistbook() {
     	table=$('#table-book').DataTable(); 	         
     });
     
+    /*click delete*/ 
+    $('#table-book tbody ').on( 'click', 'a.delete-book', function () {
+		//get data row clicked
+        var id=$(this).closest("tr").find('.idBook').text();
+        console.log(id);
+        var name=$(this).closest("tr").find('.namebook').text();
+        console.log(name);
+        var index= table.row( $(this).closest("tr") ).index();
+        console.log(index);
+        $('#xoa-title').text('Bạn có chắc muốn xóa cuốn: "'+name+'" không?');
+        
+        deletebook(id, index);
+    });
+    /* Delete book*/ 
+    function deletebook(idPromotion, index){
+    	$('#modalDelete').modal('toggle');
+    	$('#delete-book').click(function(){
+    		$('#modalDelete').modal('toggle');
+    		$.ajax({
+    			type : "DELETE",
+            	url : "api/v1/promotions/"+idPromotion,
+
+            	success : function(data) {
+                    table.row(index).remove().draw();
+                    mydata.splice(index, 1);
+                    alert('xóa thành công!');
+                },
+    	    	statusCode: {
+    	    	    404: function() {
+    	    	      alert('404 page not found');
+    	    	    },
+    	
+    	    	    400: function() {
+    	    	       alert('400 bad request');
+    	    	   }
+    	    	}
+            });
+    	});
+    }
+    
+    
    
 });
