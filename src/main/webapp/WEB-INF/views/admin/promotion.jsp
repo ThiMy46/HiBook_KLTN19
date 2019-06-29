@@ -41,30 +41,30 @@
 		<!-- CONTENT  -->
         <div class="content p-4">
         	
-             <h2 class="mb-4">Datatable Sách</h2>
+             <h2 class="mb-4">Datatable Khuyến mãi</h2>
              <div width="100%" style="text-align: right;">
-             	<a id="add-book" href="add-book"  class="btn btn-icon btn-pill btn-success">
-             		<i class="fa fa-fw fa-plus"></i> Thêm Sách
+             	<a id="add-book" href="add-promotion"  class="btn btn-icon btn-pill btn-success">
+             		<i class="fa fa-fw fa-plus"></i> Thêm Khuyến Mãi
              	</a>
              </div>
 				
 		    <div class="card mb-4">
 		        <div class="card-body">
-		            <table id="table-book" class="table table-hover dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+		            <table id="table-promotion" class="table table-hover dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
 		                <thead>
 		                <tr>
 		                    <th>ID</th>
-		                    <th>TitlePromotion</th>
-		                    <th>ContentPromotion</th>
-		                    <th>timeStart</th>
-		                    <th>timeEnd</th>
-		                    <th>picPromotion</th>
-		                    <th>SaleOff</th>
+		                    <th>Tiêu đề</th>
+		                    <th>ẢNh</th>
+		                    <th>Nội dung</th>
+		                    <th>T/g bắt đầu</th>
+		                    <th>T/g kết thúc</th>
+		                    <th>Giảm(%)</th>
 
 		                    <th class="actions">Actions</th>
 		                </tr>
 		                </thead>
-		                <tbody id="list-book">
+		                <tbody id="list-promotion">
 		                	<!--  Add list book -->
 		                </tbody>
 		            </table>
@@ -89,7 +89,7 @@
 		                </div>
 		                <div class="modal-footer">
 		                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-		                    <button id="delete-book" class="btn btn-success" >Delete</button>
+		                    <button id="delete-promotion" class="btn btn-success" >Delete</button>
 		                </div>
 	            </div>
 	        </div>
@@ -107,31 +107,46 @@
 		        
 		        <!-- Modal body -->
 		        <div class="modal-body">
-			         <div class="row">
-	                    <div class="col-md-4 text-center" id="img_book">
+		        	<div class="row text-center">
+		        		<div id="img_promotion">
+		        			<h3 id="tenkhuyenmai"></h3>
 	                    	<img style="max-width: 80%;" src="" class="img-responsive">
 	                    </div>
-	                    <div class="col-md-8" id='img_content'>
-	                    	<h4 id="tensach"></h4>
-	                    	<div class="row">
-	                    		<div class="col-sm-6">
-	                    			<strong>Giá gốc: <p id="gia" style="color: red;"></p></strong>
-	                    		</div>
-	                    		<div class="col-sm-6">
-	                    			<strong>Giảm: <p id="giam" style="color: red;"></p></strong>
-	                    		</div>
-	                    	</div>
+		        	</div>
+			         <div class="row" style="max-width:90%; margin:auto; margin-top: 10px;">
 	                    	<table class="table table-bordered">
 				                <tbody id="chitiet_body">
 					                
 				                </tbody>
 				            </table>
-	                    </div>
 	                 </div>
 	                 <div class="row" style="max-width:90%; margin:auto;">
-	                 	<h5>Giới thiệu</h5>
+	                 	<p style="font-weight: bold;">Giới thiệu: </p>
+	                 </div>
+	                 <div class="row" style="max-width:90%; margin:auto;">
 	                 	<p id="gioithieu"></p>
-	                 	<p><strong>Đọc thử: </strong><a href="#" id="docthu"></a></p>
+	                 </div>
+	                  <div class="row" style="max-width:90%; margin:auto; margin-top: 10px">
+	                 	<p style="font-weight: bold;">Sách giảm: </p>
+	                 </div>
+	                 <div class="row" style="max-width:90%; margin:auto;">
+	                 	<div class="card" style="width:100%">
+					        <div class="card-body">
+					            <table id="table-book" class="table table-hover dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="example_info" style="width: 100%;">
+					                <thead>
+					                <tr>
+					                    <th>ID</th>
+					                    <th>Tên sách</th>
+					                    <th>ẢNh</th>
+					                    <th>Giảm(%)</th>
+					                </tr>
+					                </thead>
+					                <tbody id="list-book">
+					                	<!--  Add list book -->
+					                </tbody>
+					            </table>
+					        </div>
+					    </div>
 	                 </div>
 		        </div>
 		        
@@ -147,17 +162,5 @@
     </div>
 
 <script src="resources/js/admin-api/Admin_Promotions.js"></script>
-
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'UA-118868344-1');
-</script>
-
-<!-- CUSTOM JS AJAX  -->
-<!-- <script src="resources/js/user-custom/getListbook.js"></script> -->
-
 </body>
 </html>

@@ -96,6 +96,8 @@ public class PromotionServiceImpl implements PromotionService{
 			BookDTO bookDto=new BookDTO();
 			bookDto.setIdBook(book.getIdBook());
 			bookDto.setNameBook(book.getNameBook());
+			bookDto.setPicBook(book.getPicBook());
+			bookDto.setDiscount(book.getDiscount());
 			bookDTOs.add(bookDto);
 		}
 		promotionDTO.setBooks(bookDTOs);
@@ -145,6 +147,8 @@ public class PromotionServiceImpl implements PromotionService{
 				BookDTO bookDto=new BookDTO();
 				bookDto.setIdBook(book.getIdBook());
 				bookDto.setNameBook(book.getNameBook());
+				bookDto.setPicBook(book.getPicBook());
+				bookDto.setDiscount(book.getDiscount());
 				bookDTOs.add(bookDto);
 				promotionDTO.setBooks(bookDTOs);
 			}
@@ -190,6 +194,8 @@ public class PromotionServiceImpl implements PromotionService{
 				BookDTO bookDto=new BookDTO();
 				bookDto.setIdBook(book.getIdBook());
 				bookDto.setNameBook(book.getNameBook());
+				bookDto.setPicBook(book.getPicBook());
+				bookDto.setDiscount(book.getDiscount());
 				bookDTOs.add(bookDto);
 			}
 			promotionDTO.setBooks(bookDTOs);

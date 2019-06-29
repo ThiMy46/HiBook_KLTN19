@@ -21,7 +21,7 @@ public class TagsearchController {
 	TagsearchServiceImpl tagSer;
 	
 	@GetMapping({"/tagsearchs"})
-	public ResponseEntity<?> searchKey(@RequestParam(value = "key") String keyword) {
+	public ResponseEntity<?> searchKey() {
 		
 		List<TagsearchDTO> tags= tagSer.getAllTag();
 		

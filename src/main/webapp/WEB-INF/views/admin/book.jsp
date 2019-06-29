@@ -85,7 +85,7 @@
 	                <!-- modal Body  -->
 		                <div class="modal-body">
 		                    <div class="col-12">
-	                        	<h5 id="xoa-title" class="modal-title" >Bạn có chắc muốn xóa tác giả này không?</h5>
+	                        	<h5 id="xoa-title" class="modal-title" >Bạn có chắc muốn xóa cuốn sách này không?</h5>
 	                    	</div>
 		                </div>
 		                <div class="modal-footer">
