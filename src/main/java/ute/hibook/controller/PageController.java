@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import ute.hibook.dto.CartDTO;
-import ute.hibook.dto.ConvertPromotionDTO;
 import ute.hibook.dto.PaymentDTO;
 import ute.hibook.dto.PromotionDTO;
 import ute.hibook.dto.RoleDTO;
@@ -265,6 +264,12 @@ public class PageController {
 		model.addAttribute("supplier", supplier);
 		return "admin/addbook";
 	}
+	
+	@GetMapping({ "/add-promotion", "/add-promotion/{idPromotion}"})
+	public String addPromotionAdmin(ModelMap model) {
+		
+		return "admin/addPromotion";
+	}
 
 	@GetMapping({ "/add-user","/add-user/{idUser}" })
 	public String addUserAdmin(ModelMap model) {
@@ -331,18 +336,10 @@ public class PageController {
 		return "admin/userreview";
 	}
 	
-	@GetMapping({ "/promotion" })
+	@GetMapping({ "/manage-promotion" })
 	public String promotion() {
 		
-		
 		return "admin/promotion";
-	}
-	@GetMapping(value = "/promotions/{idPromotion}")
-	public String getPromotionbyID(@PathVariable int idPromotion,ModelMap model) {
-		ConvertPromotionDTO promotionDTOs = promotionServiceImpl.getPromotionById(idPromotion);
-		System.out.println(promotionDTOs.getContentPromotion());
-		model.addAttribute("PromotionbyId", promotionDTOs);
-		return "admin/addPromotion";
 	}
 
 }

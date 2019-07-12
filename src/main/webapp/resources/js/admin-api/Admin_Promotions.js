@@ -20,7 +20,7 @@ $(document).ready(function getlistbook() {
                 '<td class="timeStart">'+item.timeStart +'</td>'+
                 '<td class="timeEnd">'+item.timeEnd+'</td>'+
                 '<td class="discount">'+item.saleOff+'%'+'</td>'+
-                '<td><a href="promotions/'+item.idPromotion+'" class="edit-book btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
+                '<td><a href="add-promotion/'+item.idPromotion+'" class="edit-book btn btn-icon btn-pill btn-primary" data-toggle="tooltip" title="Edit" ><i class="fa fa-fw fa-edit"></i></a>'+
                 '<a href="#" class="btn btn-icon btn-pill btn-danger delete-promotion" data-toggle="tooltip" title="Delete"><i class="fa fa-fw fa-trash"></i></a>'+
                 '</td></tr>';
     		
@@ -37,7 +37,7 @@ $(document).ready(function getlistbook() {
 		var row=table.row( $(this).closest("tr") ).index();
 		/*Get data from table */
 		var title=$(this).closest("tr").find('.title').text();
-		var content= $(this).closest("tr").find('.content').text();
+		var content= $(this).closest("tr").find('.content').html();
 		var img= $(this).closest("tr").find('.pic img').attr('src');
 		var timeStart=$(this).closest("tr").find('.timeStart').text();
 		var timeEnd= $(this).closest("tr").find('.timeEnd').text();
@@ -60,7 +60,7 @@ $(document).ready(function getlistbook() {
 		});
 		$('#list-book').append(detail_book);
 		$('#table-book').DataTable()
-		$('#gioithieu').text(content);
+		$('#gioithieu').html(content);
     });
     
     /*click delete*/ 

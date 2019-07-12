@@ -57,4 +57,30 @@ public class UploadController {
 		System.out.println(pathsave+nameFileConvert);
 		return new ResponseEntity<String>(nameFileConvert,HttpStatus.OK);
 	}
+	/*======================Upload Image of Promotion================= */
+	@PostMapping(value = "/upload-img-promotion")
+	public ResponseEntity<String> UploadImgPromotion(MultipartHttpServletRequest request){
+		
+		Iterator<String> listName= request.getFileNames();
+		MultipartFile multipartFile=request.getFile(listName.next());
+		
+		String nameFile= multipartFile.getOriginalFilename();
+		String nameFileConvert = (new SimpleDateFormat("yyyyMMdd_hhmmss_").format(new Date()))+nameFile;
+		
+		String pathsave=context.getRealPath("/resources/images/banner/");
+		
+		File filesave= new File(pathsave+nameFileConvert);
+		try {
+			multipartFile.transferTo(filesave);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
+		
+		System.out.println(pathsave+nameFileConvert);
+		return new ResponseEntity<String>(nameFileConvert,HttpStatus.OK);
+	}
 }

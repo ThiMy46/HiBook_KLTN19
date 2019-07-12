@@ -41,7 +41,7 @@ $(document).ready(function getlistaddbook() {
 				$('.radio input:radio[name=cover][id="radio2"]').attr('checked', true);
 				$('.radio input:radio[name=cover][id="radio1"]').attr('checked', false);
 			}
-			$('#intro').val(data.introBook);
+			CKEDITOR.instances.intro.setData(data.introBook);
 			hinh=data.picBook;
 			docthu=data.proofread;
 			$("#idType option[value='" + data.typebook.idType +"']").attr("selected","selected");
@@ -219,7 +219,7 @@ $(document).ready(function getlistaddbook() {
 		var publicationDate=$('#publicationDate').val();
 		var quantity=$('#quantity').val();
 		var cover= $('.radio input:radio[name=cover][checked="checked"]').val();
-		var intro=$('#intro').val();
+		var intro=CKEDITOR.instances.intro.getData();
 		var idType= $('#idType option:selected').val();
 		var idSup= $('#idSupplier option:selected').data('id');
 		var file_img=$('#file-multiple-img').text();

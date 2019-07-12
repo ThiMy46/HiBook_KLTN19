@@ -131,7 +131,7 @@
 	                 </div>
 	                 <div class="row" style="max-width:90%; margin:auto;">
 	                 	<h5>Giới thiệu</h5>
-	                 	<p id="gioithieu"></p>
+	                 	<div id="gioithieu"></div>
 	                 	<p><strong>Đọc thử: </strong><a href="#" id="docthu"></a></p>
 	                 </div>
 		        </div>

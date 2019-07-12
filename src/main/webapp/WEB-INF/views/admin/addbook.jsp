@@ -217,10 +217,80 @@
              <!--===============-->
          </div>
     </div>
+<script src="https://cdn.ckeditor.com/4.7.0/full-all/ckeditor.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/out-js/jquery.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/out-js/bootstrap.bundle.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/out-js/bootadmin.min.js"></script>
 <script src="<%=request.getContextPath() %>/resources/js/admin-api/add_book.js"></script>
+<script>
+		jQuery.curCSS = function(element, prop, val) {
+		    return jQuery(element).css(prop, val);
+		};
+		var editorInstance = CKEDITOR
+				.replace(
+						document.getElementById("intro"),
+						{
+							language_list : [ "ar:Arabic:rtl", "fr:French",
+									"es:Spanish", "en:English" ],
+							disableNativeSpellChecker : true,
+							removeButtons : "Subscript,Superscript",
+							extraPlugins : "colorbutton,print,font,autolink,justify",
+							removePlugins : "sourcearea,maximize,image,stylescombo,scayt,wsc,elementspath,blockquote,link,specialchar,resize",
+							title : this.title,
+							readOnly : false,
+							resize_enabled : false,
+							autoGrow_minHeight : 200,
+							autoGrow_bottomSpace : 50,
+							autoGrow_onStartup : true,
+							toolbarStartupExpanded : false,
+							toolbarGroups : [
+									{
+										name : "others"
+									},
+									{
+										name : "clipboard",
+										groups : [ "clipboard", "undo" ]
+									},
+									{
+										name : "editing",
+										groups : [ "find", "selection",
+												"spellchecker" ]
+									},
+									{
+										name : "links"
+									},
+									{
+										name : "insert"
+									},
+									{
+										name : "forms"
+									},
+									{
+										name : "tools"
+									},
+									{
+										name : "styles"
+									},
+									"/",
+									{
+										name : "basicstyles",
+										groups : [ "basicstyles", "cleanup" ]
+									},
+									{
+										name : "paragraph",
+										groups : [ "list", "indent", "blocks",
+												"align", "bidi" ]
+									},
+									{
+										name : "colors"
+									},
+									{
+										name : "document",
+										groups : [ "mode", "document",
+												"doctools" ]
+									} ]
+						});
+	</script>
 
 </body>
 </html>

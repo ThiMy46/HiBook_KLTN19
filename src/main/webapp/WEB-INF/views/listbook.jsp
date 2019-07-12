@@ -129,8 +129,6 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.js"></script>
 
-	<script src="<%=request.getContextPath()%>/resources/js/search.js"></script>
-
 	<script src="<%=request.getContextPath()%>/resources/js/filter_search.js"></script>
 	<script>
 		new WOW().init();

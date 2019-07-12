@@ -124,7 +124,7 @@
 	                 	<p style="font-weight: bold;">Giới thiệu: </p>
 	                 </div>
 	                 <div class="row" style="max-width:90%; margin:auto;">
-	                 	<p id="gioithieu"></p>
+	                 	<div id="gioithieu"></div>
 	                 </div>
 	                  <div class="row" style="max-width:90%; margin:auto; margin-top: 10px">
 	                 	<p style="font-weight: bold;">Sách giảm: </p>

@@ -51,6 +51,9 @@ $(document).ready(function getlistbook() {
 		$('#tensach').text(tensach);
 		$('#gia').text(price+' vnđ');
 		$('#giam').text(discount+'%');
+		$('#chitiet_body').append(chitiet);
+		$('#gioithieu').html(mydata[row].introBook);
+		$('#docthu').text(mydata[row].proofread);
 		var chitiet='<tr><td >NXB</td><td>'+mydata[row].publisher+'</td></tr>'+
 			'<tr><td >Kích thước</td><td>'+mydata[row].size+'</td></tr>'+
 			'<tr><td>Số trang</td><td>'+mydata[row].numberPage+'</td></tr>'+
@@ -58,10 +61,10 @@ $(document).ready(function getlistbook() {
 			'<tr><td >Số lượng</td><td>'+quantity+'</td></tr>'+
 			'<tr><td >Loại bìa</td><td>'+mydata[row].cover+'</td></tr>'+
 			'<tr><td >Nhà cung cấp</td><td>'+supplier+'</td></tr>'+
-			'<tr><td >tag tìm kiếm</td><td>'+tagList+'</td></tr>'+
-			'<tr><td >Loại sách</td><td>'+type+'</td></tr>';
+			'<tr><td >Loại sách</td><td>'+type+'</td></tr>'+
+			'<tr><td >tag tìm kiếm</td><td>'+mydata[row].tagList+'</td></tr>';
 		$('#chitiet_body').append(chitiet);
-		$('#gioithieu').text(mydata[row].introBook);
+		$('#gioithieu').html(mydata[row].introBook);
 		$('#docthu').text(mydata[row].proofread);
     });
     /*click update*/ 
