@@ -3,8 +3,9 @@ package ute.hibook.dto;
 public class TagsearchDTO {
 
 	private int idTag;
-	private String nameTag;
+	private String value;
 	private int numOfSearch;
+	private String category;
 
 	public TagsearchDTO() {
 	}
@@ -17,12 +18,12 @@ public class TagsearchDTO {
 		this.idTag = idTag;
 	}
 
-	public String getNameTag() {
-		return this.nameTag;
+	public String getValue() {
+		return this.value;
 	}
 
-	public void setNameTag(String nameTag) {
-		this.nameTag = nameTag;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public int getNumOfSearch() {
@@ -31,5 +32,13 @@ public class TagsearchDTO {
 
 	public void setNumOfSearch(int numOfSearch) {
 		this.numOfSearch = numOfSearch;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 }

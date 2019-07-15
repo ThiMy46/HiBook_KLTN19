@@ -2,8 +2,10 @@ package ute.hibook.dao.imp;
 
 import java.util.List;
 
-import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.procedure.ProcedureCall;
+import org.hibernate.result.ResultSetOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
@@ -37,8 +39,17 @@ public class TagsearchDaoImpl implements TagsearchDao{
 		return sessionFactory.getCurrentSession().get(Tagsearch.class, idTag);
 	}
 
+	public List<Tagsearch> getTagHotLimit() {
+		Session session=sessionFactory.getCurrentSession();
+		ProcedureCall query= session.createStoredProcedureCall("getTagSearchLimit",Tagsearch.class);
+		ResultSetOutput resultSetOutput = (ResultSetOutput) query.getOutputs().getCurrent();
+		List<Tagsearch> tagSearchs=resultSetOutput.getResultList();
+		return tagSearchs;
+	}
+
 	public List<Tagsearch> getAllTag() {
-		return sessionFactory.getCurrentSession().createQuery("from tagsearch").getResultList();
+		List<Tagsearch> tagSearchs=sessionFactory.getCurrentSession().createQuery("from tagsearch").getResultList();
+		return tagSearchs;
 	}
 
 }

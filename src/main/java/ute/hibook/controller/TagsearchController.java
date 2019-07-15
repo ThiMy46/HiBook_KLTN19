@@ -30,4 +30,16 @@ public class TagsearchController {
 		}
 		 return new ResponseEntity<List<TagsearchDTO>>(tags,HttpStatus.OK);
 	}
+	
+	@GetMapping({"/tag-limit"})
+	public ResponseEntity<?> getSearchKeyLimit() {
+		
+		List<TagsearchDTO> tags= tagSer.getTagHotLimit();
+		
+		if(tags.isEmpty()) {
+			return new ResponseEntity<List<TagsearchDTO>>(HttpStatus.NOT_FOUND);
+		}
+		 return new ResponseEntity<List<TagsearchDTO>>(tags,HttpStatus.OK);
+	}
+	
 }

@@ -11,4 +11,5 @@ public interface TagsearchDao {
 	public void deleteTag(int idTag);
 	public Tagsearch getTagById(int idTag);
 	public List<Tagsearch> getAllTag();
+	public List<Tagsearch> getTagHotLimit();
 }

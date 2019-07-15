@@ -72,7 +72,7 @@ public class BookServiceImpl implements BookService{
 					continue;
 				}
 				TagsearchDTO tagDTO = new TagsearchDTO();
-				tagDTO.setNameTag(tag);
+				tagDTO.setValue(tag);
 				tagDTO.setNumOfSearch(0);
 				tagSearchSer.addTag(tagDTO);
 			}

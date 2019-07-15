@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+
 <!--
 		==============================Hearder====================================
 -->
@@ -56,14 +57,12 @@
 						<div class="header_search">
 							<span class="glyphicon glyphicon-search"
 								style="width: 18px; height: 18px; margin-right: 9.6px"></span>
-							<input class="gtm_search_bar search-bar" name="key"
+							<input id="search" class="gtm_search_bar search-bar" name="key"
 								placeholder="Tìm kiếm sách ..." style="font-family: Open Sans;"
 								type="text"	/>
-							<!-- <ul class="ul_keys">
-								
-							</ul> -->
 						</div>
 					</li>
+					
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right"
@@ -211,7 +210,7 @@
 <!--end div register-->
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
 <c:if test="${not empty param.erro}">

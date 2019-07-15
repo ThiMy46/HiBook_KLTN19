@@ -17,18 +17,20 @@ public class TagsearchServiceImpl implements TagsearchService{
 	@Autowired
 	TagsearchDaoImpl tagDao;
 	
+	String CATEGORY = "TỪ KHÓA HOT";
+	
 	public void addTag(TagsearchDTO tagDTO) {
 		//check tag exists, if exists num++, not exists add new tag 
 		List<Tagsearch> tags = tagDao.getAllTag();
 		for (Tagsearch tagsearch : tags) {
 			//exists not add
-			if(tagsearch.getNameTag().trim().equals(tagDTO.getNameTag().trim())) {
+			if(tagsearch.getNameTag().trim().equals(tagDTO.getValue().trim())) {
 				return;
 			}
 		}
 		//not exists, add into table tag
 		Tagsearch tag=new Tagsearch();
-		tag.setNameTag(tagDTO.getNameTag().trim());
+		tag.setNameTag(tagDTO.getValue().trim());
 		tag.setNumOfSearch(tagDTO.getNumOfSearch());
 		tagDao.addTag(tag);
 		System.out.println("add Tagseach successful!");
@@ -37,7 +39,7 @@ public class TagsearchServiceImpl implements TagsearchService{
 	public void updateTag(TagsearchDTO tagDTO) {
 		Tagsearch tag= tagDao.getTagById(tagDTO.getIdTag());
 		if(tag!=null) {
-			tag.setNameTag(tagDTO.getNameTag().trim());
+			tag.setNameTag(tagDTO.getValue().trim());
 			tag.setNumOfSearch(tagDTO.getNumOfSearch());
 			tagDao.updateTag(tag);
 			System.out.println("update Tagseach successful!");
@@ -61,7 +63,7 @@ public class TagsearchServiceImpl implements TagsearchService{
 		
 		TagsearchDTO tagDTO= new TagsearchDTO();
 		tagDTO.setIdTag(tag.getIdTag());
-		tagDTO.setNameTag(tag.getNameTag());
+		tagDTO.setValue(tag.getNameTag());
 		tagDTO.setNumOfSearch(tag.getNumOfSearch());
 		
 		return tagDTO;
@@ -75,8 +77,26 @@ public class TagsearchServiceImpl implements TagsearchService{
 			
 			TagsearchDTO tagDTO= new TagsearchDTO();
 			tagDTO.setIdTag(tag.getIdTag());
-			tagDTO.setNameTag(tag.getNameTag());
+			tagDTO.setValue(tag.getNameTag());
 			tagDTO.setNumOfSearch(tag.getNumOfSearch());
+			tagDTO.setCategory("");
+		
+			lstTagDTO.add(tagDTO);
+		}
+		return lstTagDTO;
+	}
+
+	public List<TagsearchDTO> getTagHotLimit() {
+		List<Tagsearch> lstTag= tagDao.getTagHotLimit();
+		
+		List<TagsearchDTO> lstTagDTO= new ArrayList<TagsearchDTO>();
+		for (Tagsearch tag : lstTag) {
+			
+			TagsearchDTO tagDTO= new TagsearchDTO();
+			tagDTO.setIdTag(tag.getIdTag());
+			tagDTO.setValue(tag.getNameTag());
+			tagDTO.setNumOfSearch(tag.getNumOfSearch());
+			tagDTO.setCategory(CATEGORY);
 		
 			lstTagDTO.add(tagDTO);
 		}

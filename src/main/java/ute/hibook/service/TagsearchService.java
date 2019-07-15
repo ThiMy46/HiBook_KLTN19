@@ -11,4 +11,5 @@ public interface TagsearchService {
 	public void deleteTag(int idTag);
 	public TagsearchDTO getTagById(int idTag);
 	public List<TagsearchDTO> getAllTag();
+	public List<TagsearchDTO> getTagHotLimit();
 }

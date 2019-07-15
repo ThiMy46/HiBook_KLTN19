@@ -17,33 +17,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/bootadmin.min.css">
 
 <title>Chi tiết hóa đơn</title>
-<style type="text/css">
-.top-alert {
-	position: fixed;
-	top: 80px;
-	width: 100%;
-	z-index: 100000;
-	left: 0;
-	padding: 20px;
-	display: inline-block;
-	text-align: center;
-}
-
-.top-alert .alert {
-	width: auto !important;
-	height: 100%;
-	display: inline;
-	position: relative;
-	margin: 0;
-}
-
-.top-alert .alert .close {
-	position: absolute;
-	top: 11px;
-	right: 10px;
-	color: inherit;
-}
-</style>
 </head>
 <body class="bg-light">
 	<div class="container" style="margin-top: 20px;">
@@ -170,15 +143,7 @@
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/moment.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/fullcalendar.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/hoadon.js"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
 
-		gtag('config', 'UA-118868344-1');
-	</script>
 
 </body>
 </html>

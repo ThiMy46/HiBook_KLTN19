@@ -77,7 +77,7 @@ public class PromotionServiceImpl implements PromotionService{
 		Promotion promotion= promotionDao.getPromotionById(idPromotion);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
-		ConvertPromotionDTO promotionDTO= new ConvertPromotionDTO();
+		ConvertPromotionDTO promotionDTO = new ConvertPromotionDTO();
 		promotionDTO.setIdPromotion(promotion.getIdPromotion());
 		promotionDTO.setContentPromotion(promotion.getContentPromotion());
 		promotionDTO.setPicPromotion(promotion.getPicPromotion());
@@ -216,7 +216,36 @@ public class PromotionServiceImpl implements PromotionService{
 		}
 		return lstPromotionDTOdate;
 	}
+	public List<PromotionDTO> getAllPromotions() {
+		List<Promotion> lstPromotion = promotionDao.getAllPromotion();
 
+
+
+		List<PromotionDTO> lstPromotionDTO = new ArrayList<PromotionDTO>();
+		for (Promotion promotion : lstPromotion) {
+
+			PromotionDTO promotionDTO = new PromotionDTO();
+			promotionDTO.setIdPromotion(promotion.getIdPromotion());
+			promotionDTO.setContentPromotion(promotion.getContentPromotion());
+			promotionDTO.setPicPromotion(promotion.getPicPromotion());
+			promotionDTO.setSaleOff(promotion.getSaleOff());
+			promotionDTO.setTimeEnd(promotion.getTimeEnd());
+			promotionDTO.setTimeStart(promotion.getTimeStart());
+			promotionDTO.setTitlePromotion(promotion.getTitlePromotion());
+			List<BookDTO> bookDTOs = new ArrayList<BookDTO>();
+			for (Book book : promotion.getBooks()) {
+				BookDTO bookDto = new BookDTO();
+				bookDto.setIdBook(book.getIdBook());
+				bookDto.setNameBook(book.getNameBook());
+				bookDTOs.add(bookDto);
+				promotionDTO.setBooks(bookDTOs);
+			}
+
+			lstPromotionDTO.add(promotionDTO);
+		}
+		return lstPromotionDTO;
+
+	}
 	
 
 }
