@@ -57,6 +57,15 @@ public class SearchBookController {
 		 return new ResponseEntity<SearchDTO>(searchDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping({"/search-by-type"})
+	public ResponseEntity<?> searchTypeByType(@RequestParam int type, Model model) {
+		List<BookDTO> bookall = searchSer.searchType(type, 0, 8);
+		if(bookall.isEmpty()) {
+			return new ResponseEntity<SearchDTO>(HttpStatus.NOT_FOUND);
+		}
+		 return new ResponseEntity<List<BookDTO>>(bookall, HttpStatus.OK);
+	}
+	
 	@GetMapping({"/search-newbook"})
 	public ResponseEntity<?> searchBookPage() {
 		

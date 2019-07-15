@@ -78,7 +78,7 @@ $(document).ready(function() {
 				var idType=$('#tensach').data('type');
 				$.ajax({
 					type : "GET",
-					url : "/HiBook_KLTN19/api/v1/searchs",
+					url : "/HiBook_KLTN19/api/v1/search-by-type",
 					data:{
 						type:idType
 					}
@@ -87,13 +87,19 @@ $(document).ready(function() {
 					var sp2='';
 					$.each(data,function(i, item) {
 						if(i<4){
-							sp1+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
+							sp1+='<div class="col-xs-3 col-sm-3"><a href="/HiBook_KLTN19/detail-book/'+item.idBook+'" class="thumbnail">'
 								+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
 						}else if(i>3&&i<8){
-							sp2+='<div class="col-xs-3 col-sm-3"><a href="#" class="thumbnail">'
+							sp2+='<div class="col-xs-3 col-sm-3"><a href="/HiBook_KLTN19/detail-book/'+item.idBook+'" class="thumbnail">'
 								+'<img src="/HiBook_KLTN19/resources/images/book/'	+ item.picBook + '" alt="Image" style="max-height: 234px; max-width: 100%;"></a></div>';
 						}
 					});
+					if(data.length <= 4){
+						//$('#Carousel').						
+						$("a.left").remove();
+						$("a.right").remove();
+						$('#Carousel').carousel('pause');
+					}
 					$('#sp_type1').append(sp1);
 					$('#sp_type2').append(sp2);
 				});

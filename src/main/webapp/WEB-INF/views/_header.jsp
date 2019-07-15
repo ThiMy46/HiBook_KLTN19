@@ -17,8 +17,9 @@
 	</div>
 </div>
 <header id="header">
-	<nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
-		data-offset-top="50">
+	<!-- <nav class="navbar .navbar-expand-sm navbar-inverse" data-spy="affix"
+		data-offset-top="50"> -->
+	<nav class="navbar .navbar-expand-sm navbar-inverse" >
 		<div class="container">
 			<div class="navbar-header">
 				<c:choose>

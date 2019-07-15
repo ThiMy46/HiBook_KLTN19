@@ -307,8 +307,7 @@
 					</div>
 					<!--.carousel-inner-->
 					<a data-slide="prev" href="#Carousel" class="left carousel-control">‹</a>
-					<a data-slide="next" href="#Carousel"
-						class="right carousel-control">›</a>
+					<a data-slide="next" href="#Carousel" class="right carousel-control">›</a>
 				</div>
 				<!--.Carousel-->
 

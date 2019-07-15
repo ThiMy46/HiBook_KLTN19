@@ -134,7 +134,7 @@
 		<div class="container khung" style="text-align: center;">
 			<div class="gioithieu">
 				<h2>
-					<i class="fas fa-torah"></i> SÁCH MỚI XUẤT BẢN
+					<i class="fas fa-seedling"></i> SÁCH MỚI XUẤT BẢN
 				</h2>
 				<p class="p_home">Một số sách vừa được xuất bản</p>
 			</div>
