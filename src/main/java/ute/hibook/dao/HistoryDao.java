@@ -10,4 +10,5 @@ public interface HistoryDao {
 	public void deleteUser(int idUserHistory);
 	public History getidUserHistoryByidBook(int idBook);
 	public List<History> getAllHistory();
+	public List<History> getHistoryByidUser(int idUser);
 }

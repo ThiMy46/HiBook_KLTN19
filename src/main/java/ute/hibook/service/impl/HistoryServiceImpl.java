@@ -40,4 +40,8 @@ public class HistoryServiceImpl implements HistoryDao{
 		return historyDaoImpl.getAllHistory();
 	}
 
+	public List<History> getHistoryByidUser(int idUser) {
+		return historyDaoImpl.getHistoryByidUser(idUser);
+	}
+
 }

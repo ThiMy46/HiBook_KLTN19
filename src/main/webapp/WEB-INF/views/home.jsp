@@ -196,6 +196,26 @@
 		</div>
 	</div>
 	<!--
+	========================SÁCHBÁN CHẠY NHẤT================
+	-->
+	<div class="container-fluid" id="historyuser">
+		<div class="container " style="text-align: center; margin-bottom:30px;">
+			<div class="gioithieu">
+
+				<h2>
+					Sản phẩm bạn đã xem
+				</h2>
+			</div>
+			<div class="row container" id="loadhistory"
+				style="padding-top: 20px"></div>
+			
+			<div class="text-center" style="margin-top: 10px;">
+				<button class="btn btn-success btn_xemthem"
+					onclick="window.location.href='/HiBook_KLTN19/user-history'">Xem thêm</button>
+			</div>
+		</div>
+	</div>
+	<!--
 	========================LOGO ĐỐI TÁC================
 	-->
 	<div class="container">

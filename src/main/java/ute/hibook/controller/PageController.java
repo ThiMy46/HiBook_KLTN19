@@ -225,6 +225,11 @@ public class PageController {
 		}
 		return "/";
 	}
+	@GetMapping({ "/user-history" })
+	public String userHistory() {
+		 
+		return "/listhistory";
+	}
 
 	@GetMapping({ "/user-bill" })
 	public String userBill(ModelMap model) {

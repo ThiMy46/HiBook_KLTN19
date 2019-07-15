@@ -41,6 +41,18 @@ public class HistoryDaoImpl implements HistoryDao {
 			return null;
 		}
 	}
+	
+	public List<History> getHistoryByidUser(int idUser) {
+		Session session=sessionFactory.getCurrentSession();
+		try {
+			Query query = session.createQuery("FROM history WHERE idUser = :idUser ORDER BY idhistory DESC");
+			query.setParameter("idUser", idUser);
+			List<History> userHistory = query.getResultList();
+			return userHistory;
+		} catch(Exception se) {
+			return null;
+		}
+	}
 
 	public List<History> getAllHistory() {
 		return sessionFactory.getCurrentSession().createQuery("from history").getResultList();
