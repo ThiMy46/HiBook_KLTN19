@@ -225,6 +225,7 @@ public class PageController {
 		}
 		return "/";
 	}
+	
 	@GetMapping({ "/user-history" })
 	public String userHistory() {
 		 

@@ -15,7 +15,6 @@
 <!-- CSS -->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/info_css.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/myhome.css" />
-
 <title>Thông tin User</title>
 <!--Icon fa-->
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/fontawesome-all.min.css"/>
@@ -136,7 +135,6 @@
 	<!-- ./Footer -->
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script

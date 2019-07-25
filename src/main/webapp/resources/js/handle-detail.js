@@ -8,6 +8,7 @@ $(document).ready(function() {
 		type : "GET",
 		url : "/HiBook_KLTN19/api/v1/books/" + idSach
 	}).then(function(data) { 
+				//$('#post-review-box form').attr('action', '/HiBook_KLTN19/add-review/'+idSach);
 				if(data.quantity < 1){
 					$('#btn-purchase').html('<i class="fas fa-ban"></i> Hết sách');
 				}
@@ -48,12 +49,14 @@ $(document).ready(function() {
 				var text_review = "";
 				var star_number=0;
 				var dem=0;
+				var star_arr = [0,0,0,0,0];
 				$.each(data.userreviews,function(i, item) {
 					var start = "";
 					for (var st = 0; st < item.star; st++) {
 						start += '<span class="fa fa-star checked"></span>';
 					}
 					star_number+=item.star;
+					star_arr[item.star-1] = star_arr[item.star-1]+1;
 					dem++;
 					text_review += '<h4>' + item.user.nameUser + ' - ' + item.title + '</h4>'
 					+ '<div class="stars">' + start + '</div>'
@@ -61,8 +64,21 @@ $(document).ready(function() {
 					+ '<small class="review-date">' + item.timeReview + '</small>'
 					+ '<a href="#" style="color: #404040; font-weight: 600;"> Báo cáo</a><hr/>';
 				});
-
-				$('#TryRead a').data('value',data.proofread);
+				var count = data.userreviews.length;
+				console.log(star_arr);
+				if(count != 0){
+					$('#thongke1').html(Math.ceil(star_arr[0]*100/count) +"%");
+					$('#thongke1_id').width(Math.ceil(star_arr[0]*100/count) +"%");
+					$('#thongke2').html(Math.ceil(star_arr[1]*100/count) +"%");
+					$('#thongke2_id').width(Math.ceil(star_arr[1]*100/count) +"%");
+					$('#thongke3').html(Math.ceil(star_arr[2]*100/count) +"%");
+					$('#thongke3_id').width(Math.ceil(star_arr[2]*100/count) +"%");
+					$('#thongke4').html(Math.ceil(star_arr[3]*100/count) +"%");
+					$('#thongke4_id').width(Math.ceil(star_arr[3]*100/count) +"%");
+					$('#thongke5').html(Math.ceil(star_arr[4]*100/count) +"%");
+					$('#thongke5_id').width(Math.ceil(star_arr[4]*100/count) +"%");
+				}
+				$('#TryRead>a').data('value',data.proofread);
 				$('#mucreview').append(text_review);
 				var star_tb=star_number/dem;
 
@@ -70,10 +86,14 @@ $(document).ready(function() {
 					if(i<star_tb){
 						$("#start_tb").text(i+1);
 						$('.rating-block').append('<span class="glyphicon glyphicon-star checked"></span>');
+						$('#star_header').append('<span class="glyphicon glyphicon-star checked"></span>');
 					}else{
 						$('.rating-block').append('<span class="glyphicon glyphicon-star"></span>');
+						$('#star_header').append('<span class="glyphicon glyphicon-star"></span>');
 					}
 				}
+				$('#star_header').append('<small style="color: #337ab7">('+count+' đánh giá)</small>');
+				
 				/*Get book same type */
 				var idType=$('#tensach').data('type');
 				$.ajax({
@@ -127,11 +147,69 @@ $(document).ready(function() {
 			},
 			success : function(data) {
 				if(data != -1) {
-					alert("Đã thêm vào giỏ!");
+					//alert("Đã thêm vào giỏ!");
 					$(".giohang_circle").find("span").text(data);
+					// alert thongbao
+					$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Đã thêm vào giỏ!</div></div>');
+					$('.thongbao').fadeIn();
+					setTimeout(function() {
+						
+						$('.thongbao').fadeOut(function() {
+							$('.thongbao').empty();
+						});
+					}, 2000);
 				}
 				else{
-					alert("Bạn vui lòng đăng nhập trước để mua hàng!!!");
+					// alert thongbao
+					$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> Bạn vui lòng đăng nhập trước để mua hàng!!!</div></div>');
+					$('.thongbao').fadeIn();
+					setTimeout(function() {
+						
+						$('.thongbao').fadeOut(function() {
+							$('.thongbao').empty();
+						});
+					}, 2000);
+				}
+			}
+		});
+	});
+	//click review
+	$('#review').click(function(){
+		var star_review = $('#ratings-hidden').val();
+		var title_review = $('#title_review_write').val();
+		var content_review = $('#new-review').val();
+		$.ajax({
+			url : "/HiBook_KLTN19/api/v1/userreiew/" + idSach,
+			type : "POST",
+			data : {
+				star : star_review,
+				title : title_review,
+				content : content_review
+			},
+			success : function(data) {
+				if(data != -1) {
+					//alert("Đã thêm vào giỏ!");
+					$(".giohang_circle").find("span").text(data);
+					// alert thongbao
+					$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Cảm ơn bạn đã để lại bình luận!</div></div>');
+					$('.thongbao').fadeIn();
+					setTimeout(function() {
+						
+						$('.thongbao').fadeOut(function() {
+							$('.thongbao').empty();
+						});
+					}, 2000);
+				}
+				else{
+					// alert thongbao
+					$('.thongbao').html('<div class="top-alert"><div class="alert alert-danger" role="alert"><i class="far fa fa-times"></i> Bạn vui lòng đăng nhập trước!!!</div></div>');
+					$('.thongbao').fadeIn();
+					setTimeout(function() {
+						
+						$('.thongbao').fadeOut(function() {
+							$('.thongbao').empty();
+						});
+					}, 2000);
 				}
 			}
 		});

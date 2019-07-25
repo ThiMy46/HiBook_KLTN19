@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/stylecart.css" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="resources/css/alert.css" />
 <style>
   .ui-autocomplete-category {
     font-weight: bold;

@@ -74,7 +74,7 @@ public class UserController {
 		if(BCrypt.checkpw(old, userDTO.getPassword())){
 			userDTO.setPassword(BCrypt.hashpw(passnew,BCrypt.gensalt(12)).toString());
 			System.out.println(userDTO.getPassword());
-			userSer.updateUser(userDTO);
+			userSer.updatePassUser(userDTO);
 			return new ResponseEntity<Integer>(1, HttpStatus.OK);//update
 		}else{
 			return new ResponseEntity<Integer>(-1, HttpStatus.OK);//pass old wrong

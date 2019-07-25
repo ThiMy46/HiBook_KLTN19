@@ -54,11 +54,20 @@ public class UserServiceImpl implements UserService{
 			user.setBirthday(userDTO.getBirthday());
 			user.setEmail(userDTO.getEmail());
 			user.setNumberphone(userDTO.getNumberphone());
-			user.setPassword(userDTO.getPassword());
+//			user.setPassword(userDTO.getPassword());
 			user.setSex(userDTO.getSex());
 //			Role role=roleDao.getRoleById(userDTO.getRole().getIdRole());
 //			user.setRole(role);
 			
+			userDao.updateUser(user);
+			System.out.println("update User successful!");
+		}
+	}
+	
+	public void updatePassUser(UserDTO userDTO) {
+		User user= userDao.getUserById(userDTO.getIdUser());
+		if(user!=null) {
+			user.setPassword(userDTO.getPassword());			
 			userDao.updateUser(user);
 			System.out.println("update User successful!");
 		}

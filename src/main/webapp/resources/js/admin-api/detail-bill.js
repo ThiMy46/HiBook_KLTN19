@@ -71,7 +71,8 @@ $(document).ready(function getlistBill() {
             	url : "/HiBook_KLTN19/api/v1/bills/"+idBill+"/status/"+idStatus,
             	type : "PUT",
             	success : function(data) {
-            		$('.thongbao').html('<div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Thay đổi thành công!!!</div>');
+            		// alert thongbao
+            		$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Thay đổi thành công!!!</div></div>');
             		$('.thongbao').fadeIn();
             		setTimeout(function() {
             			

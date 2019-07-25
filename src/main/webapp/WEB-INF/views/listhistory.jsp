@@ -64,7 +64,7 @@
 	<%@ include file="_footer.jsp" %>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
+	<%-- 	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script> --%>
 
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

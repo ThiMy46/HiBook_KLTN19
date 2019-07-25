@@ -12,34 +12,10 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/datatables.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/fullcalendar.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootadmin.min.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/alert.css">
 
     <title>Detail Bill | HiBookAdmin</title>
-    <style type="text/css">
-    	.top-alert {
-			  position: fixed;
-			  top: 80px;
-			  width: 100%;
-			  z-index: 100000;
-			  left: 0;
-			  padding: 20px;
-			  display: inline-block;
-			  text-align: center;
-			}
-			.top-alert .alert {
-			  width: auto !important;
-			  height: 100%;
-			  display: inline;
-			  position: relative;
-			  margin: 0;
-			}
-			.top-alert .alert .close {
-			  position: absolute;
-			  top: 11px;
-			  right: 10px;
-			  color: inherit;
-			}
-    	
-    </style>
+    
 </head>
 <body class="bg-light">
 <div class="container">
@@ -127,7 +103,7 @@
             </div>
         </div>
     </div>
-     <div class="thongbao top-alert"></div>
+     <div class="thongbao"></div>
 	<!-- MODAL CHANGE STATUS-->
         <div class="modal fade" id="modalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	        <div class="modal-dialog modal-dialog-centered" role="document">

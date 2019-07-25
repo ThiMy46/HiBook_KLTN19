@@ -110,7 +110,7 @@
 		<div style="text-align: right; margin-top: 10px;">
 			<button class="btn btn-success dathang" style="margin-bottom: 20px">Xác nhận đặt Hàng >></button>
 		</div>
-		<div class="thongbao top-alert"></div>
+		<div class="thongbao"></div>
 		<!-- MODAL -->
 		<div class="modal fade" id="modalChange" tabindex="-1" role="dialog"
 			aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

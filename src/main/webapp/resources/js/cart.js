@@ -84,12 +84,19 @@ $(document).ready(function() {
 			url:"/HiBook_KLTN19/api/v1/carts/"+idCart,
 			type:"DELETE",
 			success: function(value){
-				alert("Xóa Thành Công");
 				seft.closest("tr").remove();
 				GanTongTien();
 				var value = $(".giohang_circle").find("span").text();
 				value--;
 				$(".giohang_circle").find("span").text(value);	 
+				$('.thongbao').html('<div class="top-alert"><div class="alert alert-danger" role="alert"><i class="far fa fa-times"></i> Xóa thành công!!!</div></div>');
+				$('.thongbao').fadeIn();
+				setTimeout(function() {
+					
+					$('.thongbao').fadeOut(function() {
+						$('.thongbao').empty();
+					});
+				}, 2000);
 			}
 		});
 

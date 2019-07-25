@@ -209,13 +209,8 @@
 	<!--end form-->
 </div>
 <!--end div register-->
-
+<div class="thongbao"></div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
-<c:if test="${not empty param.erro}">
-	<script>
-		alert("${param.erro}");
-	</script>
-</c:if>

@@ -9,7 +9,7 @@
 <!-- Bootstrap -->
 <link href="<%=request.getContextPath()%>/resources/css/bootstrap.css"
 	rel="stylesheet">
-
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/alert.css" />
 <!-- Include the above in your HEAD tag -->
 <link href="<%=request.getContextPath()%>/resources/css/detail_css.css"
 	rel="stylesheet">
@@ -54,12 +54,8 @@
 
 				<!-- Review -->
 				<div class="rating">
-					<div class="stars">
-						<span class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span
-							class="fa fa-star checked"></span> <span class="fa fa-star"></span>
-						<span class="fa fa-star"></span> <a href="#"><small
-							style="color: #337ab7">(5 đánh giá)</small></a>
+					<div id="star_header" class="stars">
+						
 					</div>
 				</div>
 				<hr />
@@ -141,12 +137,12 @@
 											</div>
 											<div class="pull-left" style="width: 180px;">
 												<div class="progress" style="height: 9px; margin: 8px 0;">
-													<div class="progress-bar progress-bar-success"
+													<div id="thongke5_id" class="progress-bar progress-bar-success"
 														role="progressbar" aria-valuenow="4" aria-valuemin="0"
-														aria-valuemax="5" style="width: 100%"></div>
+														aria-valuemax="5" style="width: 0%"></div>
 												</div>
 											</div>
-											<div class="pull-right" style="margin-left: 10px;">2</div>
+											<div id="thongke5" class="pull-right" style="margin-left: 10px;">0</div>
 										</div>
 										<div class="pull-left">
 											<div class="pull-left" style="width: 35px; line-height: 1;">
@@ -156,12 +152,12 @@
 											</div>
 											<div class="pull-left" style="width: 180px;">
 												<div class="progress" style="height: 9px; margin: 8px 0;">
-													<div class="progress-bar progress-bar-success"
+													<div id="thongke4_id" class="progress-bar progress-bar-success"
 														role="progressbar" aria-valuenow="4" aria-valuemin="0"
-														aria-valuemax="5" style="width: 80%"></div>
+														aria-valuemax="5" style="width: 0%"></div>
 												</div>
 											</div>
-											<div class="pull-right" style="margin-left: 10px;">1</div>
+											<div id="thongke4" class="pull-right" style="margin-left: 10px;">0</div>
 										</div>
 										<div class="pull-left">
 											<div class="pull-left" style="width: 35px; line-height: 1;">
@@ -171,12 +167,12 @@
 											</div>
 											<div class="pull-left" style="width: 180px;">
 												<div class="progress" style="height: 9px; margin: 8px 0;">
-													<div class="progress-bar progress-bar-success"
+													<div id="thongke3_id" class="progress-bar progress-bar-success"
 														role="progressbar" aria-valuenow="0" aria-valuemin="0"
 														aria-valuemax="5" style="width: 0%"></div>
 												</div>
 											</div>
-											<div class="pull-right" style="margin-left: 10px;">0</div>
+											<div id="thongke3" class="pull-right" style="margin-left: 10px;">0</div>
 										</div>
 										<div class="pull-left">
 											<div class="pull-left" style="width: 35px; line-height: 1;">
@@ -186,12 +182,12 @@
 											</div>
 											<div class="pull-left" style="width: 180px;">
 												<div class="progress" style="height: 9px; margin: 8px 0;">
-													<div class="progress-bar progress-bar-success"
+													<div id="thongke2_id" class="progress-bar progress-bar-success"
 														role="progressbar" aria-valuenow="0" aria-valuemin="0"
 														aria-valuemax="5" style="width: 0%"></div>
 												</div>
 											</div>
-											<div class="pull-right" style="margin-left: 10px;">0</div>
+											<div id="thongke2" class="pull-right" style="margin-left: 10px;">0</div>
 										</div>
 										<div class="pull-left">
 											<div class="pull-left" style="width: 35px; line-height: 1;">
@@ -201,12 +197,12 @@
 											</div>
 											<div class="pull-left" style="width: 180px;">
 												<div class="progress" style="height: 9px; margin: 8px 0;">
-													<div class="progress-bar progress-bar-success"
+													<div id="thongke1_id" class="progress-bar progress-bar-success"
 														role="progressbar" aria-valuenow="0" aria-valuemin="0"
 														aria-valuemax="5" style="width: 0%"></div>
 												</div>
 											</div>
-											<div class="pull-right" style="margin-left: 10px;">0</div>
+											<div id="thongke1" class="pull-right" style="margin-left: 10px;">0</div>
 										</div>
 									</div>
 									<!--WRITE REVIEW-->
@@ -220,8 +216,8 @@
 
 											<div class="row" id="post-review-box" style="display: none;">
 												<div class="col-md-12">
-													<form accept-charset="UTF-8" action="" method="post">
-														<input id="ratings-hidden" name="rating" type="hidden">
+													<form accept-charset="UTF-8" method="GET">
+														<input id="ratings-hidden" name="rating" type="hidden" value="0">
 														<input class="form-control" id="title_review_write"
 															name="title_write" type="text"
 															style="margin-bottom: 10px;"
@@ -237,9 +233,9 @@
 															<a class="btn btn-danger btn-sm" href="#"
 																id="close-review-box"
 																style="display: none; margin-right: 10px; margin-bottom: 5px;">
-																<span class="glyphicon glyphicon-remove"></span> Cancel
+																<span class="glyphicon glyphicon-remove"></span> Hủy
 															</a>
-															<button class="btn btn-success btn-lg" type="submit">Save</button>
+															<button id="review" class="btn btn-success btn-lg">Gửi</button>
 														</div>
 													</form>
 												</div>
@@ -318,11 +314,9 @@
 
 	<!-- Footer -->
 	<%@ include file="_footer.jsp" %>
-	<script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script>
 
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<%-- <script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script> --%>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>

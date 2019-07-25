@@ -47,7 +47,7 @@ public class PromotionDaoImpl implements PromotionDao{
 
 	public List<Promotion> getAllPromotionDate() {
 		Session session=sessionFactory.getCurrentSession();
-		Query q = session.createQuery("from promotion where timeEnd > now() and timeStart < now() ").setFirstResult(0).setMaxResults(2);
+		Query q = session.createQuery("from promotion where timeEnd > now() and timeStart < now() ").setFirstResult(0).setMaxResults(1);
 		
 		List<Promotion> listPromotiondate=q.getResultList();
 		return listPromotiondate;

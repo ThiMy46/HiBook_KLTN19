@@ -30,7 +30,7 @@ public class UserreviewServiceImpl implements UserreviewService{
 	public void addUserreview(UserreviewDTO userreviewDTO) {
 		Userreview userreview= new Userreview();
 		userreview.setContent(userreviewDTO.getContent());
-		userreview.setReportNum(userreviewDTO.getReportNum());
+		userreview.setReportNum(0);
 		userreview.setStar(userreviewDTO.getStar());
 		userreview.setTimeReview(userreviewDTO.getTimeReview());
 		userreview.setTitle(userreviewDTO.getTitle());

@@ -14,7 +14,7 @@
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/myhome.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/animate.css" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" />
+<link rel="stylesheet" type="text/css" href="resources/css/alert.css" />
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
@@ -138,9 +138,9 @@
 				</h2>
 				<p class="p_home">Một số sách vừa được xuất bản</p>
 			</div>
-			<div class="row container wow slideInUp" style="padding-top: 20px"
+			<div class="row container wow zoomIn" style="padding-top: 20px"
 				id="booknew0"></div>
-			<div class="row container wow slideInUp" style="padding-top: 20px"
+			<div class="row container wow zoomIn" style="padding-top: 20px"
 				id="booknew1"></div>
 			<div style="margin-top: 10px;">
 				<button class="btn btn-success btn_xemthem"
@@ -155,7 +155,6 @@
 	<c:forEach var="list" items="${listPromotion}">
 		<div class="row">
 			<div class="col-lg-12">
-			
 				<div class="banner-img-2">
 					<a href="promotion"><img src="<%=request.getContextPath()%>/resources/images/banner/${list.getPicPromotion()}" alt="banner"></a>
 					<div class="banner-text">
@@ -163,12 +162,9 @@
 						<h2>Giảm đến ${list.getSaleOff()}%</h2>
 					</div>
 				</div>
-				
 			</div>
-			
 		</div>
 		</c:forEach>
-		
 	</div>
 	
 	<!--
@@ -184,9 +180,9 @@
 				</h2>
 				<p class="p_home">Những thể loại sách bán chạy nhất</p>
 			</div>
-			<div class="row container wow slideInUp" id="loadtrangchu"
+			<div class="row container wow zoomIn" id="loadtrangchu"
 				style="padding-top: 20px"></div>
-			<div class="row container wow slideInUp" id="loadtrangchu1"
+			<div class="row container wow zoomIn" id="loadtrangchu1"
 				style="padding-top: 20px"></div>
 			<div class="text-center" style="margin-top: 10px;">
 				<button class="btn btn-success btn_xemthem"
@@ -196,7 +192,7 @@
 		</div>
 	</div>
 	<!--
-	========================SÁCHBÁN CHẠY NHẤT================
+	========================HISTORY================
 	-->
 	<div class="container-fluid" id="historyuser">
 		<div class="container " style="text-align: center; margin-bottom:30px;">
@@ -310,12 +306,14 @@
 			
 		</div>
 	</div>
+	<!-- alert thong bao  -->
+	<div class="thongbao top-alert"></div>
+	<!--  end alert -->
 	
 	<%@ include file="_footer.jsp" %>
 	
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<%-- <script src="<%=request.getContextPath()%>/resources/js/out-js/jquery.min.js"></script> --%>
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/bootstrap.min.js"></script>
 	<script src="<%=request.getContextPath()%>/resources/js/out-js/wow.min.js"></script>
