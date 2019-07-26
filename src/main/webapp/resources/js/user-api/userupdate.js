@@ -28,17 +28,42 @@ $(document).ready(function() {
         	      'Content-Type': 'application/json'
         	},
 	    	success : function(data) {
-	    		alert("Chỉnh sửa thành công!!!");
-	    		window.location = '/HiBook_KLTN19/user-update';
+				// alert thongbao
+				$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Thay đổi thông tin thành công!</div></div>');
+				$('.thongbao').fadeIn();
+				setTimeout(function() {
+					
+					$('.thongbao').fadeOut(function() {
+						$('.thongbao').empty();
+						window.location = '/HiBook_KLTN19/user-update';
+					});
+				}, 1000);
+	    		
 	        },
 	    	statusCode: {
-	    	    404: function() {
-	    	      alert('404 page not found');
-	    	    },
-	
-	    	    400: function() {
-	    	       alert('400 bad request');
-	    	   }
+	    		404: function() {
+		    	      //alert('404 page not found');
+		    	    	$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> 404 page not found!</div></div>');
+		    			$('.thongbao').fadeIn();
+		    			setTimeout(function() {
+		    				
+		    				$('.thongbao').fadeOut(function() {
+		    					$('.thongbao').empty();
+		    				});
+		    			}, 2000);
+		    	    },
+		
+		    	    400: function() {
+		    	       //alert('400 bad request');
+		    	    	$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> 400 bad request!</div></div>');
+		    			$('.thongbao').fadeIn();
+		    			setTimeout(function() {
+		    				
+		    				$('.thongbao').fadeOut(function() {
+		    					$('.thongbao').empty();
+		    				});
+		    			}, 2000);
+		    	   }
 	    	}
 		});
 	});
@@ -56,23 +81,63 @@ $(document).ready(function() {
 		    	},
 		    	success : function(data) {
 		    		if(data==1){
-		    			alert("Đổi mật khẩu thành công!!!");
+						// alert thongbao
+						$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Đổi mật khẩu thành công!</div></div>');
+						$('.thongbao').fadeIn();
+						setTimeout(function() {
+							
+							$('.thongbao').fadeOut(function() {
+								$('.thongbao').empty();
+							});
+						}, 2000);
 		    		}else if(data==-1){
-		    			alert("Mật khẩu cũ không chính xác!!!");
+		    			//alert("Mật khẩu cũ không chính xác!!!");
+		    			$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> Mật khẩu cũ không chính xác!!!</div></div>');
+						$('.thongbao').fadeIn();
+						setTimeout(function() {
+							
+							$('.thongbao').fadeOut(function() {
+								$('.thongbao').empty();
+							});
+						}, 2000);
 		    		}
 		        },
 		    	statusCode: {
 		    	    404: function() {
-		    	      alert('404 page not found');
+		    	      //alert('404 page not found');
+		    	    	$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> 404 page not found!</div></div>');
+		    			$('.thongbao').fadeIn();
+		    			setTimeout(function() {
+		    				
+		    				$('.thongbao').fadeOut(function() {
+		    					$('.thongbao').empty();
+		    				});
+		    			}, 2000);
 		    	    },
 		
 		    	    400: function() {
-		    	       alert('400 bad request');
+		    	       //alert('400 bad request');
+		    	    	$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> 400 bad request!</div></div>');
+		    			$('.thongbao').fadeIn();
+		    			setTimeout(function() {
+		    				
+		    				$('.thongbao').fadeOut(function() {
+		    					$('.thongbao').empty();
+		    				});
+		    			}, 2000);
 		    	   }
 		    	}
 			});
 		}else{
-			alert("Nhập lại mật khẩu mới không trùng nhau!");
+			//alert("Nhập lại mật khẩu mới không trùng nhau!");
+			$('.thongbao').html('<div class="top-alert"><div class="top-alert alert alert-danger" role="alert"><i class="far fa fa-times"></i> Nhập lại mật khẩu mới không trùng nhau!</div></div>');
+			$('.thongbao').fadeIn();
+			setTimeout(function() {
+				
+				$('.thongbao').fadeOut(function() {
+					$('.thongbao').empty();
+				});
+			}, 2000);
 		}
 	});
 	

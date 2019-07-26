@@ -263,7 +263,7 @@
 	<div class="modal fade" id="modalTryRead" data-backdrop="false"
 		role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
-			<div class="modal-content" style="width: 100%;">
+			<div class="modal-content" style="width: 70%;">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalCenterTitle">ĐỌC THỬ</h5>
 					<button type="button" class="close" data-dismiss="modal"
@@ -273,7 +273,7 @@
 				</div>
 				<div class="modal-body">
 					<div id="mydiv">
-						<iframe id="frame" src="" width="100%" height="400"> </iframe>
+						<iframe id="frame" src="" width="100%" height="500"> </iframe>
 					</div>
 				</div>
 			</div>

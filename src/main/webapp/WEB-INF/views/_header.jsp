@@ -1,7 +1,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<style>
+.top-alert {
+	position: fixed;
+	top: 100px;
+	width: 100%;
+	z-index: 100000;
+	font-size: 15px;
+	left: 0;
+	display: inline-block;
+	text-align: center;
+}
 
+.top-alert .alert {
+	width: auto !important;
+	height: 100%;
+	display: inline;
+	position: relative;
+	margin: 0;
+	border-color: #9a9082 !important;
+}
+
+.top-alert .alert .close {
+	position: absolute;
+	top: 11px;
+	right: 10px;
+	color: inherit;
+}
+</style>
 <!--
 		==============================Hearder====================================
 -->
@@ -210,7 +237,38 @@
 </div>
 <!--end div register-->
 <div class="thongbao"></div>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/handle-js/accounthome.js"></script>
 <script src="<%=request.getContextPath()%>/resources/js/hearder.js"></script>
+
+<c:if test="${param.erro == 1}">
+	<script>
+	$(document).ready(function() {
+		$('.thongbao').html('<div class="top-alert"><div class="alert alert-success" role="alert"><i class="far fa-check-circle"></i> Đăng ký thành công! Vui Lòng đăng nhập lại.</div></div>');
+		$('.thongbao').fadeIn();
+		setTimeout(function() {
+			
+			$('.thongbao').fadeOut(function() {
+				$('.thongbao').empty();
+			});
+		}, 2000);
+	});
+	</script>
+</c:if> 
+<c:if test="${param.erro == -1}">
+	<script>
+	$(document).ready(function() {
+		$('.thongbao').html('<div class="top-alert"><div class="alert alert-danger" role="alert"><i class="far fa fa-times"></i> Đăng ký thất bại. Email đã tồn tại!</div></div>');
+		$('.thongbao').fadeIn();
+		setTimeout(function() {
+			
+			$('.thongbao').fadeOut(function() {
+				$('.thongbao').empty();
+			});
+		}, 2000);
+	});
+	</script>
+</c:if> 

@@ -22,7 +22,7 @@ $(document).ready(function getlistBill() {
     	$.each(data, function (i, item) {	 	
     		
     		auth+='<tr><td class="idBill">'+item.idBill+'</td> ' +
-                '<td class="user">'+item.user.idUser+'</td>'+
+                '<td class="user">'+item.user.nameUser+'</td>'+
                 '<td class="dateCreate">'+item.dateCreate+'</td>'+
                 '<td class="total">'+item.total+'</td>'+
                 '<td class="payment" data-id="'+item.payment.idPayment+'">'+item.payment.namePayment+'</td>'+

@@ -131,6 +131,11 @@
 			<artifactId>spring-context-support</artifactId>
 			<version>4.3.1.RELEASE</version>
 		</dependency>
+		<!-- <dependency>
+		    <groupId>com.paypal.sdk</groupId>
+		    <artifactId>rest-api-sdk</artifactId>
+		    <version>1.13.1</version>
+		</dependency> -->
   </dependencies>
   <build>
     <finalName>HiBook_KLTN19</finalName>

@@ -153,12 +153,12 @@ public class PageController {
 			userDTO.setNameUser(uname);
 
 			userSer.addUser(userDTO);
-			model.addAttribute("erro", "Đăng ký thành công");
+			model.addAttribute("erro", "1");
 			return "redirect:/";
 		} else {
-			model.addAttribute("erro", "Email đã tồn tại!!!");
+			model.addAttribute("erro", "-1");
 		}
-		return "redirect:/register";
+		return "redirect:/";
 	}
 
 	@GetMapping("/loginsuccess")

@@ -79,6 +79,10 @@ $(document).ready(function() {
 					$('#thongke5_id').width(Math.ceil(star_arr[4]*100/count) +"%");
 				}
 				$('#TryRead>a').data('value',data.proofread);
+				if(data.proofread == '' || data.proofread == null || data.proofread.length == 0)
+				{
+					$('#TryRead a').remove();
+				}	
 				$('#mucreview').append(text_review);
 				var star_tb=star_number/dem;
 
@@ -127,9 +131,9 @@ $(document).ready(function() {
 
 	$("#TryRead").click(function () { 
 		var file=$('#TryRead a').data('value');
-		if(file==null)
+		if(file == '' || file == null || file.length == 0)
 		{
-
+			
 		}else{$("#frame").attr("src", '/HiBook_KLTN19/resources/images/file/'+file);}
 	});
 	

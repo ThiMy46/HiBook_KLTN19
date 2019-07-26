@@ -7,32 +7,30 @@ import java.io.OutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.sun.mail.smtp.SMTPTransport;
-
 import ute.hibook.dto.ConvertPromotionDTO;
-import ute.hibook.dto.PromotionDTO;
 import ute.hibook.dto.UserDTO;
 import ute.hibook.service.impl.PromotionServiceImpl;
 import ute.hibook.service.impl.UserServiceImpl;
@@ -47,10 +45,10 @@ public class SpringConfig {
 	PromotionServiceImpl promotion;
 
 	private static final String SMTP_SERVER = "smtp server ";
-	private static final String USERNAME = "nguyenvietthanh1197@gmail.com";
-	private static final String PASSWORD = "tranthiainhi123";
+	private static final String USERNAME = "hibook.2019@gmail.com";
+	private static final String PASSWORD = "Hibook@123";
 
-	private static final String EMAIL_FROM = "nguyenvietthanh1197@gmail.com";
+	private static final String EMAIL_FROM = "hibook.2019@gmail.com";
 	private static final String EMAIL_TO = "daothimy46@gmail.com";
 	private static final String EMAIL_TO_CC = "";
 
@@ -58,7 +56,7 @@ public class SpringConfig {
 	private static final String EMAIL_TEXT = "<h1>Hello Java Mail \n ABC123</h1>";
 
 	//@Scheduled(cron = "*/10 * * * * *")
-	@Scheduled(cron = "0 0 0 25 12 ?") 
+	@Scheduled(cron = "0 0 0 25 07 ?") 
 	public void ScheduledWeekEnd() throws ParseException {
 		// test
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd 00:00:00");
@@ -127,8 +125,15 @@ public class SpringConfig {
 								InternetAddress.parse(userToMail.getEmail(), false));
 
 						msg.setSubject(pro.getTitlePromotion());
-						msg.setDataHandler(new DataHandler(new HTMLDataSource(pro.getContentPromotion())));
+						//msg.setDataHandler(new DataHandler(new HTMLDataSource(pro.getContentPromotion())));
+						//Transport.send(msg);
+						MimeBodyPart textPart = new MimeBodyPart();
+						textPart.setContent(pro.getContentPromotion(), "text/html; charset=utf-8");
+						Multipart multipart = new MimeMultipart("mixed");
+						multipart.addBodyPart(textPart);
+						msg.setContent(multipart);
 						Transport.send(msg);
+						
 						System.out.println("doneeeeee--------");
 
 					}

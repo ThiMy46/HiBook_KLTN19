@@ -14,7 +14,7 @@
 <!--CSS-->
 <link rel="stylesheet" type="text/css" href="resources/css/myhome.css" />
 <link rel="stylesheet" type="text/css" href="resources/css/animate.css" />
-<link rel="stylesheet" type="text/css" href="resources/css/alert.css" />
+<!-- <link rel="stylesheet" type="text/css" href="resources/css/alert.css" /> -->
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <style>
